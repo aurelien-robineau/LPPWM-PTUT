@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common'
+import { AppStatus } from './app.types'
+
 
 @Injectable()
 export class AppService {
-	getHello(): string {
-		return 'Hello World!'
+	getAppStatus(): AppStatus {
+		return {
+			version: '1.0',
+			status: 'live'
+		}
 	}
 }
