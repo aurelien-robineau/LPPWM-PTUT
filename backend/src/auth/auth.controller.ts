@@ -10,7 +10,7 @@ export class AuthController {
 
 	@Post('/signin')
 	@SetMetadata('isPublic', true)
-	async signin(@Body() signInDto: SignInDto): Promise<string> {
+	async signin(@Body() signInDto: SignInDto): Promise<{ token: string }> {
 		const user = await this.service.signin(signInDto)
 
 		if (!user) {
@@ -20,6 +20,6 @@ export class AuthController {
 			)
 		}
 
-		return user.generateToken()
+		return { token: user.generateToken() }
 	}
 }
