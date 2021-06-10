@@ -1,6 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import { sign } from 'jsonwebtoken'
 import { UsagePoint } from './../usagePoints/usagePoint.entity'
 import { UserConsumption } from './../userConsumptions/userConsumption.entity'
+import config from 'src/config'
 
 @Entity({ name: 'USERS' })
 export class User {
@@ -76,4 +78,27 @@ export class User {
 		onDelete: 'CASCADE'
 	})
 	consumptions: UserConsumption[]
+
+	/**
+	 * Generate an API access token for the user.
+	 * @returns The user's token.
+	 */
+	public generateToken(): string {
+		const tokenData = {
+			id: this.id,
+			title: this.title,
+			firstname: this.firstname,
+			lastname: this.lastname,
+			email: this.email,
+			updatedAt: this.updatedAt,
+			createdAt: this.createdAt
+		}
+		
+		const token = sign(tokenData, config.secret, {
+			expiresIn: '1h'
+		})
+
+		return token
+	}
+
 }
