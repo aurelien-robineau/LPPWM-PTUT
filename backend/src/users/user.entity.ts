@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import { UsagePoint } from './../usagePoints/usagePoint.entity'
+import { UserConsumption } from './../userConsumptions/userConsumption.entity'
 
 @Entity({ name: 'USERS' })
 export class User {
@@ -62,4 +64,16 @@ export class User {
 
 	@CreateDateColumn({ name: 'CREATED_AT' })
 	createdAt: Date
+
+	@OneToMany(() => UsagePoint, usagePoint => usagePoint.user, {
+		cascade: true,
+		onDelete: 'CASCADE'
+	})
+	usagePoints: UsagePoint[]
+
+	@OneToMany(() => UserConsumption, userConsumption => userConsumption.user, {
+		cascade: true,
+		onDelete: 'CASCADE'
+	})
+	consumptions: UserConsumption[]
 }

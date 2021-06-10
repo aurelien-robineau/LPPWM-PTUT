@@ -7,6 +7,10 @@ import { AuthGuard } from './auth/auth.guard'
 import { AuthModule } from './auth/auth.module'
 import { UsersModule } from './users/users.module'
 import { AuthMiddleware } from './auth/auth.middleware'
+import { RegionsModule } from './regions/regions.module'
+import { UsagePointsModule } from './usagePoints/usagePoints.module'
+import { UserConsumptionsModule } from './userConsumptions/userConsumptions.module'
+import { RegionConsumptionsModule } from './regionConsumptions/regionConsumptions.module'
 import config from './config'
 
 @Module({
@@ -17,7 +21,11 @@ import config from './config'
 			autoLoadEntities: true
 		}),
 		AuthModule,
-		UsersModule
+		UsersModule,
+		UsagePointsModule,
+		UserConsumptionsModule,
+		RegionsModule,
+		RegionConsumptionsModule
 	],
 	controllers: [
 		AppController
