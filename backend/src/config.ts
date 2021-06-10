@@ -14,7 +14,8 @@ const PROD_CONFIG = {
 			publicKey: null,
 			privateKey: null
 		}
-	}
+	},
+	secret: 'KAxpBTRJ4UqPof1ZjVG0f2jAJ6SKnpH4'
 } as const
 
 const DEV_CONFIG = {
@@ -32,7 +33,8 @@ const DEV_CONFIG = {
 			publicKey: '6b87cecb-21b6-47bc-9a67-aaffca73529c',
 			privateKey: 'd7883efa-e01e-463d-8af2-674f88f9e13c'
 		}
-	}
+	},
+	secret: 'r9x6aoz78CimnAUJ1kWNumR1QY0KjqlM'
 } as const
 
 export default process.env.ENV === 'PROD' ? PROD_CONFIG : DEV_CONFIG
