@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
 import { sign } from 'jsonwebtoken'
 import { UsagePoint } from './../usagePoints/usagePoint.entity'
-import { UserConsumption } from './../userConsumptions/userConsumption.entity'
 import config from 'src/config'
 
 @Entity({ name: 'USERS' })
@@ -72,12 +71,6 @@ export class User {
 		onDelete: 'CASCADE'
 	})
 	usagePoints: UsagePoint[]
-
-	@OneToMany(() => UserConsumption, userConsumption => userConsumption.user, {
-		cascade: true,
-		onDelete: 'CASCADE'
-	})
-	consumptions: UserConsumption[]
 
 	/**
 	 * Generate an API access token for the user.

@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm'
 import { User } from './../users/user.entity'
 import { Region } from './../regions/region.entity'
+import { UserConsumption } from './../userConsumptions/userConsumption.entity';
 
 @Entity({ name: 'USAGE_POINTS' })
 export class UsagePoint {
@@ -87,4 +88,10 @@ export class UsagePoint {
 		scale: 6
 	})
 	longitude: number
+
+	@OneToMany(() => UserConsumption, userConsumption => userConsumption.usagePoint, {
+		cascade: true,
+		onDelete: 'CASCADE'
+	})
+	consumptions: UserConsumption[]
 }

@@ -1,14 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm'
-import { User } from './../users/user.entity';
+import { UsagePoint } from './../usagePoints/usagePoint.entity';
 
 @Entity({ name: 'USER_CONSUMPTIONS' })
 export class UserConsumption {
 	@PrimaryGeneratedColumn({ name: 'ID' })
 	id: number
 
-	@ManyToOne(() => User, user => user.consumptions)
-	@JoinColumn({ name: 'USER_ID' })
-	user: User
+	@ManyToOne(() => UsagePoint, usagePoint => usagePoint.consumptions)
+	@JoinColumn({ name: 'USAGE_POINT_ID' })
+	usagePoint: UsagePoint
 	
 	@Column({
 		name: 'DATE',
