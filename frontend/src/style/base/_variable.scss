@@ -1,0 +1,31 @@
+$palettes: (
+	dark: (
+		"text": white,
+		"background": black,
+		"primary": green,
+		"secondary": blue,
+		"tertiary": orange,
+	),
+	light: (
+		"text": black,
+		"background": white,
+		"primary": green,
+		"secondary": blue,
+		"tertiary": orange,
+	),
+);
+$space: 4px;
+$font: "Quasimoda", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+	Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+:root {
+	--font: #{$font};
+	--space: #{$space};
+}
+@each $mode, $palette in $palettes {
+	[data-theme="#{$mode}"] {
+		@each $name, $color in $palette {
+			--clr-#{$name}: $color;
+		}
+	}
+}
