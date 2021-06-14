@@ -3,3 +3,6 @@
 
 // Import functions and mixins
 @import "./utils/functions", "./utils/mixins";
+
+// Import pages styles
+@import "./pages/dashboard", "./pages/login", "./pages/signin";
