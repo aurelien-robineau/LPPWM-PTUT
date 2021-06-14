@@ -1,0 +1,18 @@
+.header {
+	&__container {
+		padding-top: space(4);
+		width: calc(100% - 2 * 24px);
+		margin-left: auto;
+		margin-right: auto;
+		@include flex($justify: space-between, $align: flex-start);
+	}
+	h2 {
+		flex-grow: 0;
+		font-size: 2rem;
+		span {
+			margin-top: space(1);
+			display: block;
+			font-weight: 600;
+		}
+	}
+}

@@ -7,6 +7,7 @@ const Dashboard = () => {
 	)
 	useEffect(() => {
 		localStorage.setItem("DARK_THEME", darkMode.toString())
+		document.documentElement.dataset.theme = darkMode ? "dark" : "light"
 	}, [darkMode])
 
 	return (

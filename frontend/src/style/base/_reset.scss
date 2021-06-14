@@ -91,6 +91,7 @@ video {
 	font: inherit;
 	font-family: var(--font);
 	vertical-align: baseline;
+	color: var(--clr-text);
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -130,12 +131,10 @@ table {
 }
 
 body {
+	background-color: var(--clr-bg);
 	font-size: 18px;
 
-	@media (max-width: $breakpoint-desktop){
+	@media (max-width: $breakpoint-desktop) {
 		font-size: 16px;
 	}
 }
-
-
-
