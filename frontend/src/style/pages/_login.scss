@@ -1,33 +1,62 @@
-.login-page{
+.login-page {
     height: 100vh;
     display: flex;
 
-    .container{
+    .container {
         width: 70%;
         margin: auto;
+        max-width: 350px;
 
-        h1{
+        h1 {
             text-align: center;
             font-size: 2.5rem;
             font-weight: 800;
         }
 
-        form{
-            padding: 40px 0;
+        form {
+            padding: 40px 0 16px;
 
-            label{
+
+            label {
                 display: block;
                 font-weight: 300;
-            }
-           
 
-            input{
+                &:not(:first-child) {
+                    margin-top: space(7);
+                }
+            }
+
+
+            input {
                 display: block;
                 border: none;
                 border-bottom: solid black 1px;
                 width: 100%;
                 padding: space(3);
             }
+
+            button {
+                @extend %main-button;
             }
+
         }
     }
+
+    .create-account {
+        font-size: 0.75rem;
+        text-align: center;
+
+        a {
+            @extend %main-link;
+        }
+    }
+
+    .logo {
+
+        img {
+            margin: auto;
+            display: block;
+            margin-top: 30px;
+        }
+    }
+}

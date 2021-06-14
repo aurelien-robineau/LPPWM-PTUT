@@ -1,4 +1,5 @@
 import { useState, useReducer } from "react"
+import logo from "../img/logo-gris.png"
 
 const formReducer = (state: any, event: any) => {
 	return {
@@ -48,7 +49,7 @@ const Login = () => {
 				<div className="create-account">
 					Pas de compte ? <a href="/signin">Inscrivez-vous</a>
 				</div>
-				<div className="plant">Plante à mettre</div>
+				<div className="logo"><img src={logo} alt="logo-gris" width="30" /></div>
 			</div>
 		</div>
 	)
