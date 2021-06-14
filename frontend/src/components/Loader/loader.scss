@@ -1,0 +1,9 @@
+.loader {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: calc(100 * var(--vh, 1vh));
+	width: 100vw;
+	z-index: 999;
+	background-color: var(--clr-secondary);
+}
