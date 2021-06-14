@@ -131,9 +131,10 @@ table {
 }
 
 body {
-	background-color: var(--clr-bg);
+	background-color: var(--clr-background);
+	color: var(--clr-text);
+	min-height: calc(100 * var(--vh, 1vh));
 	font-size: 18px;
-
 	@media (max-width: $breakpoint-desktop) {
 		font-size: 16px;
 	}
