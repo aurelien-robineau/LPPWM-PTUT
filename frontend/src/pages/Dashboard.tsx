@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import Header from "../components/Header"
 
 const Dashboard = () => {
 	const [darkMode, setDarkMode] = useState(
@@ -8,10 +9,9 @@ const Dashboard = () => {
 		localStorage.setItem("DARK_THEME", darkMode.toString())
 	}, [darkMode])
 
-
 	return (
-		<div>
-			Dashboard
+		<div className="dashboard-page">
+			<Header />
 			<button onClick={() => setDarkMode(darkMode ? false : true)}>
 				Switch theme
 			</button>
