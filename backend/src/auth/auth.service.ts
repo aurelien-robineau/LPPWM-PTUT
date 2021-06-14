@@ -17,17 +17,24 @@ export class AuthService {
 	 */
 	async signin(signInDto: SignInDto): Promise<User> {
 		const { identifier, password } = signInDto
-		console.log(signInDto)
 
 		let user: User = null
-		try {
-			const enedisId = parseInt(identifier)
-			user = await this.usersService.getByEnedisId(enedisId)
-		} catch (e) {
-			user = await this.usersService.getByEmail(identifier)
-		}
 
-		if (!user || !await compare(password, user.password))
+		// Try to parse identifier to int
+		const enedisId = parseInt(identifier)
+
+		// If parsing succeeds, then the identifier is an enedisId
+		if (enedisId)
+			user = await this.usersService.getByEnedisId(enedisId)
+		// Else it is an email
+		else
+			user = await this.usersService.getByEmail(identifier)
+
+		if (!user)
+			return null
+
+		const hash = await this.usersService.getUserPassword(user)
+		if (!await compare(password, hash))
 			return null
 
 		return user

@@ -33,11 +33,25 @@ export class UsersService {
 	/**
 	 * Get a user by its email.
 	 * @param email The email of the user.
-	 * @returns The user with this email, or null if not found
+	 * @returns The user with this email, or null if not found.
 	 */
 	async getByEmail(email: string): Promise<User> {
 		return await this.repository.findOne({
 			where: { email }
 		})
+	}
+
+	/**
+	 * Get a user's password.
+	 * @param user The user from which to get the password.
+	 * @returns The user's password.
+	 */
+	async getUserPassword(user: User): Promise<string> {
+		const { password } = await this.repository.findOne({
+			select: ['password'],
+			where: { id: user.id }
+		})
+
+		return password
 	}
 }
