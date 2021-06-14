@@ -8,10 +8,10 @@ $palettes: (
 	),
 	light: (
 		"text": black,
-		"background": #F7F7F7,
+		"background": #f7f7f7,
 		"primary": #b1f47b,
-		"secondary": #B5E9F4,
-		"tertiary": #FF7235,
+		"secondary": #b5e9f4,
+		"tertiary": #ff7235,
 		"white": white,
 	),
 );
@@ -28,7 +28,7 @@ $breakpoint-tablet: 768px;
 @each $mode, $palette in $palettes {
 	[data-theme="#{$mode}"] {
 		@each $name, $color in $palette {
-			--clr-#{$name}: $color;
+			--clr-#{$name}: #{$color};
 		}
 	}
 }
