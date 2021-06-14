@@ -18,21 +18,12 @@
 
 
             label {
-                display: block;
-                font-weight: 300;
-
-                &:not(:first-child) {
-                    margin-top: space(7);
-                }
+                @extend %label;
             }
 
 
             input {
-                display: block;
-                border: none;
-                border-bottom: solid black 1px;
-                width: 100%;
-                padding: space(3);
+                @extend %input;
             }
 
             button {
@@ -58,5 +49,38 @@
             display: block;
             margin-top: 30px;
         }
+    }
+
+    .login-informations-container{
+        display: none;
+    }
+
+//DESKTOP
+
+    @media(min-width: $breakpoint-desktop){
+
+    .container{
+        display: flex;
+        justify-content: space-around;
+        width: 90%;
+        margin: auto;
+        max-width: 1440px;
+    }
+
+    .login-form-container{
+        background-color: var(--clr-white);
+        padding: calc(16 * var(--space));
+        border-radius: 8px;
+    }
+
+    .login-informations-container{
+        display: block;
+
+        h2{
+            text-align: center;
+            font-size: 2.345rem;
+        }
+    }
+
     }
 }

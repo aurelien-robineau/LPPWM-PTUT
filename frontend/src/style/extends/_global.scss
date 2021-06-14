@@ -1,0 +1,40 @@
+%main-button{
+    padding: space(2.5) space(4);
+    border-radius: 8px;
+    margin: auto;
+    display: block;
+    margin-top: space(8);
+    background-color: var(--clr-accent);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+%main-link{
+    color: var(--clr-accent);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+%input{
+    display: block;
+    border: none;
+    border-bottom: solid var(--clr-text) 1px;
+    width: 100%;
+    padding: calc(2 * var(--space)) 0;
+    background-color: transparent;
+    font-family: var(--font);
+    font-size: 1rem;
+}
+
+%label{
+    display: block;
+    font-weight: 300;
+    font-size: 15px;
+
+    &:not(:first-child) {
+        margin-top: space(7);
+    }
+}

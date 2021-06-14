@@ -5,7 +5,7 @@
 @import "./utils/functions", "./utils/mixins";
 
 // Import extends styles
-@import "./extends/button";
+@import "./extends/global";
 
 // Import pages styles
 @import "./pages/dashboard", "./pages/login", "./pages/signin";
