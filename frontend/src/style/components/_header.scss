@@ -4,7 +4,7 @@
 		width: calc(100% - 2 * 24px);
 		margin-left: auto;
 		margin-right: auto;
-		@include flex($justify: space-between, $align: flex-start);
+		@include flex($justify: space-between);
 	}
 	h2 {
 		flex-grow: 0;
@@ -13,6 +13,25 @@
 			margin-top: space(1);
 			display: block;
 			font-weight: 600;
+		}
+	}
+
+	.icons {
+		display: inline-flex;
+		align-items: center;
+		& > * + * {
+			margin-left: space(1);
+		}
+		button {
+			padding: 0;
+			background-color: transparent;
+			color: inherit;
+			border: none;
+			outline: none;
+			&:focus {
+				border: none;
+				outline: none;
+			}
 		}
 	}
 }
