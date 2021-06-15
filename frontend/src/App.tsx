@@ -1,24 +1,22 @@
-import { lazy, Suspense, useState, useEffect } from "react"
+import { lazy, Suspense } from "react"
 import "./style/main.scss"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { onResize } from "./utils"
 import Loader from "./components/Loader"
 import { useAuth } from "./hooks/auth"
+import { useEffect } from "react"
 const Login = lazy(() => import("./pages/Login"))
 const Signin = lazy(() => import("./pages/Signin"))
 const Dashboard = lazy(() => import("./pages/Dashboard"))
 
 const App = () => {
-	const [darkMode, setDarkMode] = useState(
-		!!localStorage.getItem("DARK_THEME") || false
-	)
-	useEffect(() => {
-		localStorage.setItem("DARK_THEME", darkMode.toString())
-		document.documentElement.dataset.theme = darkMode ? "dark" : "light"
-	}, [darkMode])
 	const [logged, setLogged] = useAuth()
+	const themeColor = JSON.parse(localStorage.getItem("DARK_THEME") || "false")
 
-	console.log(logged)
+	useEffect(() => {
+		document.documentElement.dataset.theme = themeColor ? "dark" : "light"
+	}, [])
+	console.log({ logged })
 
 	onResize()
 	return (

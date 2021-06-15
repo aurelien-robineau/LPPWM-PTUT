@@ -10,7 +10,7 @@ export const useAuth = () => {
 		} else {
 			setLogged(false)
 		}
-	}, [])
+	}, [jwt, userInfos])
 
 
 	return [logged, setLogged]
