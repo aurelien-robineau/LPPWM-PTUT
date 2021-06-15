@@ -36,6 +36,7 @@
     .create-account {
         font-size: 0.75rem;
         text-align: center;
+        margin-top: space(4);
 
         a {
             @extend %main-link;
@@ -48,6 +49,10 @@
             margin: auto;
             display: block;
             margin-top: 30px;
+
+            @media(min-width: $breakpoint-tablet){
+                width: 30px;
+            }
         }
     }
 
@@ -68,26 +73,35 @@
         }
 
         .login-form-container{
-            width: 36%;
+            width: 35%;
 
-        .login-form {
-            //background-color: var(--clr-white);
-            padding: calc(17 * var(--space));
-            border-radius: 10px;
-            background-color: gray;
-            height: calc(75vh - 128px);
-            min-height: 380px;
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
+    }
+
+
+    .login-form {
+        //background-color: var(--clr-white);
+        padding: space(16) space(17);
+        border-radius: 10px;
+        background-color: gray;
+        height: 82vh;
+        max-height: 860px;
+        min-height: 564px;
+        position: sticky;
+        top: 70px;
+        width: 35%;
+
+        @media (max-width: 1296px){
+            padding: space(10) space(14);
         }
     }
 
 
 
+
+
         .login-informations-container {
             display: block;
-            width: calc(95% - 434px);
+            width: 58%;
             margin-top: 80px;
             margin-bottom: 80px;
 

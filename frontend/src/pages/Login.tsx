@@ -32,7 +32,7 @@ const Login = () => {
 		<div className="login-page">
 			<div className="container">
 				
-				<div className="login-form-container">
+				{/* <div className="login-form-container"> */}
 					<div className="login-form">
 						<h1>Accéder à Enyu</h1>
 						<form onSubmit={handleSubmit}>
@@ -48,13 +48,15 @@ const Login = () => {
 								onChange={handleChange}
 							/>
 							<button type="submit">Se connecter</button>
-						</form>
-						<div className="create-account">
+							<div className="create-account">
 							Pas de compte ? <a href="/signin">Inscrivez-vous</a>
-						</div>
-						<div className="logo"><img src={logo} alt="logo-gris" width="30" /></div>
+							</div>
+							<div className="logo"><img src={logo} alt="logo-gris" width="20" /></div>
+						</form>
+
+
 					</div>
-				</div>
+				{/* </div> */}
 
 
 				<div className="login-informations-container">
