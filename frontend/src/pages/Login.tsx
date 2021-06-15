@@ -39,7 +39,11 @@ const Login = () => {
 							<label htmlFor="email">
 								Email ou identifiant client Enedis
 							</label>
-							<input type="text" id="email" onChange={handleChange} />
+							<input
+								type="text"
+								id="email"
+								onChange={handleChange}
+							/>
 							<label htmlFor="password">Mot de passe</label>
 							<input
 								autoComplete="true"
@@ -58,13 +62,21 @@ const Login = () => {
 					</div>
 				{/* </div> */}
 
-
 				<div className="login-informations-container">
-					<h2>Maîtrisez votre <span className="bold">consommation d’électricité</span> avec <span className="bold">Enyu</span></h2>
+					<h2>
+						Maîtrisez votre{" "}
+						<span className="bold">consommation d’électricité</span>{" "}
+						avec <span className="bold">Enyu</span>
+					</h2>
 
 					<div className="feature-tracker-row">
 						<div className="feature-text-container">
-							<p>Fixez et atteignez votre <span className="bold">objectif de consommation.</span></p>
+							<p>
+								Fixez et atteignez votre{" "}
+								<span className="bold">
+									objectif de consommation.
+								</span>
+							</p>
 						</div>
 
 						<div className="tracker"></div>
@@ -74,25 +86,33 @@ const Login = () => {
 						<div className="graph"></div>
 
 						<div className="feature-text-container">
-							<p>Trackez et comparez votre consommation grace à des <span className="bold">graphiques</span>.</p>
+							<p>
+								Trackez et comparez votre consommation grace à
+								des <span className="bold">graphiques</span>.
+							</p>
 						</div>
 					</div>
 
 					<div className="feature-plant-row">
-
 						<div className="feature-text-container">
-							<p>Faites pousser Planty en maintenant votre consommation inférieur à celle <span className="bold">moyenne des foyers similaires de votre région</span>.
-
-							Elle vous donnera toutes les <span className="bold">astuces écologiques</span> nécessaires à sa croissance.</p>
+							<p>
+								Faites pousser Planty en maintenant votre
+								consommation inférieur à celle{" "}
+								<span className="bold">
+									moyenne des foyers similaires de votre
+									région
+								</span>
+								. Elle vous donnera toutes les{" "}
+								<span className="bold">
+									astuces écologiques
+								</span>{" "}
+								nécessaires à sa croissance.
+							</p>
 						</div>
 
 						<div className="plant"></div>
-
 					</div>
-
 				</div>
-
-
 			</div>
 		</div>
 	)
