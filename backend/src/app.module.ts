@@ -11,6 +11,7 @@ import { RegionsModule } from './regions/regions.module'
 import { UsagePointsModule } from './usagePoints/usagePoints.module'
 import { UserConsumptionsModule } from './userConsumptions/userConsumptions.module'
 import { RegionConsumptionsModule } from './regionConsumptions/regionConsumptions.module'
+import { RefreshTokensModule } from './refreshTokens/refreshTokens.module'
 import config from './config/config'
 
 @Module({
@@ -23,7 +24,8 @@ import config from './config/config'
 		UsagePointsModule,
 		UserConsumptionsModule,
 		RegionsModule,
-		RegionConsumptionsModule
+		RegionConsumptionsModule,
+		RefreshTokensModule
 	],
 	controllers: [
 		AppController

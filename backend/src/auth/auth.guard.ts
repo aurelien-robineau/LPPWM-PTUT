@@ -24,6 +24,6 @@ export class AuthGuard implements CanActivate {
 
 		if (isAccessGranted) return true
 
-		throw new HttpException('Unauthorized', 403)
+		throw new HttpException('Accès refusé : jeton manquant ou invalide', 403)
 	}
 }

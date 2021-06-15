@@ -103,4 +103,20 @@ export class User {
 		return token
 	}
 
+	/**
+	 * Generate an API refresh token for the user.
+	 * @returns The user's refresh token.
+	 */
+	public generateRefreshToken(id: number): string {
+		const tokenData = {
+			userId: this.id,
+			tokenId: id
+		}
+		
+		const token = sign(tokenData, config.refreshSecret, {
+			expiresIn: '1y'
+		})
+
+		return token
+	}
 }

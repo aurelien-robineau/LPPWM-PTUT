@@ -30,5 +30,6 @@ export default {
 			baseUrl: 'https://geo.api.gouv.fr'
 		}
 	},
-	secret: 'KAxpBTRJ4UqPof1ZjVG0f2jAJ6SKnpH4'
+	secret: 'KAxpBTRJ4UqPof1ZjVG0f2jAJ6SKnpH4',
+	refreshSecret: 'LB8OGcDgCKjfssE6nMIHj5kJyzGbSYxe'
 } as const

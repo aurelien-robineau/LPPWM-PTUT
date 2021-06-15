@@ -1,4 +1,4 @@
-import { MaxLength, IsNotEmpty, Matches } from 'class-validator'
+import { IsNotEmpty, Matches } from 'class-validator'
 
 export class SignInDto {
 	/**

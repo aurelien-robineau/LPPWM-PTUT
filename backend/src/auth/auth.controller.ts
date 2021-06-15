@@ -1,11 +1,13 @@
 import { Controller, Post, Body, SetMetadata, HttpException, HttpStatus } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { SignInDto, SignUpDto } from '../dto/auth.dto'
+import { RefreshTokensService } from './../refreshTokens/refreshTokens.service'
 
 @Controller('v1/auth')
 export class AuthController {
 	constructor(
-		private service: AuthService
+		private readonly service: AuthService,
+		private readonly refreshTokensService: RefreshTokensService
 	) {}
 
 	@Post('/enedis-authorization-url')
@@ -16,7 +18,7 @@ export class AuthController {
 
 	@Post('/signin')
 	@SetMetadata('isPublic', true)
-	async signin(@Body() signInDto: SignInDto): Promise<{ token: string }> {
+	async signin(@Body() signInDto: SignInDto): Promise<{ token: string, refreshToken: string }> {
 		const user = await this.service.signin(signInDto)
 
 		if (!user) {
@@ -26,12 +28,15 @@ export class AuthController {
 			)
 		}
 
-		return { token: user.generateToken() }
+		return {
+			token: user.generateToken(),
+			refreshToken: await this.refreshTokensService.createNewRefreshTokenForUser(user.id)
+		}
 	}
 
 	@Post('/signup')
 	@SetMetadata('isPublic', true)
-	async signup(@Body() signUpDto: SignUpDto): Promise<{ token: string }> {
+	async signup(@Body() signUpDto: SignUpDto): Promise<{ token: string, refreshToken: string }> {
 		const user = await this.service.signup(signUpDto)
 
 		if (!user) {
@@ -41,6 +46,9 @@ export class AuthController {
 			)
 		}
 
-		return { token: user.generateToken() }
+		return {
+			token: user.generateToken(),
+			refreshToken: await this.refreshTokensService.createNewRefreshTokenForUser(user.id)
+		}
 	}
 }
