@@ -3,4 +3,5 @@ export const onResize = () => {
 		"--vh",
 		`${document.documentElement.clientHeight / 100}px`
 	)
+	window.addEventListener("resize", onResize)
 }

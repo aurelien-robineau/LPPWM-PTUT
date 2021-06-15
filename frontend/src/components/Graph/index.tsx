@@ -1,5 +1,18 @@
-// import { useEffect, useRef } from "react"
 import { Line } from "react-chartjs-2"
+
+const data = {
+	labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
+	datasets: [
+		{
+			label: "# of Votes",
+			data: [12, 15, 3, 5, 2, 3, 7, 9, 12, 8, 15],
+			fill: true,
+			tension: 0.35,
+			backgroundColor: "rgba(255, 99, 132, .5)",
+			borderColor: "rgba(255, 99, 132, 0.2)",
+		},
+	],
+}
 
 const options = {
 	scales: {
@@ -7,50 +20,38 @@ const options = {
 			{
 				ticks: {
 					beginAtZero: true,
+					minor: {
+						fontColor: "green",
+					},
+					major: {
+						fontColor: "red",
+					},
+				},
+			},
+		],
+		xAxes: [
+			{
+				ticks: {
+					beginAtZero: true,
 				},
 			},
 		],
 	},
+
+	plugins: {
+		tooltip: {
+			backgroundColor: "red",
+			titleAlign: "center",
+			titleFont: {
+				size: 16,
+				family: "Quasimoda",
+				style: "oblique",
+			},
+		},
+	},
 }
 
 const Graph = () => {
-	// let canvasRef = useRef<any>(null)
-	const data = (canvas: any) => {
-		const ctx = canvas.getContext("2d")
-		const gradient = ctx.createLinearGradient(0, 0, 0, 100)
-		gradient.addColorStop(0, "rgba(250,174,50,1)")
-		gradient.addColorStop(1, "rgba(250,174,50,0)")
-
-		return {
-			labels: ["1", "2", "3", "4", "5", "6"],
-			datasets: [
-				{
-					label: "# of Votes",
-					data: [12, 19, 3, 5, 2, 3],
-					tension: 0.3,
-					fillColor: gradient, // Put the gradient here as a fill color
-					strokeColor: "#ff6c23",
-					pointColor: "#fff",
-					pointStrokeColor: "#ff6c23",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "#ff6c23",
-				},
-			],
-		}
-	}
-
-	// useEffect(() => {
-	// 	let ctx = canvasRef?.current?.getContext("2d")
-	// 	if (ctx) {
-	// 		let gradient = ctx.createLinearGradient(0, 0, 0, 400)
-	// 		gradient.addColorStop(0, "rgba(250,174,50,1)")
-	// 		gradient.addColorStop(1, "rgba(250,174,50,0)")
-	// 		// data.datasets[0].fillColor = gradient,
-	// 		console.log(data)
-	// 	} else {
-	// 		console.log("Not load")
-	// 	}
-	// }, [canvasRef])
 	return (
 		<section>
 			<h2>Ma consommation</h2>
