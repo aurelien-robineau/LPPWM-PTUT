@@ -2,7 +2,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { UsersService } from '../users/users.service'
 import { verify } from 'jsonwebtoken'
-import config from '../config'
+import config from '../config/config'
 
 /**
  * Fetch and add the user to the request object on each request.

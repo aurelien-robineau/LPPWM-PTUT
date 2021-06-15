@@ -11,14 +11,12 @@ import { RegionsModule } from './regions/regions.module'
 import { UsagePointsModule } from './usagePoints/usagePoints.module'
 import { UserConsumptionsModule } from './userConsumptions/userConsumptions.module'
 import { RegionConsumptionsModule } from './regionConsumptions/regionConsumptions.module'
-import config from './config'
+import config from './config/config'
 
 @Module({
 	imports: [
 		TypeOrmModule.forRoot({
-			...config.database,
-			synchronize: true,
-			autoLoadEntities: true
+			...config.database
 		}),
 		AuthModule,
 		UsersModule,

@@ -23,13 +23,11 @@ export class Region {
 	name: string
 
 	@OneToMany(() => UsagePoint, usagePoint => usagePoint.region, {
-		cascade: true,
 		onDelete: 'CASCADE'
 	})
 	usagePoints: UsagePoint[]
 
 	@OneToMany(() => RegionConsumption, regionConsumption => regionConsumption.region, {
-		cascade: true,
 		onDelete: 'CASCADE'
 	})
 	consumptions: RegionConsumption[]

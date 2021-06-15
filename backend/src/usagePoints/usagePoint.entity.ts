@@ -48,7 +48,8 @@ export class UsagePoint {
 	@Column({
 		name: 'LOCALITY',
 		type: 'varchar',
-		length: 255
+		length: 255,
+		nullable: true
 	})
 	locality: string
 
@@ -73,24 +74,7 @@ export class UsagePoint {
 	})
 	country: string
 
-	@Column({
-		name: 'LATITUDE',
-		type: 'decimal',
-		precision: 9,
-		scale: 6
-	})
-	latitude: number
-
-	@Column({
-		name: 'LONGITUDE',
-		type: 'decimal',
-		precision: 9,
-		scale: 6
-	})
-	longitude: number
-
 	@OneToMany(() => UserConsumption, userConsumption => userConsumption.usagePoint, {
-		cascade: true,
 		onDelete: 'CASCADE'
 	})
 	consumptions: UserConsumption[]

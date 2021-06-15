@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
 import { sign } from 'jsonwebtoken'
 import { UsagePoint } from './../usagePoints/usagePoint.entity'
-import config from 'src/config'
+import config from 'src/config/config'
 
 @Entity({ name: 'USERS' })
 export class User {
@@ -60,6 +60,16 @@ export class User {
 	})
 	enedisApiToken: string
 
+	@Column({ name: 'ENEDIS_API_TOKEN_EXPIRES_AT' })
+	enedisApiTokenExpiresAt: Date
+
+	@Column({
+		name: 'ENEDIS_API_REFRESH_TOKEN',
+		type: 'varchar',
+		length: 255
+	})
+	enedisApiRefreshToken: string
+
 	@UpdateDateColumn({ name: 'UPDATED_AT' })
 	updatedAt: Date
 
@@ -67,7 +77,6 @@ export class User {
 	createdAt: Date
 
 	@OneToMany(() => UsagePoint, usagePoint => usagePoint.user, {
-		cascade: true,
 		onDelete: 'CASCADE'
 	})
 	usagePoints: UsagePoint[]
