@@ -108,7 +108,7 @@ section {
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 1.5;
 }
 ol,
 ul {
@@ -135,7 +135,16 @@ body {
 	color: var(--clr-text);
 	min-height: calc(100 * var(--vh, 1vh));
 	font-size: 18px;
+
 	@media (max-width: $breakpoint-desktop) {
 		font-size: 16px;
 	}
+}
+
+.bold{
+	font-weight: 700;
+}
+
+h1, h2{
+	line-height: 1.4;
 }

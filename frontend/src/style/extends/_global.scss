@@ -23,7 +23,7 @@
     border: none;
     border-bottom: solid var(--clr-text) 1px;
     width: 100%;
-    padding: calc(2 * var(--space)) 0;
+    padding: calc(2 * var(--space)) space(1);
     background-color: transparent;
     font-family: var(--font);
     font-size: 1rem;
