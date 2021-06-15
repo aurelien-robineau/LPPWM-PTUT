@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UsersRepository } from './users.repository'
 import { User } from './user.entity'
@@ -53,5 +53,48 @@ export class UsersService {
 		})
 
 		return password
+	}
+
+	/**
+	 * Create a user from non-formatted Enedis DataHub data.
+	 * @param json The DataHub user data.
+	 * @returns A promise on the the newly created user.
+	 */
+	async createFromDataHubJson(json: any): Promise<User> {
+		// Get a user with the Enedis ID we are tring to use
+		const user = await this.repository.findOne({
+			where: { enedisId: parseInt(json.customer_id) }
+		})
+
+		// If the user already exists, throw exception
+		if (user) {
+			throw new HttpException(
+				'Un utilisateur a déjà été créé avec ce compte Enedis',
+				HttpStatus.BAD_REQUEST
+			)
+		}
+
+		// Create the user
+		return this.repository.createFromJson({
+			enedisId: parseInt(json.customer_id),
+			title: json.identity.natural_person.title,
+			firstname: json.identity.natural_person.firstname,
+			lastname: json.identity.natural_person.lastname,
+			email: json.contact_data.email,
+			enedisApiToken: json.token_infos.access_token,
+			enedisApiTokenExpiresAt: new Date(
+				parseInt(json.token_infos.issued_at) +
+				parseInt(json.token_infos.expires_in) * 1000
+			),
+			enedisApiRefreshToken: json.token_infos.refresh_token
+		})
+	}
+
+	/**
+	 * Get the users repository.
+	 * @returns The users repository.
+	 */
+	getRepository(): UsersRepository {
+		return this.repository
 	}
 }
