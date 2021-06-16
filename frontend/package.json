@@ -12,15 +12,15 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
-    "chart.js": "^3.3.2",
     "node-sass": "5.0.0",
     "react": "^17.0.2",
-    "react-chartjs-2": "^3.0.3",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "recharts": "^2.0.9",
     "sass": "^1.34.1",
     "typescript": "^4.0.3",
+    "victory": "^35.8.6",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.3",
     "workbox-broadcast-update": "^5.1.3",
@@ -58,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.3.1"
   }
 }
