@@ -1,121 +1,56 @@
-import { useState, useReducer } from "react"
-import logo from "../img/logo-gris.png"
-
-const formReducer = (state: any, event: any) => {
-	return {
-		...state,
-		[event.name]: event.value,
-	}
-}
+import IconLogo from "../components/Icons/Logo"
+import InfosApp from "../components/InfosApp"
+import { useForm } from "../hooks/form"
 
 const Login = () => {
-	const [formData, setFormData] = useReducer(formReducer, {})
-	const [submitting, setSubmitting] = useState(false)
+    const [handleSubmit, setFormData] = useForm()
+    const handleChange = (event: any) => {
+        setFormData({
+            name: event.target.name,
+            value: event.target.value,
+        })
+    }
 
-	const handleSubmit = (event: any) => {
-		event.preventDefault()
-		setSubmitting(true)
-
-		setTimeout(() => {
-			setSubmitting(false)
-		}, 3000)
-	}
-
-	const handleChange = (event: any) => {
-		setFormData({
-			name: event.target.name,
-			value: event.target.value,
-		})
-	}
-
-	return (
-		<div className="login-page">
-			<div className="container">
-				
-				{/* <div className="login-form-container"> */}
-					<div className="login-form">
-						<h1>Accéder à Enyu</h1>
-						<form onSubmit={handleSubmit}>
-							<label htmlFor="email">
-								Email ou identifiant client Enedis
-							</label>
-							<input
-								type="text"
-								id="email"
-								onChange={handleChange}
-							/>
-							<label htmlFor="password">Mot de passe</label>
-							<input
-								autoComplete="true"
-								type="password"
-								id="password"
-								onChange={handleChange}
-							/>
-							<button type="submit">Se connecter</button>
-							<div className="create-account">
-							Pas de compte ? <a href="/signin">Inscrivez-vous</a>
-							</div>
-							<div className="logo"><img src={logo} alt="logo-gris" width="20" /></div>
-						</form>
-
-
-					</div>
-				{/* </div> */}
-
-				<div className="login-informations-container">
-					<h2>
-						Maîtrisez votre{" "}
-						<span className="bold">consommation d’électricité</span>{" "}
-						avec <span className="bold">Enyu</span>
-					</h2>
-
-					<div className="feature-tracker-row">
-						<div className="feature-text-container">
-							<p>
-								Fixez et atteignez votre{" "}
-								<span className="bold">
-									objectif de consommation.
-								</span>
-							</p>
-						</div>
-
-						<div className="tracker"></div>
-					</div>
-
-					<div className="feature-graph-row">
-						<div className="graph"></div>
-
-						<div className="feature-text-container">
-							<p>
-								Trackez et comparez votre consommation grace à
-								des <span className="bold">graphiques</span>.
-							</p>
-						</div>
-					</div>
-
-					<div className="feature-plant-row">
-						<div className="feature-text-container">
-							<p>
-								Faites pousser Planty en maintenant votre
-								consommation inférieur à celle{" "}
-								<span className="bold">
-									moyenne des foyers similaires de votre
-									région
-								</span>
-								. Elle vous donnera toutes les{" "}
-								<span className="bold">
-									astuces écologiques
-								</span>{" "}
-								nécessaires à sa croissance.
-							</p>
-						</div>
-
-						<div className="plant"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	)
+    // TODO: Handle error on form submission
+    return (
+        <div className="login-page">
+            <div className="container">
+                <div className="login-form">
+                    <div className="form-container">
+                        <h1>Accéder à Enyu</h1>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="email">
+                                Email ou identifiant client Enedis
+                            </label>
+                            <input
+                                name="identifier"
+                                type="text"
+                                id="email"
+                                onChange={handleChange}
+                            />
+                            <label htmlFor="password">Mot de passe</label>
+                            <input
+                                name="password"
+                                autoComplete="true"
+                                type="password"
+                                id="password"
+                                onChange={handleChange}
+                            />
+                            <button type="submit">Se connecter</button>
+                            <div className="create-account">
+                                Pas de compte ?{" "}
+                                <a href="/signin">Inscrivez-vous</a>
+                            </div>
+                            <div className="logo">
+                                <IconLogo />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <InfosApp />
+            </div>
+        </div>
+    )
 }
 
 export default Login

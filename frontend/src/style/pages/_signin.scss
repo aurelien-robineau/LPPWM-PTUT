@@ -1,5 +1,7 @@
+/*============================== MOBILE ==============================*/
+
 .signin-page {
-    height: 100vh;
+    height: calc(100 * var(--vh, 1vh));
     display: flex;
 
     .container {
@@ -9,8 +11,8 @@
 
         h1 {
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 700;
         }
 
         form {
@@ -34,8 +36,9 @@
     }
 
     .create-account {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
         text-align: center;
+        margin-top: space(4);
 
         a {
             @extend %main-link;
@@ -44,14 +47,16 @@
 
     .logo {
 
-        img {
+        svg {
             margin: auto;
             display: block;
-            margin-top: 30px;
+            margin-top: space(8);
+            fill: var(--clr-light-gray);
+            stroke: var(--clr-light-gray);
         }
     }
 
-    .require-field{
+    .require-field {
         position: absolute;
         bottom: 26px;
         font-size: 0.8rem;
@@ -59,4 +64,197 @@
         left: 50%;
         transform: translateX(-50%);
     }
+
+    .login-informations-container {
+        display: none;
+    }
+
+    /*==============================FIN MOBILE ==============================*/
+
+
+    /*============================== DESKTOP ==============================*/
+
+    /*******************************
+ *LOGIN FORM SECTION
+********************************/
+    @media(min-width: $breakpoint-desktop) {
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: auto;
+            max-width: 1440px;
+        }
+
+
+
+        .signin-form {
+            padding: space(16) space(17);
+            border-radius: 10px;
+            background-color: var(--clr-white);
+            height: 82vh;
+            max-height: 850px;
+            min-height: 630px;
+            position: sticky;
+            top: calc((100vh - 82vh) / 2);
+            width: 37%;
+            box-shadow: var(--box-shadow);
+            display: flex;
+
+            @media (max-width: 1296px) {
+                padding: space(10) space(14);
+                min-height: 646px;
+            }
+
+
+            .form-container {
+                margin: auto;
+            }
+        }
+
+        /*******************************
+*FIN LOGIN FORM SECTION
+********************************/
+
+        /*******************************
+*LOGIN INFORMATIONS SECTION
+********************************/
+
+        .login-informations-container {
+            display: block;
+            width: 57%;
+            margin-top: 80px;
+            margin-bottom: 80px;
+            font-weight: 600;
+            line-height: 1.5;
+
+            h2 {
+                text-align: center;
+                font-size: 2.345rem;
+                margin: 0 auto space(16) auto;
+                width: 80%;
+            }
+
+            // TRACKER
+            .feature-tracker-row {
+                display: flex;
+
+                .feature-text-container {
+                    display: flex;
+                    width: 71%;
+
+                    p {
+                        font-size: 1.375rem;
+                        margin: auto;
+                        width: 70%;
+                    }
+
+                    &::before {
+                        content: '1';
+                        font-size: 10.25rem;
+                        font-weight: 800;
+                        color: var(--clr-light-gray);
+                        left: 64px;
+                        position: relative;
+                        z-index: -1;
+                    }
+                }
+
+                .tracker {
+                    background-color: var(--clr-white);
+                    background-color: white;
+                    height: 254px;
+                    width: 36%;
+                    border-radius: 10px;
+                }
+
+            }
+
+            // GRAPH
+            .feature-graph-row {
+                display: flex;
+                margin: space(10) 0;
+
+                .feature-text-container {
+                    display: flex;
+                    width: 50%;
+                    position: relative;
+
+                    p {
+                        font-size: 1.375rem;
+                        margin: auto;
+                        width: 70%;
+                    }
+
+                    &::before {
+                        content: '2';
+                        font-size: 10.25rem;
+                        font-weight: 800;
+                        color: var(--clr-light-gray);
+                        position: absolute;
+                        z-index: -1;
+                        right: 28px;
+                        top: 24px;
+                    }
+                }
+
+                .graph {
+                    background-color: var(--clr-white);
+                    background-color: white;
+                    height: 345px;
+                    width: 50%;
+                    border-radius: 10px;
+                }
+
+            }
+
+            // PLANT
+            .feature-plant-row {
+                display: flex;
+
+                .feature-text-container {
+                    display: flex;
+                    width: 68%;
+                    position: relative;
+
+                    .feature-paragraph-container {
+                        margin: auto;
+                        width: 73%;
+                    }
+
+                    p {
+                        font-size: 1.375rem;
+                        padding: space(4) 0;
+                    }
+
+                    &::before {
+                        content: '3';
+                        font-size: 10.25rem;
+                        font-weight: 800;
+                        color: var(--clr-light-gray);
+                        top: 30px;
+                        position: absolute;
+                        z-index: -1;
+                    }
+                }
+
+                .plant {
+                    background-color: var(--clr-white);
+                    background-color: white;
+                    height: 470px;
+                    width: 32%;
+                    border-radius: 10px;
+                }
+            }
+
+        }
+
+        /*******************************
+*FIN LOGIN INFORMATIONS SECTION
+********************************/
+
+    }
+
+    /*============================== FIN DESKTOP ==============================*/
 }
