@@ -16,7 +16,18 @@ export class UsagePointsService {
 	 * @returns The usage point with this id.
 	 */
 	async getById(id: number): Promise<UsagePoint> {
-		return await this.repository.findOneOrFail(id)
+		return await this.repository.findOne(id)
+	}
+
+	/**
+	 * Get a usage point by its Enedis ID.
+	 * @param enedisId The Enedis ID of the usage point.
+	 * @returns The usage point with this Enedis ID.
+	 */
+	async getByEnedisId(enedisId: number): Promise<UsagePoint> {
+		return await this.repository.findOne({
+			where: { enedisId }
+		})
 	}
 
 	/**

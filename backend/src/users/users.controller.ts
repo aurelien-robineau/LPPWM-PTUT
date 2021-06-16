@@ -1,7 +1,9 @@
 import { Controller, Body, Post, SetMetadata, HttpException, HttpStatus } from '@nestjs/common'
 import { RefreshTokensService } from 'src/refreshTokens/refreshTokens.service'
 import { UsersService } from './users.service'
-import { GetNewTokenDto } from './../dto/users.dto'
+import { GetDayConsumptionDto, GetNewTokenDto } from './../dto/users.dto'
+import { GetUser } from './user.decorator'
+import { User } from './user.entity'
 
 @Controller('v1/users')
 export class UsersController {
@@ -31,5 +33,20 @@ export class UsersController {
 			token: user.generateToken(),
 			refreshToken: await this.refreshTokensService.updateRefreshToken(refreshToken)
 		}
+	}
+
+	@Post('/consumption/day')
+	async getComsumptionForDay(
+		@GetUser() user: User,
+		@Body() getDayConsumptionDto: GetDayConsumptionDto
+	) {
+		const { usagePointId, date } = getDayConsumptionDto
+
+
+		return await this.service.getComsumptionDataForDay(
+			user,
+			usagePointId,
+			new Date(date)
+		)
 	}
 }

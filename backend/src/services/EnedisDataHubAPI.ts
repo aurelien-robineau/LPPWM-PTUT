@@ -1,5 +1,6 @@
 import fetch, { Response } from 'node-fetch'
 import config from 'src/config/config'
+import { getDayOnlyFromDate } from 'src/utils/date.utils'
 
 /**
  * A set of methods to use the Enedis DataHub API.
@@ -10,7 +11,7 @@ export const EnedisDataHubAPI = {
 	 * @param authorizationCode The user's authorization code.
 	 * @returns The customer's token data.
 	 */
-	getCustomerToken: async (authorizationCode: string): Promise<Response> => {
+	getCustomerTokenFromCode: async (authorizationCode: string): Promise<Response> => {
 		const url =
 			`${config.enedis.datahub.baseUrl}/v1/oauth2/token` +
 			`?redirect_uri=${config.enedis.datahub.redirectUri}`
@@ -25,6 +26,29 @@ export const EnedisDataHubAPI = {
 				`&client_id=${config.enedis.datahub.publicKey}` +
 				`&client_secret=${config.enedis.datahub.privateKey}` +
 				`&code=${authorizationCode}`
+		})
+	},
+
+	/**
+	 * Get the customer's token data from its refresh token.
+	 * @param refreshToken The user's refresh token.
+	 * @returns The customer's token data.
+	 */
+	getCustomerTokenFromRefreshToken: async (refreshToken: string): Promise<Response> => {
+		const url =
+			`${config.enedis.datahub.baseUrl}/v1/oauth2/token` +
+			`?redirect_uri=${config.enedis.datahub.redirectUri}`
+		
+		return fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body:
+				`grant_type=refresh_token` +
+				`&client_id=${config.enedis.datahub.publicKey}` +
+				`&client_secret=${config.enedis.datahub.privateKey}` +
+				`&refresh_token=${refreshToken}`
 		})
 	},
 
@@ -218,8 +242,10 @@ export const EnedisDataHubAPI = {
 		const url =
 			`${config.enedis.datahub.baseUrl}/v4/metering_data${endpoint}` +
 			`?usage_point_id=${usagePointId}` +
-			`$start=${EnedisDataHubAPI._formatDateForRequest(start)}` +
-			`$end=${EnedisDataHubAPI._formatDateForRequest(end)}`
+			`&start=${getDayOnlyFromDate(start)}` +
+			`&end=${getDayOnlyFromDate(end)}`
+
+		console.log(url)
 
 		return fetch(url, {
 			method: 'GET',
@@ -228,14 +254,5 @@ export const EnedisDataHubAPI = {
 				Accept: 'application/json'
 			}
 		})
-	},
-
-	/**
-	 * Format a date for a Enedis DataHub API call.
-	 * @param date The date to format.
-	 * @returns The formatted date.
-	 */
-	_formatDateForRequest: (date: Date): string => {
-		return `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate()}`
 	}
 }

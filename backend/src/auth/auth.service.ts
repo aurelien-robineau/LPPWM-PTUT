@@ -134,7 +134,7 @@ export class AuthService {
 	async _getUserDataForSignUp(authorizationCode: string): Promise<any> {
 		// Get the authorization token and its infos
 		const tokenInfos = await (
-			await EnedisDataHubAPI.getCustomerToken(authorizationCode)
+			await EnedisDataHubAPI.getCustomerTokenFromCode(authorizationCode)
 		).json()
 
 		// Throw error if code is invalid
