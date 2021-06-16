@@ -1,0 +1,18 @@
+.recharts {
+    .yAxis &-cartesian-axis-ticks {
+        transform: translateY(-5%);
+    }
+
+    .yAxis &-label {
+        transform: translateY(-10%);
+    }
+    &-wrapper {
+        padding-top: 20px;
+    }
+}
+
+.visual-graph {
+    padding-top: space(8);
+    min-height: 400px;
+    height: calc(40 * var(--vh, 1vh));
+}
