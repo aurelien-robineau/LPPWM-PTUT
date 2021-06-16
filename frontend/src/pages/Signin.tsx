@@ -1,20 +1,11 @@
-import { useEffect } from "react"
-import { useState, useReducer } from "react"
+import { useEffect, useState } from "react"
+import { useForm } from "../hooks/form"
 import { auth } from "../api/methods"
 import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
 
-const formReducer = (state: any, event: any) => {
-    return {
-        ...state,
-        [event.name]: event.value,
-    }
-}
-
 const Signin = () => {
-    const [formData, setFormData] = useReducer(formReducer, {})
-    const [, setSubmitting] = useState(false)
-
+    const [handleSubmit, setFormData] = useForm()
     const [, setUrlEnedis] = useState("")
 
     useEffect(() => {
@@ -23,16 +14,6 @@ const Signin = () => {
             setUrlEnedis(url)
         })()
     }, [])
-    const handleSubmit = (event: any) => {
-        event.preventDefault()
-        console.log(formData)
-        sessionStorage.setItem("password", formData.password)
-        setSubmitting(true)
-
-        setTimeout(() => {
-            setSubmitting(false)
-        }, 3000)
-    }
 
     const handleChange = (event: any) => {
         setFormData({

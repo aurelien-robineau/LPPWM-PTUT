@@ -1,29 +1,9 @@
-import { useState, useReducer } from "react"
-import { auth } from "../api/methods"
 import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
-
-const formReducer = (state: any, event: any) => {
-    return {
-        ...state,
-        [event.name]: event.value,
-    }
-}
+import { useForm } from "../hooks/form"
 
 const Login = () => {
-    const [formData, setFormData] = useReducer(formReducer, {})
-    const [, setSubmitting] = useState(false)
-
-    const handleSubmit = (event: any) => {
-        event.preventDefault()
-        setSubmitting(true)
-        auth.submitLogin(formData)
-
-        setTimeout(() => {
-            setSubmitting(false)
-        }, 3000)
-    }
-
+    const [handleSubmit, setFormData] = useForm()
     const handleChange = (event: any) => {
         setFormData({
             name: event.target.name,
