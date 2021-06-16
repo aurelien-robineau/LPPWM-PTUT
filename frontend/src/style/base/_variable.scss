@@ -1,40 +1,41 @@
 $palettes: (
-	dark: (
-		"text": #f7f7f7,
-		"background": #3f3f44,
-		"primary": #b1f47b,
-		"secondary": #b5e9f4,
-		"tertiary": #ff7235,
-		"accent": #3D7457,
-	),
-	light: (
-		"text": black,
-		"background": #f7f7f7,
-		"primary": #b1f47b,
-		"secondary": #b5e9f4,
-		"tertiary": #ff7235,
-		"white": #fff,
-		"accent": #3D7457,
-		"gray": #7A7A7A,
-		"light-gray": #ECEBEB,
-	),
+    dark: (
+        "text": #f7f7f7,
+        "white": #313030,
+        "background": #3f3f44,
+        "primary": #b1f47b,
+        "secondary": #b5e9f4,
+        "tertiary": #ff7235,
+        "accent": #3d7457,
+    ),
+    light: (
+        "text": black,
+        "background": #f7f7f7,
+        "primary": #b1f47b,
+        "secondary": #b5e9f4,
+        "tertiary": #ff7235,
+        "white": #fff,
+        "accent": #3d7457,
+        "gray": #7a7a7a,
+        "light-gray": #ecebeb,
+    ),
 );
 $space: 4px;
 $font: "Quasimoda", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-	Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-$box-shadow: 1px 1px 9px 1px rgba(0, 0, 0, .1);
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+$box-shadow: 1px 1px 9px 1px rgba(0, 0, 0, 0.1);
 $breakpoint-desktop: 1024px;
 $breakpoint-tablet: 768px;
 
 :root {
-	--font: #{$font};
-	--space: #{$space};
-	--box-shadow: #{$box-shadow};
+    --font: #{$font};
+    --space: #{$space};
+    --box-shadow: #{$box-shadow};
 }
 @each $mode, $palette in $palettes {
-	[data-theme="#{$mode}"] {
-		@each $name, $color in $palette {
-			--clr-#{$name}: #{$color};
-		}
-	}
+    [data-theme="#{$mode}"] {
+        @each $name, $color in $palette {
+            --clr-#{$name}: #{$color};
+        }
+    }
 }

@@ -5,22 +5,22 @@ const ConsumpIdeas = () => {
         {
             id: 1,
             content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores, quae beatae suscipit labore libero iure nihil eum atque consectetur voluptatibus reprehenderit nobis. Distinctio sint eveniet quis assumenda beatae debitis accusamus vitae minima illo fugit,",
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores.",
         },
         {
             id: 2,
             content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores, quae beatae suscipit labore libero iure nihil eum atque consectetur voluptatibus reprehenderit nobis. Distinctio sint eveniet quis assumenda beatae debitis accusamus vitae minima illo fugit, ",
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores.",
         },
         {
             id: 3,
             content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores, quae beatae suscipit labore libero iure nihil eum atque consectetur voluptatibus reprehenderit nobis. Distinctio sint eveniet quis assumenda beatae debitis accusamus vitae minima illo fugit, ",
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores.",
         },
         {
             id: 4,
             content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores, quae beatae suscipit labore libero iure nihil eum atque consectetur voluptatibus reprehenderit nobis. Distinctio sint eveniet quis assumenda beatae debitis accusamus vitae minima illo fugit, ",
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius expedita incidunt repellendus dolor vel dolorem animi amet dolores.",
         },
     ]
 
