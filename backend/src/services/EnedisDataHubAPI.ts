@@ -60,7 +60,7 @@ export const EnedisDataHubAPI = {
 	 * @returns The user identity data.
 	 */
 	getCustomerIdentity: async (
-		usagePointId: number,
+		usagePointId: string,
 		customerToken: string
 	): Promise<Response> => {
 		return EnedisDataHubAPI._fetchFromCustomerAPI(
@@ -78,7 +78,7 @@ export const EnedisDataHubAPI = {
 	 * @returns The user contact data.
 	 */
 	getCustomerContactData: async (
-		usagePointId: number,
+		usagePointId: string,
 		customerToken: string
 	): Promise<Response> => {
 		return EnedisDataHubAPI._fetchFromCustomerAPI(
@@ -95,7 +95,7 @@ export const EnedisDataHubAPI = {
 	 * @returns The usage point's contract data.
 	 */
 	getUsagePointContract: async (
-		usagePointId: number,
+		usagePointId: string,
 		customerToken: string
 	): Promise<Response> => {
 		return EnedisDataHubAPI._fetchFromCustomerAPI(
@@ -112,7 +112,7 @@ export const EnedisDataHubAPI = {
 	 * @returns The usage point's address data.
 	 */
 	getUsagePointAddress: async (
-		usagePointId: number,
+		usagePointId: string,
 		customerToken: string
 	): Promise<Response> => {
 		return EnedisDataHubAPI._fetchFromCustomerAPI(
@@ -131,7 +131,7 @@ export const EnedisDataHubAPI = {
 	 * @returns The consumption curve data.
 	 */
 	getConsumptionLoadCurve: async (
-		usagePointId: number,
+		usagePointId: string,
 		start: Date,
 		end: Date,
 		customerToken: string
@@ -154,7 +154,7 @@ export const EnedisDataHubAPI = {
 	 * @returns The production curve data.
 	 */
 	getProductionLoadCurve: async (
-		usagePointId: number,
+		usagePointId: string,
 		start: Date,
 		end: Date,
 		customerToken: string
@@ -176,7 +176,7 @@ export const EnedisDataHubAPI = {
 	 */
 	extractContractDataFromResponse: async (
 		response: Response,
-		usagePointId: number
+		usagePointId: string
 	): Promise<any> => {
 		return (await response.json()).customer.usage_points.find((data: any) =>
 			data.usage_point.usage_point_id === usagePointId
@@ -191,7 +191,7 @@ export const EnedisDataHubAPI = {
 	 */
 	extractAddressDataFromResponse: async (
 		response: Response,
-		usagePointId: number
+		usagePointId: string
 	): Promise<any> => {
 		return (await response.json()).customer.usage_points.find((data: any) =>
 			data.usage_point.usage_point_id === usagePointId
@@ -206,7 +206,7 @@ export const EnedisDataHubAPI = {
 	 * @returns A promise of an API response.
 	 */
 	_fetchFromCustomerAPI: async (
-		usagePointId: number,
+		usagePointId: string,
 		customerToken: string,
 		endpoint: string
 	): Promise<Response> => {
@@ -233,7 +233,7 @@ export const EnedisDataHubAPI = {
 	 * @returns A promise of an API response.
 	 */
 	_fetchFromMeteringAPI: async (
-		usagePointId: number,
+		usagePointId: string,
 		start: Date,
 		end: Date,
 		customerToken: string,

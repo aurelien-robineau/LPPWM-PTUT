@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, Matches } from 'class-validator'
+import { IsNotEmpty, Matches } from 'class-validator'
 
 export class GetNewTokenDto {
 	/**
@@ -13,8 +13,7 @@ export class GetDayConsumptionDto {
 	 * The usage point's id from which we want the data from.
 	 */
 	@IsNotEmpty({ message: 'L\'identifiant du point d\'usage est obligatoire' })
-	@IsInt({ message: 'L\'identifiant du point d\'usage doit être un entier' })
-	usagePointId: number
+	usagePointId: string
 
 	/**
 	 * The date as an ISO string of the day we want the data from.

@@ -10,11 +10,11 @@ export class UsagePoint {
 
 	@Column({
 		name: 'ENEDIS_ID',
-		type: 'int',
-		width: 11,
+		type: 'varchar',
+		length: 255,
 		unique: true
 	})
-	enedisId: number
+	enedisId: string
 
 	@ManyToOne(() => User, user => user.usagePoints)
 	@JoinColumn({ name: 'USER_ID' })

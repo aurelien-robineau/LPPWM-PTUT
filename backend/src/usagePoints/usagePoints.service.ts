@@ -24,7 +24,7 @@ export class UsagePointsService {
 	 * @param enedisId The Enedis ID of the usage point.
 	 * @returns The usage point with this Enedis ID.
 	 */
-	async getByEnedisId(enedisId: number): Promise<UsagePoint> {
+	async getByEnedisId(enedisId: string): Promise<UsagePoint> {
 		return await this.repository.findOne({
 			where: { enedisId }
 		})
@@ -37,7 +37,7 @@ export class UsagePointsService {
 	 */
 	createFromDataHubJson(json: any): UsagePoint {
 		return this.repository.createFromJson({
-			enedisId: parseInt(json.usage_point.usage_point_id),
+			enedisId: json.usage_point.usage_point_id,
 			type: json.usage_point.meter_type,
 			subscribedPowerkVA: parseInt(json.contracts.subscribed_power.split(' ')[0]),
 			street: json.usage_point.usage_point_addresses.street,

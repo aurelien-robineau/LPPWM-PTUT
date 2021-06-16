@@ -48,7 +48,7 @@ export class AuthService {
 
 		// If parsing succeeds, then the identifier is an enedisId
 		if (enedisId)
-			user = await this.usersService.getByEnedisId(enedisId)
+			user = await this.usersService.getByEnedisId(identifier)
 		// Else it is an email
 		else
 			user = await this.usersService.getByEmail(identifier)
@@ -177,7 +177,7 @@ export class AuthService {
 	 * @returns The usage point data
 	 */
 	async _getUsagePointDataForSignUp(
-		usagePointId: number,
+		usagePointId: string,
 		accessToken: string
 	): Promise<any> {
 		// Get the usage point's contract details

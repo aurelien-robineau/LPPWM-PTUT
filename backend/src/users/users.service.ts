@@ -60,9 +60,9 @@ export class UsersService {
 	 * @param enedisId Enedis customer id of the user.
 	 * @returns The user with this customer id, or null if not found.
 	 */
-	async getByEnedisId(enedisId: number): Promise<User> {
+	async getByEnedisId(enedisId: string): Promise<User> {
 		return await this.repository.findOne({
-			where: { enedisId: enedisId.toString() }
+			where: { enedisId }
 		})
 	}
 
@@ -99,7 +99,7 @@ export class UsersService {
 	async createFromDataHubJson(json: any): Promise<User> {
 		// Get a user with the Enedis ID we are tring to use
 		const user = await this.repository.findOne({
-			where: { enedisId: parseInt(json.customer_id) }
+			where: { enedisId: json.customer_id }
 		})
 
 		// If the user already exists, throw exception
@@ -112,7 +112,7 @@ export class UsersService {
 
 		// Create the user
 		return this.repository.createFromJson({
-			enedisId: parseInt(json.customer_id),
+			enedisId: json.customer_id,
 			title: json.identity.natural_person.title,
 			firstname: json.identity.natural_person.firstname,
 			lastname: json.identity.natural_person.lastname,
@@ -135,7 +135,7 @@ export class UsersService {
 	 * @param date The date of the day whe want the consumption for.
 	 * @returns The consumptions for this user, usage point and day.
 	 */
-	async getComsumptionDataForDay(user: User, usagePointId: number, date: Date) {
+	async getComsumptionDataForDay(user: User, usagePointId: string, date: Date) {
 		const usagePoint = await this.usagePointsService.getByEnedisId(usagePointId)
 
 		if (!usagePoint) {

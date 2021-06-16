@@ -10,11 +10,11 @@ export class User {
 
 	@Column({
 		name: 'ENEDIS_ID',
-		type: 'int',
-		width: 11,
+		type: 'varchar',
+		width: 255,
 		unique: true
 	})
-	enedisId: number
+	enedisId: string
 
 	@Column({
 		name: 'TITLE',
