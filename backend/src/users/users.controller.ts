@@ -1,8 +1,6 @@
-import { Controller, Body, Post } from '@nestjs/common'
+import { Controller, Body, Post, SetMetadata, HttpException, HttpStatus } from '@nestjs/common'
 import { RefreshTokensService } from 'src/refreshTokens/refreshTokens.service'
-import { RequestUser } from './user.decorator'
 import { UsersService } from './users.service'
-import { User } from 'src/users/user.entity'
 import { GetNewTokenDto } from './../dto/users.dto'
 
 @Controller('v1/users')
@@ -13,11 +11,21 @@ export class UsersController {
 	) {}
 
 	@Post('/token')
+	@SetMetadata('isPublic', true)
 	async getNewTokenPair(
-		@RequestUser() user: User,
 		@Body() GetNewTokenDto: GetNewTokenDto
 	): Promise<{ token: string, refreshToken: string }> {
 		const { refreshToken } = GetNewTokenDto
+
+		const { userId } = this.refreshTokensService.getTokenPayload(refreshToken)
+		const user = await this.service.getById(userId)
+
+		if (!user) {
+			throw new HttpException(
+				'Jeton de rafraîchissement invalide',
+				HttpStatus.BAD_REQUEST
+			)
+		}
 
 		return {
 			token: user.generateToken(),

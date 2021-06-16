@@ -15,6 +15,18 @@ export class RefreshTokensService {
 	) {}
 
 	/**
+	 * Get the payload of a refresh token.
+	 * @param token The token to get the payload from.
+	 * @returns The payload of the token.
+	 */
+	getTokenPayload(token: string): { userId: number, tokenId: number } {
+		return verify(token, config.refreshSecret) as {
+			userId: number,
+			tokenId: number
+		}
+	}
+
+	/**
 	 * Create a new refresh token for a user and store it in database.
 	 * @param userId The id of the user for wich to create the token.
 	 * @returns A new refresh token.
