@@ -47,12 +47,6 @@ const Signin = () => {
 					</div>
 				)}
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="email">Email *</label>
-					<input type="email" id="email" onChange={handleChange} />
-					<label htmlFor="idEnedis">
-						Identifiant client Enedis *
-					</label>
-					<input type="text" id="idEnedis" onChange={handleChange} />
 					<label htmlFor="password">Mot de passe *</label>
 					<input
 						type="password"

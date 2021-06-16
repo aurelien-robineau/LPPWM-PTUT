@@ -1,5 +1,5 @@
 import { useState, useReducer } from "react"
-import logo from "../img/logo-gris.png"
+import IconLogo from "../components/Icons/Logo"
 
 const formReducer = (state: any, event: any) => {
 	return {
@@ -31,9 +31,9 @@ const Login = () => {
 	return (
 		<div className="login-page">
 			<div className="container">
-				
-				{/* <div className="login-form-container"> */}
-					<div className="login-form">
+
+				<div className="login-form">
+					<div className="form-container">
 						<h1>Accéder à Enyu</h1>
 						<form onSubmit={handleSubmit}>
 							<label htmlFor="email">
@@ -53,27 +53,29 @@ const Login = () => {
 							/>
 							<button type="submit">Se connecter</button>
 							<div className="create-account">
-							Pas de compte ? <a href="/signin">Inscrivez-vous</a>
+								Pas de compte ? <a href="/signin">Inscrivez-vous</a>
 							</div>
-							<div className="logo"><img src={logo} alt="logo-gris" width="20" /></div>
+							<div className="logo">
+								<IconLogo size={30} />
+							</div>
 						</form>
-
-
 					</div>
-				{/* </div> */}
+
+
+				</div>
 
 				<div className="login-informations-container">
 					<h2>
 						Maîtrisez votre{" "}
-						<span className="bold">consommation d’électricité</span>{" "}
-						avec <span className="bold">Enyu</span>
+						consommation d’électricité{" "}
+						avec <span className="bold-800">Enyu</span>
 					</h2>
 
 					<div className="feature-tracker-row">
 						<div className="feature-text-container">
 							<p>
 								Fixez et atteignez votre{" "}
-								<span className="bold">
+								<span className="bold-800">
 									objectif de consommation.
 								</span>
 							</p>
@@ -88,26 +90,30 @@ const Login = () => {
 						<div className="feature-text-container">
 							<p>
 								Trackez et comparez votre consommation grace à
-								des <span className="bold">graphiques</span>.
+								des <span className="bold-800">graphiques</span>.
 							</p>
 						</div>
 					</div>
 
 					<div className="feature-plant-row">
 						<div className="feature-text-container">
-							<p>
-								Faites pousser Planty en maintenant votre
-								consommation inférieur à celle{" "}
-								<span className="bold">
-									moyenne des foyers similaires de votre
-									région
-								</span>
-								. Elle vous donnera toutes les{" "}
-								<span className="bold">
-									astuces écologiques
-								</span>{" "}
-								nécessaires à sa croissance.
-							</p>
+							<div className="feature-paragraph-container">
+								<p>
+									Faites pousser Planty en maintenant votre
+									consommation inférieur à celle{" "}
+									<span className="bold-800">
+										moyenne des foyers similaires de votre
+										région
+									</span>.
+								</p>
+								<p>
+									Elle vous donnera toutes les{" "}
+									<span className="bold-800">
+										astuces écologiques
+									</span>{" "}
+									nécessaires à sa croissance.
+								</p>
+							</div>
 						</div>
 
 						<div className="plant"></div>
