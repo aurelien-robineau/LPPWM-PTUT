@@ -135,15 +135,20 @@ body {
 	background-color: var(--clr-background);
 	color: var(--clr-text);
 	min-height: calc(100 * var(--vh, 1vh));
-	font-size: 18px;
+	font-size: 1.125rem;
+	font: var(--font);
 
 	@media (max-width: $breakpoint-desktop) {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 }
 
-.bold{
-	font-weight: 700;
+button{
+	font: var(--font);
+}
+
+.bold-800{
+	font-weight: 800;
 }
 
 h1, h2{

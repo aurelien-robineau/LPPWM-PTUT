@@ -22,7 +22,8 @@ export class UserConsumptionsService {
 
 	/**
 	 * Get the user's consumption for a specific day.
-	 * @param usagePointId The id if the usage point we want the consumption from.
+	 * @param usagePointId The id in our database of the usage point we want the
+	 * consumption from.
 	 * @param date The date of the day we want the consumption for.
 	 * @returns The consumption for this day and this user.
 	 */
