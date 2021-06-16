@@ -42,7 +42,7 @@ const Login = () => {
                                 <a href="/signin">Inscrivez-vous</a>
                             </div>
                             <div className="logo">
-                                <IconLogo size={30} />
+                                <IconLogo />
                             </div>
                         </form>
                     </div>

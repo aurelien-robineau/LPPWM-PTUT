@@ -45,7 +45,7 @@ const Signin = () => {
                                 <a href="/login">Connectez-vous</a>
                             </div>
                             <div className="logo">
-                                <IconLogo size={30} />
+                                <IconLogo />
                             </div>
                             <span className="require-field">
                                 * Champ obligatoire
