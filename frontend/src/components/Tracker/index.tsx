@@ -4,7 +4,7 @@ const Tracker = () => {
 	return (
 		<div className="tracker">
 			<div className="tracker__container">
-				<h2>Mon objectif de consommation</h2>
+				<h2>Mon objectif de consommation</h2>				
 			</div>
 		</div>
 	)
