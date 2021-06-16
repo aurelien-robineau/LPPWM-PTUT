@@ -12,9 +12,7 @@ import { UsagePointsService } from './../usagePoints/usagePoints.service';
 export class UsersService {
 	constructor(
 		@InjectRepository(UsersRepository)
-		private repository: UsersRepository,
-		private userConsumptionsService: UserConsumptionsService,
-		private usagePointsService: UsagePointsService
+		private repository: UsersRepository
 	) {}
 
 	/**
@@ -124,64 +122,6 @@ export class UsersService {
 			),
 			enedisApiRefreshToken: json.token_infos.refresh_token
 		})
-	}
-
-	/**
-	 * Get the consumption of a user for a usage point and a day. If the
-	 * consumption does not exists in our database, fetch it from the Enedis
-	 * DataHub API and save it the our database.
-	 * @param user The user for which to get the consumption.
-	 * @param usagePointId The usage point's id from which to get the consumption.
-	 * @param date The date of the day whe want the consumption for.
-	 * @returns The consumptions for this user, usage point and day.
-	 */
-	async getComsumptionDataForDay(user: User, usagePointId: number, date: Date) {
-		const usagePoint = await this.usagePointsService.getById(usagePointId)
-
-		if (!usagePoint) {
-			throw new HttpException(
-				'Le point d\'usage demandé n\'existe pas',
-				HttpStatus.BAD_REQUEST
-			)
-		}
-
-		// Get consumptions from our database
-		let userConsumptions = await this.userConsumptionsService.getByDay(
-			usagePoint.id,
-			date
-		)
-
-		// If not in our database, fetch consumption from Enedis DataHub API and
-		// save it to our database
-		if (!userConsumptions.length) {
-			const token = await this.refreshEnedisTokenIfNeeded(user)
-
-			try {
-				const consumptionData = await (await EnedisDataHubAPI.getConsumptionLoadCurve(
-					usagePoint.enedisId,
-					date,
-					addDaysToDate(date, 1),
-					token
-				)).json()
-
-				userConsumptions = []
-				for (let interval of consumptionData.meter_reading.interval_reading) {
-					let userConsumption = new UserConsumption()
-					userConsumption.usagePoint = usagePoint
-					userConsumption.date = new Date(interval.date)
-					userConsumption.valueWatt = interval.value
-					userConsumption = await this.userConsumptionsService.getRepository().save(userConsumption)
-					userConsumptions.push(userConsumption)
-				}
-			} catch (error) {
-				throw new HttpException(
-					'Pas de données pour le jour demandé',
-					HttpStatus.BAD_REQUEST
-				)
-			}
-		}
-
-		return userConsumptions
 	}
 
 	/**
