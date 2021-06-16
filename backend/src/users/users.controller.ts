@@ -40,12 +40,12 @@ export class UsersController {
 		@GetUser() user: User,
 		@Body() getDayConsumptionDto: GetDayConsumptionDto
 	) {
-		const { usagePointId, date } = getDayConsumptionDto
+		const { usagePointEnedisId, date } = getDayConsumptionDto
 
 
 		return await this.service.getComsumptionDataForDay(
 			user,
-			usagePointId,
+			usagePointEnedisId,
 			new Date(date)
 		)
 	}

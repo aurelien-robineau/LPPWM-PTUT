@@ -131,12 +131,12 @@ export class UsersService {
 	 * consumption does not exists in our database, fetch it from the Enedis
 	 * DataHub API and save it the our database.
 	 * @param user The user for which to get the consumption.
-	 * @param usagePointId The usage point Enedis ID from which to get the consumption.
+	 * @param usagePointEnedisId The usage point Enedis ID from which to get the consumption.
 	 * @param date The date of the day whe want the consumption for.
 	 * @returns The consumptions for this user, usage point and day.
 	 */
-	async getComsumptionDataForDay(user: User, usagePointId: string, date: Date) {
-		const usagePoint = await this.usagePointsService.getByEnedisId(usagePointId)
+	async getComsumptionDataForDay(user: User, usagePointEnedisId: string, date: Date) {
+		const usagePoint = await this.usagePointsService.getByEnedisId(usagePointEnedisId)
 
 		if (!usagePoint) {
 			throw new HttpException(
@@ -158,7 +158,7 @@ export class UsersService {
 
 			try {
 				const consumptionData = await (await EnedisDataHubAPI.getConsumptionLoadCurve(
-					usagePointId,
+					usagePointEnedisId,
 					date,
 					addDaysToDate(date, 1),
 					token

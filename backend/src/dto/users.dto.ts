@@ -13,7 +13,7 @@ export class GetDayConsumptionDto {
 	 * The usage point's id from which we want the data from.
 	 */
 	@IsNotEmpty({ message: 'L\'identifiant du point d\'usage est obligatoire' })
-	usagePointId: string
+	usagePointEnedisId: string
 
 	/**
 	 * The date as an ISO string of the day we want the data from.

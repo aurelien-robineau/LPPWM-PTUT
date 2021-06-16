@@ -77,14 +77,14 @@ export class AuthService {
 			let user = await this.usersService.createFromDataHubJson(customerData)
 			user.password = bcrypt.hashSync(password)
 
-			const usagePointsIds = customerData.token_infos.usage_points_id.split(',')
+			const usagePointsEnedisIds = customerData.token_infos.usage_points_id.split(',')
 			const usagePointsRegions: { usagePoint: UsagePoint, region: Region }[] = []
 
 			// Create all user's usage points
-			for (let usagePointId of usagePointsIds) {
+			for (let usagePointEnedisId of usagePointsEnedisIds) {
 				// Create usage point from DataHub API
 				const usagePointData = await this._getUsagePointDataForSignUp(
-					usagePointId,
+					usagePointEnedisId,
 					customerData.token_infos.access_token
 				)
 
@@ -171,35 +171,35 @@ export class AuthService {
 	}
 
 	/**
-	 * Get all the needed usage point data from the Enedis DataHub API
-	 * @param usagePointId The Enedis ID if the usage point
-	 * @param accessToken The user's Enedis API access token
-	 * @returns The usage point data
+	 * Get all the needed usage point data from the Enedis DataHub API.
+	 * @param usagePointEnedisId The Enedis ID if the usage point.
+	 * @param accessToken The user's Enedis API access token.
+	 * @returns The usage point data.
 	 */
 	async _getUsagePointDataForSignUp(
-		usagePointId: string,
+		usagePointEnedisId: string,
 		accessToken: string
 	): Promise<any> {
 		// Get the usage point's contract details
 		let response = await EnedisDataHubAPI.getUsagePointContract(
-			usagePointId,
+			usagePointEnedisId,
 			accessToken
 		)
 		const usagePointContract = await EnedisDataHubAPI
 			.extractContractDataFromResponse(
 				response,
-				usagePointId
+				usagePointEnedisId
 			)
 
 		// Get the usage point's address details
 		response = await EnedisDataHubAPI.getUsagePointAddress(
-			usagePointId,
+			usagePointEnedisId,
 			accessToken
 		)
 		const usagePointAddress = await EnedisDataHubAPI
 			.extractAddressDataFromResponse(
 				response,
-				usagePointId
+				usagePointEnedisId
 			)
 
 		// Get the region of the usage point
