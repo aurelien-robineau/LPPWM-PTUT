@@ -1,3 +1,4 @@
+import Plant from "../Plant"
 import CardMonitoring from "./Card"
 
 const ConsumpMonitoring = () => {
@@ -11,9 +12,8 @@ const ConsumpMonitoring = () => {
 					variation={{ trend: 1, value: 3 }}
 				/>
 
-				<div>Plante</div>
+				<Plant />
 			</div>
-
 			<div className="conso-row">
 				<CardMonitoring
 					timeScale={"week"}

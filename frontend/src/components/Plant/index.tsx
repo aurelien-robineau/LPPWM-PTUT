@@ -1,7 +1,5 @@
-import React from "react"
-
 const Plant = () => {
-	return <div>Plant</div>
+	return <div>Plante</div>
 }
 
 export default Plant
