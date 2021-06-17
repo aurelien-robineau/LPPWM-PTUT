@@ -3,7 +3,7 @@ import { UserConsumptionsService } from './userConsumptions.service'
 import { GetUser } from './../users/user.decorator'
 import { User } from 'src/users/user.entity'
 import { GetDayConsumptionDto } from './../dto/userConsumptions.dto'
-import { getDateMonthBounds, getDateWeekBounds, removeTimeFromDate } from 'src/utils/date.utils'
+import { getDateMonthBounds, getDateWeekBounds, getDayOnlyFromDate } from 'src/utils/date.utils'
 
 @Controller('v1/user-consumptions')
 export class UserConsumptionsController {
@@ -26,8 +26,10 @@ export class UserConsumptionsController {
 		)
 
 		return {
-			valueWatt: userConsumptions[0].valueWatt,
-			date: removeTimeFromDate(new Date(date)),
+			usagePointId: usagePointId,
+			days: userConsumptions,
+			totalValueWatt: userConsumptions[0].valueWatt,
+			date: getDayOnlyFromDate(new Date(date)),
 			type: 'DAY'
 		}
 	}
@@ -50,8 +52,10 @@ export class UserConsumptionsController {
 		userConsumptions.forEach(consumption => totalConsumption += consumption.valueWatt)
 
 		return {
-			valueWatt: totalConsumption,
-			date: getDateWeekBounds(new Date(date)).end,
+			usagePointId: usagePointId,
+			days: userConsumptions,
+			totalValueWatt: totalConsumption,
+			date: getDayOnlyFromDate(getDateWeekBounds(new Date(date)).end),
 			type: 'WEEK'
 		}
 	}
@@ -74,8 +78,10 @@ export class UserConsumptionsController {
 		userConsumptions.forEach(consumption => totalConsumption += consumption.valueWatt)
 
 		return {
-			valueWatt: totalConsumption,
-			date: getDateMonthBounds(new Date(date)).end,
+			usagePointId: usagePointId,
+			days: userConsumptions,
+			totalValueWatt: totalConsumption,
+			date: getDayOnlyFromDate(getDateMonthBounds(new Date(date)).end),
 			type: 'MONTH'
 		}
 	}
