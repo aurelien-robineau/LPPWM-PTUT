@@ -11,6 +11,7 @@ const formReducer = (state: any, event: any) => {
 export function useForm(type: string) {
 	const [formData, setFormData] = useReducer(formReducer, {})
 	const [, setSubmitting] = useState(false)
+	const [error, setError] = useState("")
 
 	const handleSubmit = (event: any, urlOAuth: string | null = null) => {
 		event.preventDefault()
@@ -21,7 +22,8 @@ export function useForm(type: string) {
 		}
 		switch (type) {
 			case "login":
-				auth.submitLogin(formData)
+				auth.submitLogin(formData, setError)
+
 				break;
 
 			case "signup":
@@ -38,5 +40,5 @@ export function useForm(type: string) {
 		}, 3000)
 	}
 
-	return [handleSubmit, setFormData, formData]
+	return [handleSubmit, setFormData, formData, error]
 }

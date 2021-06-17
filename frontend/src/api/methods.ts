@@ -1,23 +1,22 @@
-import axios from "axios"
 import configAxios from './index'
-
 interface ResUrl {
 	data: { url?: string }
 }
 
-
 export const auth = {
-	submitLogin(data: Object) {
+	submitLogin(data: Object, setError: React.Dispatch<React.SetStateAction<string>>) {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => console.log(res))
-			.catch((error) => console.log({ error }))
+			.catch((error) => setError(error.response.data.message))
 	},
 	submitSignup(data: Object) {
 		// TODO: Link to form Signup
-		configAxios.post("/signin", data)
+		configAxios.post("/v1/auth/signup", data)
 			.then(res => console.log(res))
-			.catch(error => console.log(error))
+			.catch(error => {
+				console.warn(error.response.data)
+			})
 	},
 	async getUrlOAuth() {
 		// TODO: Remove test URL

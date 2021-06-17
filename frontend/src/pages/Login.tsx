@@ -1,9 +1,10 @@
+import { useEffect } from "react"
 import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
 import { useForm } from "../hooks/form"
 
 const Login = () => {
-    const [handleSubmit, setFormData] = useForm("login")
+    const [handleSubmit, setFormData, , error] = useForm("login")
     const handleChange = (event: any) => {
         setFormData({
             name: event.target.name,
@@ -11,13 +12,18 @@ const Login = () => {
         })
     }
 
-    // TODO: Handle error on form submission
+    useEffect(() => {
+        console.log({ error })
+    }, [error])
+
+    // TODO: CSS Style Error form
     return (
         <div className="login-page">
             <div className="container">
                 <div className="login-form">
                     <div className="form-container">
                         <h1>Accéder à Enyu</h1>
+                        {error}
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="email">
                                 Email ou identifiant client Enedis
