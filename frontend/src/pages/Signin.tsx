@@ -5,15 +5,20 @@ import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
 
 const Signin = () => {
-    const [handleSubmit, setFormData, formData] = useForm()
+    const [handleSubmit, setFormData, formData] = useForm("signup")
     const [urlEnedis, setUrlEnedis] = useState("")
+    const [error, setError] = useState("")
 
     useEffect(() => {
         ;(async () => {
             const url = await auth.getUrlOAuth()
-            setUrlEnedis(url)
+            if (url) {
+                setUrlEnedis(url)
+                return
+            }
+            setError("Une erreur est survenue avec le fournisseur Enedis")
         })()
-    }, [])
+    }, [urlEnedis])
 
     const handleChange = (event: any) => {
         setFormData({

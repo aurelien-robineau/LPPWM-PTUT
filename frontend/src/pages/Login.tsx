@@ -3,7 +3,7 @@ import InfosApp from "../components/InfosApp"
 import { useForm } from "../hooks/form"
 
 const Login = () => {
-    const [handleSubmit, setFormData] = useForm()
+    const [handleSubmit, setFormData] = useForm("login")
     const handleChange = (event: any) => {
         setFormData({
             name: event.target.name,

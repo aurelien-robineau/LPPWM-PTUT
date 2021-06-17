@@ -5,6 +5,7 @@ import { onResize } from "./utils"
 import Loader from "./components/Loader"
 import { useAuth } from "./hooks/auth"
 import { useEffect } from "react"
+import { global } from "./api/methods"
 const Login = lazy(() => import("./pages/Login"))
 const Signin = lazy(() => import("./pages/Signin"))
 const Dashboard = lazy(() => import("./pages/Dashboard"))
@@ -15,8 +16,9 @@ const App = () => {
 
     useEffect(() => {
         document.documentElement.dataset.theme = themeColor ? "dark" : "light"
+        // global.checkAPILive()
     }, [themeColor])
-    console.log({ logged })
+    // console.log({ logged })
 
     onResize()
     return (
