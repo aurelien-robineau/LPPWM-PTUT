@@ -8,12 +8,13 @@
 
     &__container {
         width: calc(100% - 2 * 24px);
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
     }
     &__cards {
         position: relative;
-        margin-top: space(8);
+        margin-top: space(14);
     }
 
     &__card {

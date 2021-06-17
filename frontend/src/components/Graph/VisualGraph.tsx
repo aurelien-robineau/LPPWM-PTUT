@@ -58,7 +58,7 @@ const data = [
 const VisualGraph = () => {
     return (
         <div className="visual-graph">
-            <ResponsiveContainer width={window.innerWidth} height="80%">
+            <ResponsiveContainer height="80%">
                 <AreaChart
                     data={data}
                     margin={{ top: 50, right: 0, left: 0, bottom: 0 }}

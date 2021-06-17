@@ -5,8 +5,8 @@ import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
 
 const Signin = () => {
-    const [handleSubmit, setFormData] = useForm()
-    const [, setUrlEnedis] = useState("")
+    const [handleSubmit, setFormData, formData] = useForm()
+    const [urlEnedis, setUrlEnedis] = useState("")
 
     useEffect(() => {
         ;(async () => {
@@ -29,7 +29,15 @@ const Signin = () => {
                 <div className="signin-form">
                     <div className="form-container">
                         <h1>S’inscrire sur Enyu</h1>
-                        <form onSubmit={handleSubmit}>
+                        <form
+                            onSubmit={(e) => {
+                                sessionStorage.setItem(
+                                    "password",
+                                    formData.password
+                                )
+                                handleSubmit(e, urlEnedis)
+                            }}
+                        >
                             <label htmlFor="password">Mot de passe *</label>
                             <input
                                 autoComplete="new-password"

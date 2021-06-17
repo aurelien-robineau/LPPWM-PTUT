@@ -1,3 +1,6 @@
+const DEBUG_MAC = true // For connection in MySQL by socket 
+const FIRST_CONNECTION = false // Initialize entities
+
 export default {
 	port: 60000,
 	frontendUrl: 'http://localhost:3000',
@@ -5,9 +8,13 @@ export default {
 		type: 'mysql',
 		host: '127.0.0.1',
 		port: 3306,
+		extra: DEBUG_MAC ? {
+			socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+		} : {},
 		username: 'root',
+		password: DEBUG_MAC && 'root',
 		database: 'enedis',
-		synchronize: true,
+		synchronize: FIRST_CONNECTION,
 		autoLoadEntities: true
 	},
 	enedis: {

@@ -12,10 +12,13 @@ export function useForm() {
 	const [formData, setFormData] = useReducer(formReducer, {})
 	const [, setSubmitting] = useState(false)
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: any, urlOAuth: string | null = null) => {
 		event.preventDefault()
 
 		setSubmitting(true)
+		if (urlOAuth) {
+			window.location.href = urlOAuth.toString()
+		}
 		auth.submitLogin(formData)
 
 		setTimeout(() => {
@@ -23,5 +26,5 @@ export function useForm() {
 		}, 3000)
 	}
 
-	return [handleSubmit, setFormData]
+	return [handleSubmit, setFormData, formData]
 }
