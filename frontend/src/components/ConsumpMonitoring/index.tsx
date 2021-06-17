@@ -1,79 +1,56 @@
-import IconArrowUp from "../Icons/ArrowUp"
-import IconArrowDown from "../Icons/ArrowDown"
+import IconArrow from "../Icons/Arrow"
 
 const ConsumpMonitoring = () => {
 	return (
-		<section>
+		<section className="conso-monitoring-section">
 			<h2>Cartes de conso + plante</h2>
 
-			{/* if conso hier > conso avant-hier */}
-			<div className="day-conso-card">
-				<div>
-					<span className="day-data">3</span>kw
-					<IconArrowUp size={20} />
+			<div className="conso-row">
+				{/* bouléen jour */}
+				<div className="day-card">
+					<div className="card-content">
+						<div>
+							<span className="day-data">3</span>kw
+							<span className="svg-container"><IconArrow size={20} /></span>
+						</div>
+						<div>
+							<p>de plus que la veille</p>
+						</div>
+					</div>
 				</div>
-				<div>
-					<p>de plus que la veille</p>
-				</div>
-			</div>
 
-			{/* else */}
-			<div className="day-conso-card">
-				<div>
-					<span className="day-data">2</span>kw
-					<IconArrowDown size={20} />
-				</div>
-				<div>
-					<p>de moins que la veille</p>
-				</div>
+				<div>Plante</div>
 			</div>
-
 
 			<div className="conso-row">
-				{/* if conso semaine > conso avant-semaine */}
-				<div className="week-conso-card">
-					<div>
-						<span className="week-data">17</span>kw
-						<IconArrowUp size={14} />
-					</div>
-					<div>
-						<p>de plus que la semaine dernière</p>
-					</div>
-				</div>
-
-				{/* else */}
-				<div className="week-conso-card">
-					<div>
-						<span className="week-data">17</span>kw
-						<IconArrowDown size={14} />
-					</div>
-					<div>
-						<p>de moins que la semaine dernière</p>
+				{/* bouléen semaine */}
+				<div className="week-card">
+					<div className="card-content">
+						<div>
+							<span className="week-data">17</span>kw
+							<span className="svg-container"><IconArrow size={14} /></span>
+						</div>
+						<div>
+							<p>de plus que la semaine dernière</p>
+						</div>
 					</div>
 				</div>
 
 
-				{/* if conso mois > conso avant-mois */}
-				<div className="month-conso-card">
-					<div>
-						<span className="month-data">10</span>kw
-						<IconArrowUp size={14} />
-					</div>
-					<div>
-						<p>de plus que le mois dernier</p>
+				{/* bouléen mois */}
+				<div className="month-card">
+					<div className="card-content">
+						<div>
+							<span className="month-data">10</span>kw
+							<span className="svg-container"><IconArrow size={14} /></span>
+						</div>
+						<div>
+							<p>de plus que le mois dernier</p>
+						</div>
 					</div>
 				</div>
 
-				{/* else */}
-				<div className="month-conso-card">
-					<div>
-						<span className="month-data">10</span>kw
-						<IconArrowDown size={14} />
-					</div>
-					<div>
-						<p>de moins que le mois dernier</p>
-					</div>
-				</div>
+
 			</div>
 		</section>
 	)
