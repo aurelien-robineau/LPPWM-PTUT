@@ -109,11 +109,19 @@ export class UserConsumptionsService {
 		// save it to our database
 		if (!isAllDataLoaded) {
 			const token = await this.usersService.refreshEnedisTokenIfNeeded(user)
-			let consumptionData = null
+
 			try {
+				// Consumption data from all API calls
+				let consumptionData = null
+				// Number of days left to load
 				let numberOfDaysLeft = numberOfResultsExpected
+				// Last date loaded
 				let lastDateLoaded = bounds.start
+
+				// Enedis DataHub API allows to make request on a maximum of 7
+				// days, so we fetch consumption by groups of 7 days
 				while (numberOfDaysLeft > 0) {
+					// Compute number of days to load
 					const numberOfDaysToLoad = numberOfDaysLeft > 7 ? 7 : numberOfDaysLeft
 					const endDate = addDaysToDate(lastDateLoaded, numberOfDaysToLoad)
 
@@ -130,12 +138,14 @@ export class UserConsumptionsService {
 					if (consumptionData === null) {
 						consumptionData = data
 					} else {
+						// Append data to existing data
 						consumptionData.meter_reading.interval_reading = [
 							...consumptionData.meter_reading.interval_reading,
 							...data.meter_reading.interval_reading
 						]
 					}
 
+					// Compute number of days left to load
 					lastDateLoaded = endDate
 					numberOfDaysLeft -= numberOfDaysToLoad
 				}
@@ -157,6 +167,7 @@ export class UserConsumptionsService {
 						userConsumption = await this.repository.save(userConsumption)
 					}
 
+					// Remove usage point from results
 					delete userConsumption.usagePoint
 					userConsumptions.push(userConsumption)
 				}
