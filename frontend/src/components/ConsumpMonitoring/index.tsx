@@ -22,7 +22,7 @@ const ConsumpMonitoring = () => {
 				/>
 
 				<CardMonitoring
-					timeScale={"week"}
+					timeScale={"month"}
 					variation={{ trend: 1, value: 10 }}
 					iconSize={14}
 				/>

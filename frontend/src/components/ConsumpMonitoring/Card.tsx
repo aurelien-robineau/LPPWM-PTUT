@@ -15,9 +15,19 @@ const CardMonitoring = ({
 	iconSize?: number
 }) => {
 	const { trend, value } = variation
+	let timeComparison
+	switch (timeScale) {
+		case "day":
+			timeComparison = "la veille"
+			break
+		case "week":
+			timeComparison = "la semaine dernière"
+			break
 
-
-
+		default:
+			timeComparison = "le mois dernier"
+			break
+	}
 
 	return (
 		<div className={`card-${timeScale}`}>
@@ -34,8 +44,8 @@ const CardMonitoring = ({
 				</div>
 				<div>
 					<p>
-						{/* TODO: Change end of sentence */}
-						{trend > 0 ? "de plus" : "de moins"} que la veille
+						{trend > 0 ? "de plus" : "de moins"} que{" "}
+						{timeComparison}
 					</p>
 				</div>
 			</div>
