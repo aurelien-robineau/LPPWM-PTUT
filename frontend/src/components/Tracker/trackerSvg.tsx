@@ -2,19 +2,21 @@ import ProgressRing from "./ProgressRing"
 import { useState, useEffect } from "react"
 
 const TrackerSvg = () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setProgress(progress + 10)
-            if (progress >= 100) clearInterval(interval)
-        }, 1000)
-    }, [])
-    return (
-        <div>
-            Tracker Version svg
-            <ProgressRing radius={60} stroke={4} progress={progress} />
-        </div>
-    )
+	const [progress, setProgress] = useState(0)
+
+	useEffect(() => {
+		setProgress(50)
+	}, [])
+	return (
+		<div className="tracker">
+			<h1>Tracker version SVG</h1>
+			<ProgressRing
+				radius={window.innerWidth / 4}
+				stroke={10}
+				progress={progress}
+			/>
+		</div>
+	)
 }
 
 export default TrackerSvg

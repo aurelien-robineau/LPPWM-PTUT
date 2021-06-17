@@ -1,6 +1,7 @@
 import React from "react"
 import "./loader.scss"
 
+// TODO: Finish Loader style
 const Loader = () => {
 	return (
 		<div className="loader">

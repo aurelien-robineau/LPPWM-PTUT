@@ -1,38 +1,71 @@
-import { useEffect } from "react"
-
 const ProgressRing = ({
-    radius,
-    stroke,
-    progress,
+	radius,
+	stroke,
+	progress,
 }: {
-    radius: number
-    stroke: number
-    progress: number
+	radius: number
+	stroke: number
+	progress: number
 }) => {
-    let normalizedRadius = 0
-    let circumference = 0
-    let strokeDashoffset = 0
-    useEffect(() => {
-        normalizedRadius = radius - stroke * 2
-        console.log({ normalizedRadius })
-        circumference = normalizedRadius * 2 * Math.PI
-        strokeDashoffset = circumference - (progress / 100) * circumference
-    }, [])
+	const size = radius * 2
+	const normalizedRadius = radius - stroke * 2
+	const circumference = normalizedRadius * 2 * Math.PI
+	const strokeDashoffset = circumference - (progress / 100) * circumference
 
-    return (
-        <svg height={radius * 2} width={radius * 2}>
-            <circle
-                stroke="white"
-                fill="transparent"
-                strokeDasharray={`${circumference} ${circumference}`}
-                style={{ strokeDashoffset }}
-                strokeWidth={stroke}
-                r={normalizedRadius}
-                cx={radius}
-                cy={radius}
-            />
-        </svg>
-    )
+    // TODO:
+    // * Understand concept of dashoofset to always perfectly start at the same spot
+    // * Retrieve Data from the API
+    // * 
+
+	console.log({ normalizedRadius, circumference, strokeDashoffset })
+
+	return (
+		<svg height={size} width={size}>
+			<circle
+				className="tracker__path-follow"
+				fill="transparent"
+				strokeWidth={1}
+				r={normalizedRadius * 1.2}
+				cx={radius}
+				cy={radius}
+			/>
+			<circle
+				className="tracker__progress"
+				fill="transparent"
+				strokeDasharray={`${circumference} ${circumference}`}
+				style={{ strokeDashoffset }}
+				strokeWidth={stroke}
+				r={normalizedRadius * 1.2}
+				cx={radius}
+				cy={radius}
+			/>
+			<circle
+				className="tracker__inner"
+				stroke="transparent"
+				r={normalizedRadius}
+				cx={radius}
+				cy={radius}
+			/>
+			<text
+				className="tracker__usage"
+				x="50%"
+				y="50%"
+				dominantBaseline="middle"
+				textAnchor="middle"
+			>
+				18 kW
+			</text>
+			<text
+				className="tracker__goal"
+				x="50%"
+				y="65%"
+				dominantBaseline="middle"
+				textAnchor="middle"
+			>
+				5 kW
+			</text>
+		</svg>
+	)
 }
 
 export default ProgressRing
