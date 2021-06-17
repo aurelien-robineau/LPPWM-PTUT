@@ -123,14 +123,14 @@ export const EnedisDataHubAPI = {
 	},
 
 	/**
-	 * Get the consumption curve data for a usage point between to dates.
+	 * Get the daily consumption for a usage point between to dates.
 	 * @param usagePointEnedisId The usage point's Enedis ID.
 	 * @param start The first day of the interval to load.
 	 * @param end The last day of the interval to load.
-	 * @param customerToken The customer's Enedis access token
-	 * @returns The consumption curve data.
+	 * @param customerToken The customer's Enedis access token.
+	 * @returns The daily consumption.
 	 */
-	getConsumptionLoadCurve: async (
+	getDailyConsumption: async (
 		usagePointEnedisId: string,
 		start: Date,
 		end: Date,
@@ -141,30 +141,7 @@ export const EnedisDataHubAPI = {
 			start,
 			end,
 			customerToken,
-			'/consumption_load_curve'
-		)
-	},
-
-	/**
-	 * Get the production curve data for a usage point between to dates.
-	 * @param usagePointEnedisId The usage point's Enedis ID.
-	 * @param start The first day of the interval to load.
-	 * @param end The last day of the interval to load.
-	 * @param customerToken The customer's Enedis access token
-	 * @returns The production curve data.
-	 */
-	getProductionLoadCurve: async (
-		usagePointEnedisId: string,
-		start: Date,
-		end: Date,
-		customerToken: string
-	): Promise<Response> => {
-		return EnedisDataHubAPI._fetchFromMeteringAPI(
-			usagePointEnedisId,
-			start,
-			end,
-			customerToken,
-			'/production_load_curve'
+			'/daily_consumption'
 		)
 	},
 
@@ -244,8 +221,6 @@ export const EnedisDataHubAPI = {
 			`?usage_point_id=${usagePointEnedisId}` +
 			`&start=${getDayOnlyFromDate(start)}` +
 			`&end=${getDayOnlyFromDate(end)}`
-
-		console.log(url)
 
 		return fetch(url, {
 			method: 'GET',

@@ -10,12 +10,12 @@ const Signin = lazy(() => import("./pages/Signin"))
 const Dashboard = lazy(() => import("./pages/Dashboard"))
 
 const App = () => {
-    const [logged, setLogged] = useAuth()
+    const [logged] = useAuth()
     const themeColor = JSON.parse(localStorage.getItem("DARK_THEME") || "false")
 
     useEffect(() => {
         document.documentElement.dataset.theme = themeColor ? "dark" : "light"
-    }, [])
+    }, [themeColor])
     console.log({ logged })
 
     onResize()

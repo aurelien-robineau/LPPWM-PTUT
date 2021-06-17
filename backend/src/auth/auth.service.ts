@@ -121,7 +121,7 @@ export class AuthService {
 		} catch (error) {
 			if (error.status === 400)
 				throw error
-			console.log(error)
+
 			return null
 		}
 	}
