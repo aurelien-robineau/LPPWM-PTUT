@@ -1,4 +1,5 @@
 import IconArrow from "../Icons/Arrow"
+import Plant from "../Plant"
 
 const ConsumpMonitoring = () => {
 	return (
@@ -6,7 +7,7 @@ const ConsumpMonitoring = () => {
 			<h2>Cartes de conso + plante</h2>
 
 			<div className="conso-row">
-				{/* bouléen jour */}
+				{/* jour */}
 				<div className="day-card">
 					<div className="card-content">
 						<div>
@@ -19,11 +20,11 @@ const ConsumpMonitoring = () => {
 					</div>
 				</div>
 
-				<div>Plante</div>
+				<div className="plant-container"><Plant /></div>
 			</div>
 
 			<div className="conso-row">
-				{/* bouléen semaine */}
+				{/* semaine */}
 				<div className="week-card">
 					<div className="card-content">
 						<div>
@@ -37,7 +38,7 @@ const ConsumpMonitoring = () => {
 				</div>
 
 
-				{/* bouléen mois */}
+				{/* mois */}
 				<div className="month-card">
 					<div className="card-content">
 						<div>
@@ -45,7 +46,7 @@ const ConsumpMonitoring = () => {
 							<span className="svg-container"><IconArrow size={14} /></span>
 						</div>
 						<div>
-							<p>de plus que le mois dernier</p>
+							<p>de <span>plus</span> que le mois dernier</p>
 						</div>
 					</div>
 				</div>

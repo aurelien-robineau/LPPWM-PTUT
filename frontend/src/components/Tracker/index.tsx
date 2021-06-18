@@ -16,7 +16,7 @@ import { PieChart, Pie, Sector, Cell } from "recharts";
 // export default Tracker
 
 
-const data = [{ name: "Group A", value: 20 },
+const data = [{ name: "Group A", value: 80 },
 { name: "Group B", value: 80 },];
 
 
@@ -57,3 +57,4 @@ const Tracker = () => {
 }
 
 export default Tracker
+

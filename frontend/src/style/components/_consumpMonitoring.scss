@@ -1,61 +1,74 @@
-.day-card, .week-card, .month-card{
+.day-card,
+.week-card,
+.month-card {
     background-color: var(--clr-white);
     border-radius: 8px;
     display: flex;
     padding: space(5);
 
-    .card-content{
+    .card-content {
         margin: auto;
         line-height: 1;
 
-        .svg-container{
+        .svg-container {
             padding-left: space(5);
         }
     }
 }
 
-.conso-monitoring-section{
+.conso-monitoring-section {
     width: 88%;
     margin: auto;
 }
 
-.conso-row{
+.conso-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: space(5);
+    position: relative;
+
+    .plant-container{
+        position: absolute;
+        right: -10px;
+        bottom: 0;
+    }
 }
 
-.week-card, .month-card{
+.week-card,
+.month-card {
     width: calc(50% - 10px);
 
-    p{
+    p {
         font-size: 0.875rem;
         padding-top: space(1);
     }
 
-    svg{
+    svg {
         height: 14px;
         width: 14pw;
     }
 }
 
 
-.day-data{
+.day-data {
     font-size: 4.75rem;
     font-weight: 600;
 }
 
-.week-data, .month-data{
+.week-data,
+.month-data {
     font-size: 2.75rem;
     font-weight: 600;
 }
 
-.arrow-up{
+//ARROW
+
+.arrow-up {
     fill: var(--clr-red);
     stroke: var(--clr-red);
 }
 
-.arrow-down{
+.arrow-down {
     fill: var(--clr-primary);
     stroke: var(--clr-primary);
     transform: rotate(90deg);
