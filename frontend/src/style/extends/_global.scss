@@ -1,44 +1,44 @@
-%main-button{
-    padding: space(3) space(5);
-    border-radius: 8px;
-    display: block;
-    background-color: var(--clr-accent);
-    border: none;
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: calc(14 * var(--space)) auto 0 auto;
+%main-button {
+	padding: space(3) space(5);
+	border-radius: 8px;
+	display: block;
+	background-color: var(--clr-accent);
+	border: none;
+	color: white;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin: calc(14 * var(--space)) auto 0;
 }
 
-%main-link{
-    color: var(--clr-accent);
-    text-decoration: none;
-    font-weight: 700;
+%main-link {
+	color: var(--clr-accent);
+	text-decoration: none;
+	font-weight: 700;
 }
 
-%input{
-    display: block;
-    border: none;
-    border-bottom: solid var(--clr-text) 1px;
-    width: 100%;
-    padding: calc(2 * var(--space)) space(1);
-    background-color: transparent;
-    font-family: var(--font);
-    font-size: 1rem;
+%input {
+	display: block;
+	border: none;
+	border-bottom: solid var(--clr-text) 1px;
+	width: 100%;
+	padding: calc(2 * var(--space)) space(1);
+	background-color: transparent;
+	font-family: var(--font);
+	font-size: 1rem;
 }
 
-%label{
-    display: block;
-    font-weight: 300;
-    font-size: 0.94rem;
-    letter-spacing: 0.4px;
+%label {
+	display: block;
+	font-weight: 300;
+	font-size: 0.94rem;
+	letter-spacing: 0.4px;
 
-    &:not(:first-child) {
-        margin-top: space(7);
-    }
+	&:not(:first-child) {
+		margin-top: space(7);
+	}
 
-    @media (min-width: $breakpoint-desktop){
-        font-size: 1rem;
-    }
+	@media (min-width: $breakpoint-desktop) {
+		font-size: 1rem;
+	}
 }
