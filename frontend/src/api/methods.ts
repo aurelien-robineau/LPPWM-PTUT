@@ -8,7 +8,10 @@ export const auth = {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => console.log(res))
-			.catch((error) => setError(error.response.data.message))
+			.catch((error) => {
+				console.log(error.response.data);
+				
+				setError(error.response.data.message)})
 	},
 	submitSignup(data: Object) {
 		// TODO: Link to form Signup

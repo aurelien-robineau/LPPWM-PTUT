@@ -15,7 +15,7 @@ const ProgressRing = ({
     // TODO:
     // * Understand concept of dashoofset to always perfectly start at the same spot
     // * Retrieve Data from the API
-    // * 
+    // * Resize svg from mobile to desktop
 
 	console.log({ normalizedRadius, circumference, strokeDashoffset })
 

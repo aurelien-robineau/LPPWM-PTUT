@@ -3,19 +3,20 @@ import CardMonitoring from "./Card"
 
 const ConsumpMonitoring = () => {
 	return (
-		<section className="conso-monitoring-section">
-			<h2>Cartes de conso + plante</h2>
-
-			<div className="conso-row">
+		<>
+		
+			<div className="card-container-day">
 				<CardMonitoring
 					timeScale={"day"}
 					variation={{ trend: 1, value: 3 }}
 				/>
-
-				<div className="plant-container"><Plant /></div>
 			</div>
 
-			<div className="conso-row">
+			<div className="plant"><Plant /></div>
+
+			
+
+<div className="card-container-week-month">
 				<CardMonitoring
 					timeScale={"week"}
 					variation={{ trend: -1, value: 17 }}
@@ -28,7 +29,7 @@ const ConsumpMonitoring = () => {
 					iconSize={14}
 				/>
 			</div>
-		</section>
+		</>
 	)
 }
 

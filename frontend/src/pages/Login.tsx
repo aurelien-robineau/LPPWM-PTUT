@@ -23,8 +23,9 @@ const Login = () => {
 				<div className="login-form">
 					<div className="form-container">
 						<h1>Accéder à Enyu</h1>
-						{error}
+						
 						<form onSubmit={handleSubmit}>
+							<p className="error-msg">{error}</p>
 							<label htmlFor="email">
 								Email ou identifiant client Enedis
 							</label>
