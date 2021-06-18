@@ -23,7 +23,10 @@ const Login = () => {
 				<div className="login-form">
 					<div className="form-container">
 						<h1>Accéder à Enyu</h1>
-						{error}
+						<div
+							className="error-msg"
+							dangerouslySetInnerHTML={{ __html: error }}
+						/>
 						<form onSubmit={handleSubmit}>
 							<label htmlFor="email">
 								Email ou identifiant client Enedis

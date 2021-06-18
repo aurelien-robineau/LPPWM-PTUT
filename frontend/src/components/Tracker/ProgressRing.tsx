@@ -12,10 +12,9 @@ const ProgressRing = ({
 	const circumference = normalizedRadius * 2 * Math.PI
 	const strokeDashoffset = circumference - (progress / 100) * circumference
 
-    // TODO:
-    // * Understand concept of dashoofset to always perfectly start at the same spot
-    // * Retrieve Data from the API
-    // * 
+	// TODO:
+	// * Understand concept of dashoofset to always perfectly start at the same spot
+	// * Retrieve Data from the API
 
 	console.log({ normalizedRadius, circumference, strokeDashoffset })
 
@@ -32,8 +31,9 @@ const ProgressRing = ({
 			<circle
 				className="tracker__progress"
 				fill="transparent"
+				strokeDashoffset="0"
 				strokeDasharray={`${circumference} ${circumference}`}
-				style={{ strokeDashoffset }}
+				// style={{ strokeDashoffset }}
 				strokeWidth={stroke}
 				r={normalizedRadius * 1.2}
 				cx={radius}
