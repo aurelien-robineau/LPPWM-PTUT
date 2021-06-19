@@ -4,17 +4,17 @@ interface ResUrl {
 }
 
 export const auth = {
-	submitLogin(data: Object, setError: React.Dispatch<React.SetStateAction<string>>) {
+	submitLogin(data: Object) {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => console.log(res))
 			.catch((error) => {
+				console.log(error)
 				const { message } = error.response.data
 				if (!Array.isArray(message)) {
-					setError(message)
+					return `<span>${message}</span>`
 				} else {
-					const a = message.map(x => `<span>${x}</span>`)
-					setError(a.join(""))
+					return message.map(x => `<span>${x}</span>`).join("")
 				}
 			})
 	},

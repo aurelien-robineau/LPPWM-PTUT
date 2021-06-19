@@ -139,6 +139,7 @@ body {
 	min-height: calc(100 * var(--vh, 1vh));
 	font-size: 1.125rem;
 	font-family: var(--font);
+	width: 100vw;
 
 	@media (max-width: $breakpoint-desktop) {
 		font-size: 1rem;
