@@ -44,4 +44,7 @@ export const global = {
 			.then(res => console.log(res.data))
 			.catch(error => console.log(error))
 	},
+	refreshToken() {
+		configAxios.post("/v1/users/token").then(res => res.data)
+	}
 }

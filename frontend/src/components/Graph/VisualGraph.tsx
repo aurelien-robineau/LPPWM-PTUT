@@ -129,21 +129,21 @@ const VisualGraph = () => {
 						onClick={handleChangeTime}
 						data-time="day"
 					>
-						Jour
+						<span>Jour</span>
 					</div>
 					<div
 						className="slider-time__item"
 						onClick={handleChangeTime}
 						data-time="week"
 					>
-						Semaine
+						<span>Semaine</span>
 					</div>
 					<div
 						className="slider-time__item"
 						onClick={handleChangeTime}
 						data-time="month"
 					>
-						Mois
+						<span>Mois</span>
 					</div>
 				</div>
 			</div>
