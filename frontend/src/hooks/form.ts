@@ -9,9 +9,9 @@ const formReducer = (state: any, event: any) => {
 
 
 export function useForm(type: string) {
-	const [formData, setFormData] = useReducer(formReducer, {})
+	const [formData, setFormData] = useReducer(formReducer, { code: "AunMWuDO8YZbrdlaRgGP4z51X8eEky" })
 	const [, setSubmitting] = useState(false)
-	const [error, setError] = useState("")
+	const [error,] = useState("")
 
 	const handleSubmit = (event: any, urlOAuth: string | null = null) => {
 		event.preventDefault()
@@ -21,11 +21,6 @@ export function useForm(type: string) {
 			window.location.href = urlOAuth.toString()
 		}
 		switch (type) {
-			case "login":
-				auth.submitLogin(formData, setError)
-
-				break;
-
 			case "signup":
 				auth.submitSignup(formData)
 				break;
