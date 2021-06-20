@@ -15,6 +15,7 @@ import { palette } from "../../utils/palette"
 
 const VisualGraph = () => {
 	const [darkMode] = useDarkMode()
+	const [time, setTime] = useState<string>("day")
 	const [data, setData] = useState<
 		{ time: string | number; [key: string]: any }[]
 	>([
@@ -79,6 +80,7 @@ const VisualGraph = () => {
 
 	const drawAreas = keys.map((curve, i) => (
 		<Area
+			key={i.toString()}
 			type="monotone"
 			dataKey={`${curve}`}
 			fillOpacity={4}
@@ -89,6 +91,7 @@ const VisualGraph = () => {
 
 	const gradients = colorPalette.map((color, i) => (
 		<linearGradient
+			key={i.toString()}
 			id={`color${themeColor[colorPalette[i]]}`}
 			x1="0"
 			y1="0"
@@ -107,11 +110,43 @@ const VisualGraph = () => {
 			/>
 		</linearGradient>
 	))
+	const handleChangeTime = (e: any) => {
+		setTime(e.target.dataset.time)
+	}
 
 	useEffect(() => {}, [data])
+	useEffect(() => {
+		console.log({ time })
+	}, [time])
 
 	return (
 		<div className="visual-graph">
+			<div className="slider-time">
+				<div className="slider-time__container">
+					<div className="slider-time__block"></div>
+					<div
+						className="slider-time__item"
+						onClick={handleChangeTime}
+						data-time="day"
+					>
+						Jour
+					</div>
+					<div
+						className="slider-time__item"
+						onClick={handleChangeTime}
+						data-time="week"
+					>
+						Semaine
+					</div>
+					<div
+						className="slider-time__item"
+						onClick={handleChangeTime}
+						data-time="month"
+					>
+						Mois
+					</div>
+				</div>
+			</div>
 			<ResponsiveContainer width="100%" height="80%">
 				<AreaChart
 					data={data}

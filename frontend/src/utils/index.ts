@@ -32,7 +32,5 @@ export const getAllKeys = (array: Object[]) => {
 			}
 		}
 	})
-
-	console.log(keys)
 	return keys
 }

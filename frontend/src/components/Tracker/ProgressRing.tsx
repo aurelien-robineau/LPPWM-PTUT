@@ -16,7 +16,7 @@ const ProgressRing = ({
 	// * Understand concept of dashoofset to always perfectly start at the same spot
 	// * Retrieve Data from the API
 
-	console.log({ normalizedRadius, circumference, strokeDashoffset })
+	// console.log({ normalizedRadius, circumference, strokeDashoffset })
 
 	return (
 		<svg height={size} width={size}>
