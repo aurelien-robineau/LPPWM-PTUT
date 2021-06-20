@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react"
 import "./style/main.scss"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { onResize } from "./utils"
+import { onResize } from "./utils/index"
 import Loader from "./components/Loader"
 import { Provider } from "react-redux"
 // import { useAuth } from "./hooks/auth"

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { storeToken } from '../utils';
+import { storeToken } from '../utils/index';
 
 export const useAuth = () => {
 	const [jwt] = useState(JSON.parse(localStorage.getItem("TOKEN") || "{}"))

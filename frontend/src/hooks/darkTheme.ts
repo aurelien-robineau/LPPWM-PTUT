@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 function getPrefColorScheme() {
 	if (!window.matchMedia) return;
-	console.log(window.matchMedia("(prefers-color-scheme: dark)").matches);
-
 	return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 

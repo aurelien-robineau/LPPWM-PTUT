@@ -21,3 +21,18 @@ export const storeToken = ({
 	// @ts-ignore
 	localStorage.setItem("EXP", value.payload.exp || "")
 }
+
+
+export const getAllKeys = (array: Object[]) => {
+	let keys: string[] = []
+	array.forEach(obj => {
+		for (const key in obj) {
+			if (Object.prototype.hasOwnProperty.call(obj, key) && !keys.includes(key)) {
+				keys.push(key)
+			}
+		}
+	})
+
+	console.log(keys)
+	return keys
+}
