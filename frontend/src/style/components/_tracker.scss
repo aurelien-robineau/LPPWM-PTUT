@@ -1,18 +1,17 @@
-.tracker-inner-circle {
-	width: 170px;
-	height: 170px;
-	background-color: var(--clr-white);
-	box-shadow: 0px 0px 9px 1px rgba(238, 73, 51, 0.3);
-	border-radius: 50%;
+.tracker-date{
+	font-size: 1.25rem;
 }
 
+
 .tracker {
+	padding-top: space(4);
+
 	@include flex($direction: column);
 	// svg {
 	// 	background-color: aquamarine;
 	// }
 	&__path-follow {
-		stroke: var(--clr-light-gray);
+		stroke: var(--clr-white);
 	}
 
 	&__progress {
@@ -20,13 +19,18 @@
 		transition: stroke-dashoffset 0.8s ease-out;
 	}
 	&__inner {
-		fill: var(--clr-light-gray);
+		fill: var(--clr-white);
+		-webkit-filter: drop-shadow( 0px 0px 2px var(--clr-primary));
+    	filter: drop-shadow( 0px 0px 2px rgb(177, 244, 123, 0.5));
+		transform: scale(0.94);
+		transform-origin: center;
 	}
 	&__usage {
 		font-size: space(8);
+		fill: var(--clr-text);
 	}
 	&__goal {
 		font-size: space(4);
-		fill: var(--clr-gray);
+		fill: var(--clr-light-gray);
 	}
 }

@@ -13,12 +13,12 @@ const Header = () => {
 	return (
 		<div className="header">
 			<div className="header__container">
-				<h2>
+				<h1>
 					Bonjour, <span>{user}</span>
-				</h2>
+				</h1>
 				<div className="icons">
 					<button onClick={() => handleChangeTheme()}>
-						<IconTheme size={25} />
+						<IconTheme size={40} />
 					</button>
 					<IconProfile size={40} />
 				</div>

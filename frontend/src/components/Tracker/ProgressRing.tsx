@@ -23,8 +23,8 @@ const ProgressRing = ({
 			<circle
 				className="tracker__path-follow"
 				fill="transparent"
-				strokeWidth={1}
-				r={normalizedRadius * 1.2}
+				strokeWidth={3}
+				r={normalizedRadius * 1.17}
 				cx={radius}
 				cy={radius}
 			/>
@@ -35,7 +35,7 @@ const ProgressRing = ({
 				strokeDasharray={`${circumference} ${circumference}`}
 				// style={{ strokeDashoffset }}
 				strokeWidth={stroke}
-				r={normalizedRadius * 1.2}
+				r={normalizedRadius * 1.17}
 				cx={radius}
 				cy={radius}
 			/>

@@ -1,22 +1,19 @@
 .dashboard-page {
 	background-color: var(--clr-background);
+	overflow-x: hidden;
 
-	h2 {
-		font-size: 1.75rem;
-		font-weight: 600;
-		line-height: 1;
-		margin-bottom: space(4);
+	h2{
+		@extend %heading2;
 	}
 }
 
 
-.tracker {
+.tracker-section {
 	grid-area: tracker;
+	@extend %grid_width;
+	@extend %grid_margin;
 }
 
-.conso-monitoring-section {
-	grid-area: monitoring;
-}
 
 .plant {
 	grid-area: plant;
@@ -24,6 +21,7 @@
 
 .graph-section {
 	grid-area: graph;
+	margin-top: space(8);
 }
 
 .tips {
@@ -37,19 +35,23 @@
 		"week-month week-month"
 		"graph graph"
 		"tips tips";
-	row-gap: space(12);
+	// row-gap: space(12);
+
 }
 
 
 .card-container-day {
 	grid-area: day;
-	width: 80%;
+	width: 64%;
+    margin-left: 24px;
 }
 
 .card-container-week-month {
 	grid-area: week-month;
 	display: flex;
 	justify-content: space-between;
+	@extend %grid_width;
+	margin-top: space(4);
 }
 
 .plant {
@@ -59,7 +61,6 @@
 	div {
 		position: absolute;
 		bottom: 0;
-		right: -10px;
 	}
 }
 

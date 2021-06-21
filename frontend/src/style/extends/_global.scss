@@ -43,3 +43,15 @@
 		font-size: 1rem;
 	}
 }
+
+%grid_width{
+	width: calc(100% - 2 * 24px);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+%grid_margin{
+	margin-top: space(8);
+	margin-bottom: space(8);
+}
