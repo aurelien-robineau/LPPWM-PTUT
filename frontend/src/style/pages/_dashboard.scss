@@ -1,10 +1,94 @@
 .dashboard-page {
 	background-color: var(--clr-background);
 
-	h2{
+	h2 {
 		font-size: 1.75rem;
 		font-weight: 600;
 		line-height: 1;
 		margin-bottom: space(4);
+	}
+}
+
+
+.tracker {
+	grid-area: tracker;
+}
+
+.conso-monitoring-section {
+	grid-area: monitoring;
+}
+
+.plant {
+	grid-area: plant;
+}
+
+.graph-section {
+	grid-area: graph;
+}
+
+.tips {
+	grid-area: tips;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-areas: "tracker tracker"
+		"day plant"
+		"week-month week-month"
+		"graph graph"
+		"tips tips";
+	row-gap: space(12);
+}
+
+
+.card-container-day {
+	grid-area: day;
+	width: 80%;
+}
+
+.card-container-week-month {
+	grid-area: week-month;
+	display: flex;
+	justify-content: space-between;
+}
+
+.plant {
+	grid-area: plant;
+	position: relative;
+
+	div {
+		position: absolute;
+		bottom: 0;
+		right: -10px;
+	}
+}
+
+
+
+//DESKTOP
+
+@media (min-width: $breakpoint-tablet){
+	.grid-container {
+		display: grid;
+		grid-template-areas: "plant tracker day tips"
+							 "plant tracker week-month tips"
+							 "plant graph graph graph";
+		row-gap: space(12);
+		width: 60%;
+    	margin: auto;
+	}
+
+	.plant {
+		position: fixed;
+		height: calc(100% - 100px);
+		display: flex;
+		left: 40px;
+		align-items: center;
+	
+		div {
+			position: initial;
+			bottom: unset;
+			right: unset;
+		}
 	}
 }
