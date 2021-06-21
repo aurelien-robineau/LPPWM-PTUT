@@ -13,7 +13,7 @@ import { useDarkMode } from "../../hooks/darkTheme"
 import { getAllKeys } from "../../utils/index"
 import { palette } from "../../utils/palette"
 
-const VisualGraph = () => {
+const VisualGraph = ({ selected }: { selected: Object[] }) => {
 	let blockRef = useRef(null)
 	const [darkMode] = useDarkMode()
 	const [time, setTime] = useState<string>("day")
@@ -74,21 +74,28 @@ const VisualGraph = () => {
 			color => !/text|white|background|gray|black/gim.test(color)
 		)
 	}
+	// @ts-ignore
+	const regex = new RegExp(`${selected.map(x => x.value).join("|")}`, "gmi")
+	console.log(regex)
 
 	const colorPalette = getThemePalette()
 	// @ts-ignore
 	let keys = getAllKeys(data).filter(x => x !== "time")
 
-	const drawAreas = keys.map((curve, i) => (
-		<Area
-			key={i.toString()}
-			type="monotone"
-			dataKey={`${curve}`}
-			fillOpacity={4}
-			stroke={themeColor[colorPalette[i]]}
-			fill={`url(#color${themeColor[colorPalette[i]]})`}
-		/>
-	))
+	const drawAreas = keys.map((curve, i) =>
+		regex.test(curve) ? (
+			<Area
+				key={i.toString()}
+				type="monotone"
+				dataKey={`${curve}`}
+				fillOpacity={4}
+				stroke={themeColor[colorPalette[i]]}
+				fill={`url(#color${themeColor[colorPalette[i]]})`}
+			/>
+		) : (
+			""
+		)
+	)
 
 	const gradients = colorPalette.map((color, i) => (
 		<linearGradient
@@ -113,7 +120,6 @@ const VisualGraph = () => {
 	))
 	const handleChangeTime = (e: any) => {
 		const { offsetParent } = e.target
-		console.log(offsetParent.dataset.time)
 		setTime(offsetParent.dataset.time)
 		const block = offsetParent.dataset.block
 		// @ts-ignore

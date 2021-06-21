@@ -10,7 +10,7 @@ const ProgressRing = ({
 	const size = radius * 2
 	const normalizedRadius = radius - stroke * 2
 	const circumference = normalizedRadius * 2 * Math.PI
-	const strokeDashoffset = circumference - (progress / 100) * circumference
+	// const strokeDashoffset = circumference - (progress / 100) * circumference
 
 	// TODO:
 	// * Understand concept of dashoofset to always perfectly start at the same spot
