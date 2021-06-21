@@ -71,7 +71,7 @@ const VisualGraph = () => {
 			currentPalette.push(property)
 		}
 		return currentPalette.filter(
-			color => !/text|white|background|gray/gim.test(color)
+			color => !/text|white|background|gray|black/gim.test(color)
 		)
 	}
 

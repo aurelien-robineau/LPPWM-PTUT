@@ -19,9 +19,11 @@ export const storeToken = ({
 	localStorage.setItem("TOKEN", token || "")
 	localStorage.setItem("REFRESH_TOKEN", refreshToken || "")
 	// @ts-ignore
-	localStorage.setItem("EXP", value.payload.exp || "")
+	if (Date.now() >= value.payload.exp) {
+		// @ts-ignore
+		localStorage.setItem("EXP", value.payload.exp || "")
+	}
 }
-
 
 export const getAllKeys = (array: Object[]) => {
 	let keys: string[] = []
@@ -34,3 +36,4 @@ export const getAllKeys = (array: Object[]) => {
 	})
 	return keys
 }
+

@@ -1,3 +1,4 @@
+import { storeToken } from '../utils'
 import configAxios from './index'
 interface ResUrl {
 	data: { url?: string }
@@ -7,7 +8,10 @@ export const auth = {
 	submitLogin(data: Object) {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
-			.then(res => console.log(res))
+			.then(res => {
+				configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
+				storeToken(res.data)
+			})
 			.catch((error) => {
 				console.log(error)
 				const { message } = error.response.data
@@ -37,7 +41,6 @@ export const auth = {
 	},
 }
 
-
 export const global = {
 	checkAPILive(): void {
 		configAxios.get("/")
@@ -45,6 +48,17 @@ export const global = {
 			.catch(error => console.log(error))
 	},
 	refreshToken() {
-		configAxios.post("/v1/users/token").then(res => res.data)
+		configAxios.post("/v1/users/token").then(res => {
+			configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
+			storeToken(res.data)
+		})
+	}
+}
+
+export const dataUser = {
+	tracker() {
+		configAxios.get("/")
+			.then(res => console.log(res.data))
+			.catch(error => console.log(error))
 	}
 }
