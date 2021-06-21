@@ -39,12 +39,17 @@
 		width: 18vw;
 		height: calc(100% - 3 * #{space(1)});
 		background-color: var(--clr-gray);
+		will-change: tranform;
+		pointer-events: none;
+		transition: transform 0.3s ease;
 	}
 	&__item {
+		color: var(--clr-text);
 		position: relative;
 		z-index: inherit;
 		width: 18vw;
-		background-color: red;
+		height: 100%;
 		text-align: center;
+		cursor: pointer;
 	}
 }
