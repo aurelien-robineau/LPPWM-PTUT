@@ -4,22 +4,22 @@ import CardMonitoring from "./Card"
 const ConsumpMonitoring = () => {
 	return (
 		<>
-		
 			<div className="card-container-day">
 				<CardMonitoring
 					timeScale={"day"}
 					variation={{ trend: 1, value: 3 }}
 				/>
 
-				<div className="plant-container">
+				{/* <div className="plant-container">
 					<Plant />
-				</div>
+				</div> */}
 			</div>
 
-			<div className="plant"><Plant /></div>
-			
+			<div className="plant">
+				<Plant />
+			</div>
 
-<div className="card-container-week-month">
+			<div className="card-container-week-month">
 				<CardMonitoring
 					timeScale={"week"}
 					variation={{ trend: -1, value: 17 }}
