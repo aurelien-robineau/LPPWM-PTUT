@@ -15,7 +15,7 @@ import { palette } from "../../utils/palette"
 import { SelectItems } from "./SelectItems"
 
 const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
-	let blockRef = useRef(null)
+	let blockRef = useRef<HTMLDivElement>(null)
 	const [darkMode] = useDarkMode()
 	const [time, setTime] = useState<string>("day")
 	const [data] = useState<{ time: string | number; [key: string]: any }[]>([
@@ -76,7 +76,6 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 	const filterCurves: string[] = selected.map(x => x.value)
 
 	const colorPalette = getThemePalette()
-	// @ts-ignore
 	let keys = getAllKeys(data).filter(x => x !== "time")
 
 	const drawAreas = keys.map(
@@ -118,10 +117,11 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 		const { offsetParent } = e.target
 		setTime(offsetParent.dataset.time)
 		const block = offsetParent.dataset.block
-		// @ts-ignore
-		blockRef.current.style.transform = `translateX(calc(${
-			block - 1
-		} * (3 * 22vw * .33)))`
+		if (null !== blockRef.current) {
+			blockRef.current.style.transform = `translateX(calc(${
+				block - 1
+			} * (3 * 22vw * .33)))`
+		}
 	}
 
 	useEffect(() => {

@@ -63,5 +63,10 @@ export const dataUser = {
 	},
 	initGraph() {
 		configAxios.post("/")
+	},
+	initTracker(data: string) {
+		configAxios.get("/v1/data/tracker", { data })
+			.then(res => res.data)
+			.catch(error => console.log(error.response.data))
 	}
 }

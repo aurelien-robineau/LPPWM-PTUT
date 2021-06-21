@@ -1,7 +1,6 @@
-.tracker-date{
+.tracker-date {
 	font-size: 1.25rem;
 }
-
 
 .tracker {
 	padding-top: space(4);
@@ -17,11 +16,12 @@
 	&__progress {
 		stroke: var(--clr-primary);
 		transition: stroke-dashoffset 0.8s ease-out;
+		// transform: translateY(100%) rotate(-90deg);
 	}
 	&__inner {
 		fill: var(--clr-white);
-		-webkit-filter: drop-shadow( 0px 0px 2px var(--clr-primary));
-    	filter: drop-shadow( 0px 0px 2px rgb(177, 244, 123, 0.5));
+		-webkit-filter: drop-shadow(0px 0px 2px var(--clr-primary));
+		filter: drop-shadow(0px 0px 2px rgb(177, 244, 123, 0.5));
 		transform: scale(0.94);
 		transform-origin: center;
 	}
