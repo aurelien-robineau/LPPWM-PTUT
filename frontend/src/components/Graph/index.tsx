@@ -11,7 +11,7 @@ const Graph = () => {
 		value: x,
 		label: `${x.charAt(0).toUpperCase()}${x.slice(1)}`,
 	}))
-	const [selectedOptions, setSelectedOptions] = useState([data[0], data[1]])
+	const [selectedOptions, setSelectedOptions] = useState([data[0], data[0]])
 
 	const handleChange = (options: any) => {
 		setSelectedOptions(options)
@@ -20,6 +20,7 @@ const Graph = () => {
 	return (
 		<section className="graph-section">
 			<h2>Ma consommation</h2>
+			<VisualGraph selected={selectedOptions} />
 			<Select
 				placeholder="Courbe à afficher"
 				closeMenuOnSelect={false}
@@ -30,8 +31,8 @@ const Graph = () => {
 				options={data}
 				className="basic-multi-select"
 				classNamePrefix="select"
+				defaultMenuIsOpen={true}
 			/>
-			<VisualGraph selected={selectedOptions} />
 		</section>
 	)
 }

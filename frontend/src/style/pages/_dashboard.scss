@@ -21,7 +21,11 @@
 
 .graph-section {
 	grid-area: graph;
-	margin-top: space(8);
+	@extend %grid_margin;
+}
+
+.basic-multi-select{
+	@extend %grid_width;
 }
 
 .tips {
