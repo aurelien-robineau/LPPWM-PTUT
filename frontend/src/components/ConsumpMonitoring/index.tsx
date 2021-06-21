@@ -10,6 +10,10 @@ const ConsumpMonitoring = () => {
 					timeScale={"day"}
 					variation={{ trend: 1, value: 3 }}
 				/>
+
+				<div className="plant-container">
+					<Plant />
+				</div>
 			</div>
 
 			<div className="plant"><Plant /></div>

@@ -4,14 +4,19 @@ interface ResUrl {
 }
 
 export const auth = {
-	submitLogin(data: Object, setError: React.Dispatch<React.SetStateAction<string>>) {
+	submitLogin(data: Object) {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => console.log(res))
 			.catch((error) => {
-				console.log(error.response.data);
-				
-				setError(error.response.data.message)})
+				console.log(error)
+				const { message } = error.response.data
+				if (!Array.isArray(message)) {
+					return `<span>${message}</span>`
+				} else {
+					return message.map(x => `<span>${x}</span>`).join("")
+				}
+			})
 	},
 	submitSignup(data: Object) {
 		// TODO: Link to form Signup
@@ -39,4 +44,7 @@ export const global = {
 			.then(res => console.log(res.data))
 			.catch(error => console.log(error))
 	},
+	refreshToken() {
+		configAxios.post("/v1/users/token").then(res => res.data)
+	}
 }

@@ -92,6 +92,8 @@ video {
 	font-family: var(--font);
 	vertical-align: baseline;
 	color: var(--clr-text);
+}
+* {
 	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
@@ -136,7 +138,8 @@ body {
 	color: var(--clr-text);
 	min-height: calc(100 * var(--vh, 1vh));
 	font-size: 1.125rem;
-	font: var(--font);
+	font-family: var(--font);
+	width: 100vw;
 
 	@media (max-width: $breakpoint-desktop) {
 		font-size: 1rem;
@@ -154,4 +157,9 @@ button {
 h1,
 h2 {
 	line-height: 1.4;
+}
+
+[class*="class"] {
+	max-width: 100vw;
+	width: 100vw;
 }

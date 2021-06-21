@@ -1,10 +1,14 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { auth } from "../api/methods"
 import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
+import { useAuth } from "../hooks/auth"
 import { useForm } from "../hooks/form"
 
 const Login = () => {
-	const [handleSubmit, setFormData, , error] = useForm("login")
+	const [, setAction] = useAuth()
+	const [error, setError] = useState("")
+	const [, setFormData, formData] = useForm("login")
 	const handleChange = (event: any) => {
 		setFormData({
 			name: event.target.name,
@@ -23,9 +27,25 @@ const Login = () => {
 				<div className="login-form">
 					<div className="form-container">
 						<h1>Accéder à Enyu</h1>
-						
-						<form onSubmit={handleSubmit}>
-							<p className="error-msg">{error}</p>
+						<div
+							className="error-msg"
+							dangerouslySetInnerHTML={{ __html: error }}
+						/>
+						<form
+							onSubmit={e => {
+								e.preventDefault()
+								const res: any = auth.submitLogin(formData)
+								if (!(res instanceof Object)) {
+									setError(res)
+									return
+								}
+								// @ts-ignore
+								setAction({
+									action: "create",
+									payload: res,
+								})
+							}}
+						>
 							<label htmlFor="email">
 								Email ou identifiant client Enedis
 							</label>

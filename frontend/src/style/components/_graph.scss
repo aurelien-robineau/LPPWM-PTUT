@@ -1,18 +1,50 @@
 .recharts {
-    .yAxis &-cartesian-axis-ticks {
-        transform: translateY(-5%);
-    }
+	.yAxis &-cartesian-axis-ticks {
+		transform: translateY(-5%);
+	}
 
-    .yAxis &-label {
-        transform: translateY(-10%);
-    }
-    &-wrapper {
-        padding-top: 20px;
-    }
+	.yAxis &-label {
+		transform: translateY(-10%);
+	}
+	&-wrapper {
+		padding-top: 20px;
+	}
 }
 
 .visual-graph {
-    padding-top: space(8);
-    min-height: 400px;
-    height: calc(40 * var(--vh, 1vh));
+	padding-top: space(8);
+	min-height: 400px;
+	height: calc(40 * var(--vh, 1vh));
+}
+
+.slider-time {
+	&__container {
+		width: auto;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		width: calc(3 * 22vw);
+		@include flex($justify: space-between);
+		padding: space(3);
+		border-radius: space(2);
+		background-color: var(--clr-light-gray);
+	}
+	&__block {
+		z-index: 0;
+		position: absolute;
+		top: 0;
+		margin: space(1.5) space(2);
+		border-radius: space(2);
+		left: 0;
+		width: 18vw;
+		height: calc(100% - 3 * #{space(1)});
+		background-color: var(--clr-gray);
+	}
+	&__item {
+		position: relative;
+		z-index: inherit;
+		width: 18vw;
+		background-color: red;
+		text-align: center;
+	}
 }
