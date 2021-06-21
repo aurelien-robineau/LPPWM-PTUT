@@ -73,8 +73,7 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 			color => !/text|white|background|gray|black/gim.test(color)
 		)
 	}
-	const regex = selected.map(x => x.value)
-	console.log(regex)
+	const filterCurves: string[] = selected.map(x => x.value)
 
 	const colorPalette = getThemePalette()
 	// @ts-ignore
@@ -82,7 +81,7 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 
 	const drawAreas = keys.map(
 		(curve, i) =>
-			regex.includes(curve) && (
+			filterCurves.includes(curve) && (
 				<Area
 					key={i.toString()}
 					type="monotone"
