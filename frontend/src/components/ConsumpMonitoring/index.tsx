@@ -13,7 +13,6 @@ const ConsumpMonitoring = () => {
 			</div>
 
 			<div className="plant"><Plant /></div>
-
 			
 
 <div className="card-container-week-month">
