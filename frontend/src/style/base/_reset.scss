@@ -110,9 +110,7 @@ nav,
 section {
 	display: block;
 }
-body {
-	line-height: 1.5;
-}
+
 ol,
 ul {
 	list-style: none;
@@ -139,7 +137,8 @@ body {
 	min-height: calc(100 * var(--vh, 1vh));
 	font-size: 1.125rem;
 	font-family: var(--font);
-	width: 100vw;
+	font-weight: 500;
+	line-height: 1.5;
 
 	@media (max-width: $breakpoint-desktop) {
 		font-size: 1rem;

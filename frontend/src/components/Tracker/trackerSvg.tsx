@@ -8,13 +8,16 @@ const TrackerSvg = () => {
 		setProgress(50)
 	}, [])
 	return (
-		<div className="tracker">
-			<h1>Tracker version SVG</h1>
-			<ProgressRing
-				radius={window.innerWidth / 4}
-				stroke={10}
-				progress={progress}
-			/>
+		<div className="tracker-section">
+			<h2>Mon objectif de consommation</h2>
+			<p className="tracker-date">Date - semaine</p>
+			<div className="tracker">
+				<ProgressRing
+					radius={window.innerWidth / 3.2}
+					stroke={13}
+					progress={progress}
+				/>
+			</div>
 		</div>
 	)
 }

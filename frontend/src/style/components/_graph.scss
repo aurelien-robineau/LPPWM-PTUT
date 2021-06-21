@@ -1,3 +1,9 @@
+.graph-section{
+	h2{
+		text-align: center;
+	}
+}
+
 .recharts {
 	.yAxis &-cartesian-axis-ticks {
 		transform: translateY(-5%);
@@ -12,7 +18,7 @@
 }
 
 .visual-graph {
-	padding-top: space(8);
+	padding-top: space(2);
 	min-height: 400px;
 	height: calc(40 * var(--vh, 1vh));
 }
@@ -25,7 +31,7 @@
 		margin-right: auto;
 		width: calc(3 * 22vw);
 		@include flex($justify: space-between);
-		padding: space(3);
+		padding: space(2);
 		border-radius: space(2);
 		background-color: var(--clr-light-gray);
 	}
@@ -33,15 +39,16 @@
 		z-index: 0;
 		position: absolute;
 		top: 0;
-		margin: space(1.5) space(2);
-		border-radius: space(2);
+		margin: 5px 6px;
+		border-radius: 5px;
 		left: 0;
-		width: 18vw;
-		height: calc(100% - 3 * #{space(1)});
-		background-color: var(--clr-gray);
+		width: 19vw;
+		height: calc(100% - 3 * 3.5px);
+		background-color: var(--clr-white);
 		will-change: tranform;
 		pointer-events: none;
 		transition: transform 0.3s ease;
+		filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
 	}
 	&__item {
 		color: var(--clr-text);

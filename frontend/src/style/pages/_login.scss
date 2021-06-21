@@ -69,6 +69,10 @@
     .error-msg{
         color: var(--clr-red);
         font-weight: 500;
+
+        span{
+            display: block;
+        }
     }
 
     /*==============================FIN MOBILE ==============================*/
