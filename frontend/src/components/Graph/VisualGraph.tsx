@@ -12,14 +12,13 @@ import {
 import { useDarkMode } from "../../hooks/darkTheme"
 import { getAllKeys } from "../../utils/index"
 import { palette } from "../../utils/palette"
+import { SelectItems } from "./SelectItems"
 
-const VisualGraph = ({ selected }: { selected: Object[] }) => {
+const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 	let blockRef = useRef(null)
 	const [darkMode] = useDarkMode()
 	const [time, setTime] = useState<string>("day")
-	const [data, setData] = useState<
-		{ time: string | number; [key: string]: any }[]
-	>([
+	const [data] = useState<{ time: string | number; [key: string]: any }[]>([
 		{
 			time: "Lun",
 			uv: 4000,
@@ -74,27 +73,25 @@ const VisualGraph = ({ selected }: { selected: Object[] }) => {
 			color => !/text|white|background|gray|black/gim.test(color)
 		)
 	}
-	// @ts-ignore
-	const regex = new RegExp(`${selected.map(x => x.value).join("|")}`, "gmi")
+	const regex = selected.map(x => x.value)
 	console.log(regex)
 
 	const colorPalette = getThemePalette()
 	// @ts-ignore
 	let keys = getAllKeys(data).filter(x => x !== "time")
 
-	const drawAreas = keys.map((curve, i) =>
-		regex.test(curve) ? (
-			<Area
-				key={i.toString()}
-				type="monotone"
-				dataKey={`${curve}`}
-				fillOpacity={4}
-				stroke={themeColor[colorPalette[i]]}
-				fill={`url(#color${themeColor[colorPalette[i]]})`}
-			/>
-		) : (
-			""
-		)
+	const drawAreas = keys.map(
+		(curve, i) =>
+			regex.includes(curve) && (
+				<Area
+					key={i.toString()}
+					type="monotone"
+					dataKey={`${curve}`}
+					fillOpacity={4}
+					stroke={themeColor[colorPalette[i]]}
+					fill={`url(#color${themeColor[colorPalette[i]]})`}
+				/>
+			)
 	)
 
 	const gradients = colorPalette.map((color, i) => (
@@ -128,7 +125,6 @@ const VisualGraph = ({ selected }: { selected: Object[] }) => {
 		} * (3 * 22vw * .33)))`
 	}
 
-	useEffect(() => {}, [data])
 	useEffect(() => {
 		console.log({ time })
 	}, [time])

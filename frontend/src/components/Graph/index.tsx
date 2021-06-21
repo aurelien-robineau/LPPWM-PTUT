@@ -1,16 +1,17 @@
 import VisualGraph from "./VisualGraph"
 import Select from "react-select"
 import { useState } from "react"
+import { SelectItems } from "./SelectItems"
 
 // TODO Style of select Element: https://react-select.com/styles
 const Graph = () => {
 	const keys = ["uv", "pv", "amt"]
 
-	const data = keys.map(x => ({
+	const data: SelectItems[] = keys.map(x => ({
 		value: x,
 		label: `${x.charAt(0).toUpperCase()}${x.slice(1)}`,
 	}))
-	const [selectedOptions, setSelectedOptions] = useState([data[0], data[2]])
+	const [selectedOptions, setSelectedOptions] = useState([data[0], data[1]])
 
 	const handleChange = (options: any) => {
 		setSelectedOptions(options)
@@ -30,9 +31,6 @@ const Graph = () => {
 				className="basic-multi-select"
 				classNamePrefix="select"
 			/>
-			{selectedOptions.map((o: any) => (
-				<p>{o.value}</p>
-			))}
 			<VisualGraph selected={selectedOptions} />
 		</section>
 	)
