@@ -48,6 +48,14 @@
 	grid-area: day;
 	width: 64%;
     margin-left: 24px;
+
+	@media(min-width: 670px){
+		margin-left: 44px;
+	}
+
+	@media(min-width: 730px){
+		margin-left: 70px;
+	}
 }
 
 .card-container-week-month {

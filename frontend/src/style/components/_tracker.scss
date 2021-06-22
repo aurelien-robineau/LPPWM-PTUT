@@ -5,6 +5,8 @@
 
 .tracker {
 	padding-top: space(4);
+	width: 300px;
+	height: 300px;
 
 	@include flex($direction: column);
 	// svg {
