@@ -56,6 +56,10 @@
 	@media(min-width: 730px){
 		margin-left: 70px;
 	}
+
+	@media(min-width: 1024px){
+		margin-left: 24px;
+	}
 }
 
 .card-container-week-month {
@@ -80,15 +84,14 @@
 
 //DESKTOP
 
-@media (min-width: $breakpoint-tablet){
+@media (min-width: $breakpoint-desktop){
 	.grid-container {
 		display: grid;
 		grid-template-areas: "plant tracker day tips"
 							 "plant tracker week-month tips"
 							 "plant graph graph graph";
-		row-gap: space(12);
-		width: 60%;
-    	margin: auto;
+		row-gap: unset;
+		grid-template-columns: 18% 25% auto 1fr;
 	}
 
 	.plant {
@@ -103,5 +106,10 @@
 			bottom: unset;
 			right: unset;
 		}
+	}
+
+	.card-container-day {
+		width: calc(100% - 48px);
+    	height: 100%;
 	}
 }

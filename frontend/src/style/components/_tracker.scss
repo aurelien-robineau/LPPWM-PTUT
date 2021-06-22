@@ -4,15 +4,24 @@
 
 .tracker {
 	padding-top: space(4);
-	width: 300px;
-	height: 300px;
 
 	@include flex($direction: column);
 	// svg {
 	// 	background-color: aquamarine;
 	// }
+
+	// svg{
+	// 	height: 325.25!important;
+	// 	width: 321.25!important;
+	// }
+
 	&__path-follow {
 		stroke: var(--clr-white);
+
+		@media (min-width: 500px){
+			cx: 50%;
+    		cy: 50%;
+		}
 	}
 
 	&__progress {
@@ -20,6 +29,11 @@
 		transition: stroke-dashoffset ease 0.35s;
 		transform: scale(1.17) rotate(-90deg);
 		transform-origin: 50% 50%;
+
+		@media (min-width: 500px){
+			cx: 50%;
+    		cy: 50%;
+		}
 	}
 	&__inner {
 		fill: var(--clr-white);
@@ -27,6 +41,11 @@
 		filter: drop-shadow(0px 0px 2px rgb(177, 244, 123, 0.5));
 		transform: scale(0.94);
 		transform-origin: center;
+
+		@media (min-width: 500px){
+			cx: 50%;
+    		cy: 50%;
+		}
 	}
 	&__usage {
 		font-size: space(8);

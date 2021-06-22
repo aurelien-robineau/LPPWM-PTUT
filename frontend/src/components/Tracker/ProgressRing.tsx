@@ -16,6 +16,8 @@ const ProgressRing = ({
 }) => {
 	const progress: number = 50
 	const size: number = radius * 2
+
+	radius = window.innerWidth > 1024 ? radius * 0.8 : radius
 	const normalizedRadius: number = radius - stroke * 2
 	const circ: number = normalizedRadius * 2 * Math.PI
 	const strokeDashoffset: number = circ - (progress / 100) * circ

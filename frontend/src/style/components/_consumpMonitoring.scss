@@ -70,3 +70,14 @@
 		transform: rotate(90deg);
 	}
 }
+
+
+//DESKTOP
+
+@media (min-width: $breakpoint-desktop){
+	.card {
+		&-day {
+			height: 100%;
+		}
+	}
+}
