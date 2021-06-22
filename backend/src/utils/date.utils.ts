@@ -18,6 +18,16 @@ export const addDaysToDate = (date: Date, numberOfDays: number): Date => {
 }
 
 /**
+ * Remove days from a date.
+ * @param date The date we want to remove days from.
+ * @param numberOfDays The number of days to remove.
+ * @returns A new date with the number of days removed.
+ */
+export const removeDaysFromDate = (date: Date, numberOfDays: number): Date => {
+	return new Date(date.getTime() - 24 * numberOfDays * 3600 * 1000)
+}
+
+/**
  * Remove the time from a date.
  * @param date The date we want to remove the time from.
  * @returns A new date with time at 0.
