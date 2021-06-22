@@ -1,12 +1,3 @@
-import { useState, useEffect } from "react"
-import { DataTracker } from "./types"
-
-const cleanPercentage = (percentage: number) => {
-	const isNegativeOrNaN = !Number.isFinite(+percentage) || percentage < 0 // we can set non-numbers to 0 here
-	const isTooHigh = percentage > 100
-	return isNegativeOrNaN ? 0 : isTooHigh ? 100 : +percentage
-}
-
 const ProgressRing = ({
 	radius,
 	stroke,

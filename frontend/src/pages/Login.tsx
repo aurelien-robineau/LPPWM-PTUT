@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import { auth } from "../api/methods"
 import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
-import { useAuth } from "../hooks/auth"
+// import { useAuth } from "../hooks/auth"
 import { useForm } from "../hooks/form"
 
 const Login = () => {
-	const [, setAction] = useAuth()
-	const [error, setError] = useState("")
+	// const [, setAction] = useAuth()
+	const [error, setError] = useState<any>("")
 	const [, setFormData, formData] = useForm("login")
 	const handleChange = (event: any) => {
 		setFormData({
@@ -16,11 +16,6 @@ const Login = () => {
 		})
 	}
 
-	useEffect(() => {
-		console.log({ error })
-	}, [error])
-
-	// TODO: CSS Style Error form
 	return (
 		<div className="login-page">
 			<div className="container">
@@ -28,22 +23,29 @@ const Login = () => {
 					<div className="form-container">
 						<h1>Accéder à Enyu</h1>
 						<div
-							className="error-msg"
+							className={`error-msg ${
+								error !== "" ? "opened" : ""
+							}`}
 							dangerouslySetInnerHTML={{ __html: error }}
 						/>
 						<form
 							onSubmit={e => {
 								e.preventDefault()
-								const res: any = auth.submitLogin(formData)
-								if (!(res instanceof Object)) {
-									setError(res)
-									return
-								}
-								// @ts-ignore
-								setAction({
-									action: "create",
-									payload: res,
-								})
+								const res: any = auth.submitLogin(
+									formData,
+									setError
+								)
+								console.log(res)
+
+								// if (res.isArray) {
+								// 	setError(res)
+								// 	return
+								// }
+								// // @ts-ignore
+								// setAction({
+								// 	action: "create",
+								// 	payload: res,
+								// })
 							}}
 						>
 							<label htmlFor="email">

@@ -5,7 +5,7 @@ interface ResUrl {
 }
 
 export const auth = {
-	submitLogin(data: Object) {
+	submitLogin(data: Object, setError: { (value: any): void; (arg0: string): void }) {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => {
@@ -13,20 +13,19 @@ export const auth = {
 				storeToken(res.data)
 			})
 			.catch((error) => {
-				console.log(error)
+				console.log({ data: error.response.data })
 				const { message } = error.response.data
 				if (!Array.isArray(message)) {
-					return `<span>${message}</span>`
+					setError(`<span>${message}</span>`)
 				} else {
-					return message.map(x => `<span>${x}</span>`).join("")
+					setError(message.map(x => `<span>${x}</span>`).join(""))
 				}
 			})
 	},
 	submitSignup(data: Object) {
-		// TODO: Link to form Signup
 		configAxios.post("/v1/auth/signup", data)
 			.then(res => {
-
+				storeToken(res.data)
 				console.log(res)
 			})
 			.catch(error => {
@@ -73,3 +72,4 @@ export const dataUser = {
 			.catch(error => console.log(error.response.data))
 	}
 }
+
