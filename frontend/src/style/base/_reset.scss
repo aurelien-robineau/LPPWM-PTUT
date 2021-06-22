@@ -92,6 +92,8 @@ video {
 	font-family: var(--font);
 	vertical-align: baseline;
 	color: var(--clr-text);
+}
+* {
 	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
@@ -108,9 +110,7 @@ nav,
 section {
 	display: block;
 }
-body {
-	line-height: 1.5;
-}
+
 ol,
 ul {
 	list-style: none;
@@ -136,21 +136,29 @@ body {
 	color: var(--clr-text);
 	min-height: calc(100 * var(--vh, 1vh));
 	font-size: 1.125rem;
-	font: var(--font);
+	font-family: var(--font);
+	font-weight: 500;
+	line-height: 1.5;
 
 	@media (max-width: $breakpoint-desktop) {
 		font-size: 1rem;
 	}
 }
 
-button{
-	font: var(--font);
+button {
+	font-family: var(--font);
 }
 
-.bold-800{
+.bold-800 {
 	font-weight: 800;
 }
 
-h1, h2{
+h1,
+h2 {
 	line-height: 1.4;
+}
+
+[class*="class"] {
+	max-width: 100vw;
+	width: 100vw;
 }

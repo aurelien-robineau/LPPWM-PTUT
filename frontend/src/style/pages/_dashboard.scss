@@ -1,3 +1,95 @@
 .dashboard-page {
 	background-color: var(--clr-background);
+	overflow-x: hidden;
+
+	h2{
+		@extend %heading2;
+	}
+}
+
+
+.tracker-section {
+	grid-area: tracker;
+	@extend %grid_width;
+	@extend %grid_margin;
+}
+
+
+.plant {
+	grid-area: plant;
+}
+
+.graph-section {
+	grid-area: graph;
+	margin-top: space(8);
+}
+
+.tips {
+	grid-area: tips;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-areas: "tracker tracker"
+		"day plant"
+		"week-month week-month"
+		"graph graph"
+		"tips tips";
+	// row-gap: space(12);
+
+}
+
+
+.card-container-day {
+	grid-area: day;
+	width: 64%;
+    margin-left: 24px;
+}
+
+.card-container-week-month {
+	grid-area: week-month;
+	display: flex;
+	justify-content: space-between;
+	@extend %grid_width;
+	margin-top: space(4);
+}
+
+.plant {
+	grid-area: plant;
+	position: relative;
+
+	div {
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+
+
+//DESKTOP
+
+@media (min-width: $breakpoint-tablet){
+	.grid-container {
+		display: grid;
+		grid-template-areas: "plant tracker day tips"
+							 "plant tracker week-month tips"
+							 "plant graph graph graph";
+		row-gap: space(12);
+		width: 60%;
+    	margin: auto;
+	}
+
+	.plant {
+		position: fixed;
+		height: calc(100% - 100px);
+		display: flex;
+		left: 40px;
+		align-items: center;
+	
+		div {
+			position: initial;
+			bottom: unset;
+			right: unset;
+		}
+	}
 }

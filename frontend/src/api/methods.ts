@@ -1,30 +1,72 @@
-import axios from "axios"
-
+import { storeToken } from '../utils'
+import configAxios from './index'
 interface ResUrl {
-	url: string
+	data: { url?: string }
 }
-
 
 export const auth = {
 	submitLogin(data: Object) {
 		// TODO: Retrive token and refresh token from res
-		axios.post("/v1/auth/signin", data)
-			.then(res => console.log(res))
-			.catch(error => console.log(error))
+		configAxios.post("/v1/auth/signin", data)
+			.then(res => {
+				configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
+				storeToken(res.data)
+			})
+			.catch((error) => {
+				console.log(error)
+				const { message } = error.response.data
+				if (!Array.isArray(message)) {
+					return `<span>${message}</span>`
+				} else {
+					return message.map(x => `<span>${x}</span>`).join("")
+				}
+			})
 	},
 	submitSignup(data: Object) {
 		// TODO: Link to form Signup
-		axios.post("/signin", data)
+		configAxios.post("/v1/auth/signup", data)
 			.then(res => console.log(res))
-			.catch(error => console.log(error))
+			.catch(error => {
+				console.warn(error.response.data)
+			})
 	},
 	async getUrlOAuth() {
-		const res: ResUrl = await axios.post("/v1/auth/enedis-authorization-url")
-		const { url } = res
+		// TODO: Remove test URL
+		const res: ResUrl = await configAxios.post("/v1/auth/enedis-authorization-url")
+		const { url } = res.data
 		if (!url) {
-			console.error("Unable to get URL")
-			return "http://www.test.com"
+			console.warn("Unable to get URL")
 		}
 		return url
+	},
+}
+
+export const global = {
+	checkAPILive(): void {
+		configAxios.get("/")
+			.then(res => console.log(res.data))
+			.catch(error => console.log(error))
+	},
+	refreshToken() {
+		configAxios.post("/v1/users/token").then(res => {
+			configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
+			storeToken(res.data)
+		})
+	}
+}
+
+export const dataUser = {
+	tracker() {
+		configAxios.get("/")
+			.then(res => console.log(res.data))
+			.catch(error => console.log(error))
+	},
+	initGraph() {
+		configAxios.post("/")
+	},
+	initTracker(data: string) {
+		configAxios.get("/v1/data/tracker", { data })
+			.then(res => res.data)
+			.catch(error => console.log(error.response.data))
 	}
 }

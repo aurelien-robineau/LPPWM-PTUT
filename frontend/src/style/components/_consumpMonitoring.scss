@@ -1,0 +1,72 @@
+.card {
+	&-day,
+	&-week,
+	&-month {
+		background-color: var(--clr-white);
+		border-radius: 8px;
+		display: flex;
+		padding: space(5);
+	}
+	&-week,
+	&-month {
+		width: calc(50% - 8px);
+
+		p {
+			font-size: 0.875rem;
+			padding-top: space(1);
+		}
+	}
+	&-content {
+		margin: auto;
+		line-height: 1;
+
+		.svg-container {
+			padding-left: space(5);
+		}
+	}
+}
+
+.conso {
+	&-monitoring-section {
+		width: 88%;
+		margin: auto;
+	}
+
+	&-row {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: space(5);
+        position: relative;
+
+        .plant-container{
+            position: absolute;
+            right: -10px;
+            bottom: 0;
+        }
+	}
+}
+
+.data {
+	&-day {
+		font-size: 4.75rem;
+		font-weight: 600;
+	}
+
+	&-week,
+	&-month {
+		font-size: 2.75rem;
+		font-weight: 700;
+	}
+}
+
+.arrow {
+	&-up {
+		fill: var(--clr-red);
+		stroke: var(--clr-red);
+	}
+	&-down {
+		fill: var(--clr-primary);
+		stroke: var(--clr-primary);
+		transform: rotate(90deg);
+	}
+}

@@ -1,5 +1,5 @@
 // Import bases (Variables and reset CSS)
-@import "./base/variable", "./base/reset";
+@import "./base/variable", "./base/reset", "./base/typography";
 
 // Import functions and mixins
 @import "./utils/functions", "./utils/mixins";
@@ -11,4 +11,4 @@
 @import "./pages/dashboard", "./pages/login", "./pages/signin";
 
 // Import Components
-@import "./components/header", "./components/graph", "./components/card-tips";
+@import "./components/header", "./components/graph", "./components/tracker", "./components/card-tips", "./components/consumpMonitoring", "./components/plant";

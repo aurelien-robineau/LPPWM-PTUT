@@ -1,0 +1,72 @@
+{
+	"comparison": {
+		"endpoint": "/v1/data/comparison",
+		"data": {},
+		"return": {
+			"day": {
+				// number
+				// Pour avoir la variation actuelle
+				// * -1 -> en-dessous par rapport à la conso de la veille
+				// * 0 -> identique par rapport à la conso de la veille
+				// * 1 -> au-dessus par rapport à la conso de la veille
+				"trend": -1 | 0 | 1,
+				// NUMBER
+				"value": 10
+			},
+			"week": {
+				// number
+				// Pour avoir la variation actuelle
+				// * -1 -> en-dessous par rapport à la conso de la semaine dernière
+				// * 0 -> identique par rapport à la conso de la semaine dernière
+				// * 1 -> au-dessus par rapport à la conso de la semaine dernière
+				"trend": -1 | 0 | 1,
+				// number
+				"value": 10
+			},
+			"month": {
+				// NUMBER
+				// Pour avoir la variation actuelle
+				// * -1 -> en-dessous par rapport à la conso du mois dernier
+				// * 0 -> identique par rapport à la conso du mois dernier
+				// * 1 -> au-dessus par rapport à la conso du mois dernier
+				"trend": -1 | 0 | 1,
+				// NUMBER
+				"value": 10
+			},
+		} 
+	},
+	"graph": {
+		"endpoint": "/v1/data/graph/" ,
+		// PASSED DATA
+		"data": {} | {
+			"duration": "day" | "week" | "month",
+			// array<string|number>
+			// Quand "average" -> moyenne des foyers similaires de la région
+			// Sinon numéro de compteurs
+			"graphs": ["average", 1234, 335358]
+		},
+		// array
+		"return": [
+			// Pour chaque valeurs -> un objet qui comprend les infos
+			{
+				// number | string
+				"time": <Heures de la journée> | <Jour de la semaine> | <Jours du mois>,
+				// number
+				"average": 10,
+				"1234": 12, 
+				"335358": 15
+			}, 
+			{
+				// number | string
+				"time": <Heures de la journée + 1> | <Jour de la semaine + 1> | <Jours du mois + 1>,
+				// number
+				"average": 10,
+				"1234": 12, 
+				"335358": 15
+			}
+		]
+	},
+	"tracker": {
+		
+	}
+}

@@ -8,20 +8,32 @@ const formReducer = (state: any, event: any) => {
 }
 
 
-export function useForm() {
-	const [formData, setFormData] = useReducer(formReducer, {})
+export function useForm(type: string) {
+	const [formData, setFormData] = useReducer(formReducer, { code: "AunMWuDO8YZbrdlaRgGP4z51X8eEky" })
 	const [, setSubmitting] = useState(false)
+	const [error,] = useState("")
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: any, urlOAuth: string | null = null) => {
 		event.preventDefault()
 
 		setSubmitting(true)
-		auth.submitLogin(formData)
+		if (urlOAuth) {
+			window.location.href = urlOAuth.toString()
+		}
+		switch (type) {
+			case "signup":
+				auth.submitSignup(formData)
+				break;
+
+			default:
+				console.warn("Error, no type form provided")
+				break;
+		}
 
 		setTimeout(() => {
 			setSubmitting(false)
 		}, 3000)
 	}
 
-	return [handleSubmit, setFormData]
+	return [handleSubmit, setFormData, formData, error]
 }
