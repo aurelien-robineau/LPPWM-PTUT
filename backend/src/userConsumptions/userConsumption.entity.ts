@@ -12,7 +12,7 @@ export class UserConsumption {
 	
 	@Column({
 		name: 'DATE',
-		type: 'date'
+		type: 'datetime'
 	})
 	date: Date
 

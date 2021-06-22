@@ -141,7 +141,7 @@ export const EnedisDataHubAPI = {
 			start,
 			end,
 			customerToken,
-			'/daily_consumption'
+			'/consumption_load_curve'
 		)
 	},
 
@@ -190,6 +190,8 @@ export const EnedisDataHubAPI = {
 		const url =
 			`${config.enedis.datahub.baseUrl}/v3/customers${endpoint}` +
 			`?usage_point_id=${usagePointEnedisId}`
+
+			console.log(url)
 
 		return fetch(url, {
 			method: 'GET',

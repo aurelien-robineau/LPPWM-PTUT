@@ -155,7 +155,7 @@ export class UserConsumptionsService {
 				for (let interval of consumptionData.meter_reading.interval_reading) {
 					// Try to get an already saved data
 					let userConsumption = await this.repository.findOne({
-						where: { date: interval.date }
+						where: { date: new Date(interval.date) }
 					})
 
 					// If not saved yet create a new one
@@ -172,6 +172,7 @@ export class UserConsumptionsService {
 					userConsumptions.push(userConsumption)
 				}
 			} catch (error) {
+				console.log(error)
 				throw new HttpException(
 					'Pas de données disponibles pour la période demandée',
 					HttpStatus.BAD_REQUEST

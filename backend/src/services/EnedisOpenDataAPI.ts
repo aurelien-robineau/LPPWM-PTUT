@@ -51,7 +51,7 @@ export const EnedisOpenDataAPI = {
 			`&rows=1` +
 			`&refine.horodate=${getDayOnlyFromDate(date).replace(/-/g, '/')}`
 		)
-		console.log(url.href)
+		
 		const data = await (await fetch(url.href)).json()
 
 		return data.records.length !== 0
