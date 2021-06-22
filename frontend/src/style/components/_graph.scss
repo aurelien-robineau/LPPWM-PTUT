@@ -1,5 +1,5 @@
-.graph-section{
-	h2{
+.graph-section {
+	h2 {
 		text-align: center;
 	}
 }
@@ -16,9 +16,8 @@
 		padding-top: 20px;
 	}
 
-	
-	&-cartesian-axis{
-		.recharts-text{
+	&-cartesian-axis {
+		.recharts-text {
 			fill: var(--clr-gray);
 		}
 	}
@@ -29,7 +28,6 @@
 	min-height: 400px;
 	height: calc(40 * var(--vh, 1vh));
 }
-
 
 .slider-time {
 	&__container {
@@ -70,62 +68,60 @@
 }
 
 //SELECT
-.recharts-default-legend{
-	padding: space(5)!important;
+.recharts-default-legend {
+	padding: space(5) !important;
 	justify-content: space-evenly;
 }
 
-.select__placeholder{
-	width: 100%;
-	text-align: center;
-}
-
-.select__control {
-    background-color: var(--clr-white)!important;
-    border: none;
-    padding: space(1);
-    box-shadow: $box-shadow;
-	border-style: unset!important;
-    border-width: unset!important;
-}
-
-.css-1rhbuit-multiValue{
-	background-color: var(--clr-light-gray)!important;
-}
-
-.select__indicators {
-	svg{
-	fill: var(--clr-text)!important;
+.select {
+	&__placeholder {
+		width: 100%;
+		text-align: center;
 	}
-}
 
-.css-1pahdxg-control{
-	box-shadow: $box-shadow !important;
-	background-color: var(--clr-white)!important;
-
-	&:hover{
-		border-color: unset!important;
-		box-shadow: $box-shadow !important;
+	&__control {
+		background-color: var(--clr-white) !important;
+		border: none;
+		padding: space(1);
+		box-shadow: $box-shadow;
 		border-style: unset !important;
+		border-width: unset !important;
+	}
+	&__menu-list {
+		background-color: var(--clr-white) !important;
+	}
 
+	&__option--is-focused {
+		background-color: rgba(var(--clr-light-gray), 0.5) !important;
+	}
+	&__indicators {
+		svg {
+			fill: var(--clr-text) !important;
+		}
+	}
+
+	&__control {
+		box-shadow: $box-shadow !important;
+		background-color: var(--clr-white) !important;
+
+		&--is-focus {
+			background-color: red;
+		}
+		&:hover {
+			border-color: unset !important;
+			box-shadow: $box-shadow !important;
+			border-style: unset !important;
+		}
 	}
 }
 
-.basic-multi-select>div{
-	background-color: var(--clr-white) !important;
-
+.css-1rhbuit-multiValue {
+	background-color: var(--clr-light-gray) !important;
 }
 
-
-.basic-multi-select{
+.multi-select {
 	z-index: 99;
+	& > div {
+		background-color: var(--clr-white) !important;
+	}
 }
-
-
-// .css-yt9ioa-option:active{
-// 	background-color: red !important;
-// }
-
-// .css-yt9ioa-option:focus{
-// 	background-color: red !important;
-// }
