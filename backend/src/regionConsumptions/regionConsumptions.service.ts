@@ -18,8 +18,7 @@ export class RegionConsumptionsService {
 		private regionsService: RegionsService
 	) {}
 
-	@Cron('05 45 11 * * *')
-	// @Cron(CronExpression.EVERY_1ST_DAY_OF_MONTH_AT_MIDNIGHT)
+	@Cron(CronExpression.EVERY_DAY_AT_2AM)
 	async loadOpenDataConsumption() {
 		console.log(`${(new Date()).toISOString()} CRON - Executing 'loadOpenDataConsumption' CRON.`)
 		
