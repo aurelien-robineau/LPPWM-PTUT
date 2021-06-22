@@ -1,5 +1,5 @@
-.graph-section{
-	h2{
+.graph-section {
+	h2 {
 		text-align: center;
 	}
 }
@@ -14,6 +14,12 @@
 	}
 	&-wrapper {
 		padding-top: 20px;
+	}
+
+	&-cartesian-axis {
+		.recharts-text {
+			fill: var(--clr-gray);
+		}
 	}
 }
 
@@ -58,5 +64,64 @@
 		height: 100%;
 		text-align: center;
 		cursor: pointer;
+	}
+}
+
+//SELECT
+.recharts-default-legend {
+	padding: space(5) !important;
+	justify-content: space-evenly;
+}
+
+.select {
+	&__placeholder {
+		width: 100%;
+		text-align: center;
+	}
+
+	&__control {
+		background-color: var(--clr-white) !important;
+		border: none;
+		padding: space(1);
+		box-shadow: $box-shadow;
+		border-style: unset !important;
+		border-width: unset !important;
+	}
+	&__menu-list {
+		background-color: var(--clr-white) !important;
+	}
+
+	&__option--is-focused {
+		background-color: rgba(var(--clr-light-gray), 0.5) !important;
+	}
+	&__indicators {
+		svg {
+			fill: var(--clr-text) !important;
+		}
+	}
+
+	&__control {
+		box-shadow: $box-shadow !important;
+		background-color: var(--clr-white) !important;
+
+		&--is-focus {
+			background-color: red;
+		}
+		&:hover {
+			border-color: unset !important;
+			box-shadow: $box-shadow !important;
+			border-style: unset !important;
+		}
+	}
+}
+
+.css-1rhbuit-multiValue {
+	background-color: var(--clr-light-gray) !important;
+}
+
+.multi-select {
+	z-index: 99;
+	& > div {
+		background-color: var(--clr-white) !important;
 	}
 }

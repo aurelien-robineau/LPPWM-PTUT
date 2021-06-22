@@ -20,6 +20,7 @@ const Graph = () => {
 	return (
 		<section className="graph-section">
 			<h2>Ma consommation</h2>
+			<VisualGraph selected={selectedOptions} />
 			<Select
 				placeholder="Courbe à afficher"
 				closeMenuOnSelect={false}
@@ -28,10 +29,10 @@ const Graph = () => {
 				isMulti
 				name="Graphs"
 				options={data}
-				className="basic-multi-select"
+				className="multi-select"
 				classNamePrefix="select"
+				defaultMenuIsOpen={true}
 			/>
-			<VisualGraph selected={selectedOptions} />
 		</section>
 	)
 }
