@@ -1,4 +1,5 @@
 import { decode } from "jsonwebtoken"
+import { PayloadToken } from "./types"
 
 export const onResize = () => {
 	document.body.style.setProperty(
@@ -11,10 +12,7 @@ export const onResize = () => {
 export const storeToken = ({
 	token,
 	refreshToken,
-}: {
-	token?: string
-	refreshToken?: string
-}) => {
+}: PayloadToken) => {
 	const value = decode(token || "")
 	localStorage.setItem("TOKEN", token || "")
 	localStorage.setItem("REFRESH_TOKEN", refreshToken || "")

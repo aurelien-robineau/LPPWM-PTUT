@@ -2,7 +2,6 @@ import CardTip from "../CardTips"
 import { useDrag } from "react-use-gesture"
 import { useSprings, animated, to as interpolate } from "react-spring"
 import { useState } from "react"
-// import HammerEl from "../Hammer"
 
 const cards = [
 	{
