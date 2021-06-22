@@ -1,7 +1,4 @@
 import ProgressRing from "./ProgressRing"
-import { useState, useEffect } from "react"
-import { dataUser } from "../../api/methods"
-import { DataTracker } from "./types"
 
 const Tracker = () => {
 	return (

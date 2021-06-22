@@ -28,8 +28,8 @@ const Graph = () => {
 				isMulti
 				name="Graphs"
 				options={data}
-				className="basic-multi-select"
-				classNamePrefix="select"
+				className="multi-select"
+				classNamePrefix="multi-select"
 			/>
 			<VisualGraph selected={selectedOptions} />
 		</section>
