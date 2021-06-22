@@ -9,11 +9,16 @@ export const auth = {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => {
+				console.log("Hello", { res });
+
 				configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
 				storeToken(res.data)
+				return
 			})
 			.catch((error) => {
-				console.log({ data: error.response.data })
+				if (!error.response) {
+					return
+				}
 				const { message } = error.response.data
 				if (!Array.isArray(message)) {
 					setError(`<span>${message}</span>`)

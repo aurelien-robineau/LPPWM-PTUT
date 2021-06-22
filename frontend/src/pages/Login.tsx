@@ -31,21 +31,7 @@ const Login = () => {
 						<form
 							onSubmit={e => {
 								e.preventDefault()
-								const res: any = auth.submitLogin(
-									formData,
-									setError
-								)
-								console.log(res)
-
-								// if (res.isArray) {
-								// 	setError(res)
-								// 	return
-								// }
-								// // @ts-ignore
-								// setAction({
-								// 	action: "create",
-								// 	payload: res,
-								// })
+								auth.submitLogin(formData, setError)
 							}}
 						>
 							<label htmlFor="email">
