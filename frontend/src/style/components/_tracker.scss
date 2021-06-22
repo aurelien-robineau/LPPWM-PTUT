@@ -15,8 +15,9 @@
 
 	&__progress {
 		stroke: var(--clr-primary);
-		transition: stroke-dashoffset 0.8s ease-out;
-		// transform: translateY(100%) rotate(-90deg);
+		transition: stroke-dashoffset ease 0.35s;
+		transform: scale(1.17) rotate(-90deg);
+		transform-origin: 50% 50%;
 	}
 	&__inner {
 		fill: var(--clr-white);

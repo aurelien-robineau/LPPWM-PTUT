@@ -1,25 +1,26 @@
+import { useState, useEffect } from "react"
 import { DataTracker } from "./types"
+
+const cleanPercentage = (percentage: number) => {
+	const isNegativeOrNaN = !Number.isFinite(+percentage) || percentage < 0 // we can set non-numbers to 0 here
+	const isTooHigh = percentage > 100
+	return isNegativeOrNaN ? 0 : isTooHigh ? 100 : +percentage
+}
 
 const ProgressRing = ({
 	radius,
 	stroke,
-	data,
 }: {
 	radius: number
 	stroke: number
-	data: DataTracker
 }) => {
-	const { progress, goal, consumption } = data
-	const size = radius * 2
-	const normalizedRadius = radius - stroke * 2
-	const circumference = normalizedRadius * 2 * Math.PI
-	// const strokeDashoffset = circumference - (progress / 100) * circumference
-	const strokeDashoffset = Math.abs(
-		circumference - (progress / 100) * circumference
-	)
-
-	// TODO:
-	// * Understand concept of dashoofset to always perfectly start at the same spot
+	const progress: number = 50
+	const size: number = radius * 2
+	const normalizedRadius: number = radius - stroke * 2
+	const circ: number = normalizedRadius * 2 * Math.PI
+	const strokeDashoffset: number = circ - (progress / 100) * circ
+	const consumption: number = 18
+	const goal: number = 20
 
 	return (
 		<svg height={size} width={size}>
@@ -34,14 +35,13 @@ const ProgressRing = ({
 			<circle
 				className="tracker__progress"
 				fill="transparent"
-				// strokeDashoffset="0"
-				strokeDasharray={`${circumference}`}
+				strokeDashoffset="0"
+				strokeDasharray={`${circ} ${circ}`}
 				style={{ strokeDashoffset }}
 				strokeWidth={stroke}
-				r={normalizedRadius * 1.17}
+				r={normalizedRadius}
 				cx={radius}
 				cy={radius}
-				transform={`rotate(-90 ${radius} ${radius})`}
 			/>
 			<circle
 				className="tracker__inner"
