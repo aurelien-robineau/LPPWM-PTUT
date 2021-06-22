@@ -31,7 +31,6 @@ const Graph = () => {
 				options={data}
 				className="multi-select"
 				classNamePrefix="select"
-				defaultMenuIsOpen={true}
 			/>
 		</section>
 	)
