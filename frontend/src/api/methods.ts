@@ -25,7 +25,10 @@ export const auth = {
 	submitSignup(data: Object) {
 		// TODO: Link to form Signup
 		configAxios.post("/v1/auth/signup", data)
-			.then(res => console.log(res))
+			.then(res => {
+
+				console.log(res)
+			})
 			.catch(error => {
 				console.warn(error.response.data)
 			})
