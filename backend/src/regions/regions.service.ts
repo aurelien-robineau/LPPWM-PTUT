@@ -12,6 +12,14 @@ export class RegionsService {
 	) {}
 
 	/**
+	 * Get all the regions.
+	 * @returns All the regions.
+	 */
+	async getAll(): Promise<Region[]> {
+		return await this.repository.find()
+	}
+
+	/**
 	 * Get a region by its id.
 	 * @param id The id of the region.
 	 * @returns The region with this id.
