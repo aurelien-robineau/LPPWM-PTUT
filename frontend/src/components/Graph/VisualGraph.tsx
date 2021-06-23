@@ -78,7 +78,7 @@ const VisualGraph = ({
 		if (null !== blockRef.current) {
 			blockRef.current.style.transform = `translateX(calc(${
 				block - 1
-			} * (3 * ${window.innerWidth < 770 ? "22vw" : "25vw"} + 16px) / 3))`
+			} * 100%))`
 		}
 	}
 
