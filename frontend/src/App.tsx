@@ -40,7 +40,7 @@ const App = () => {
 				"Authorization"
 			] = `Bearer ${TOKEN}`
 		}
-	}, [logged])
+	}, [logged, user])
 
 	useEffect(() => {
 		document.documentElement.dataset.theme = themeColor ? "dark" : "light"

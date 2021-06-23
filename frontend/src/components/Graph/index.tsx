@@ -1,23 +1,36 @@
 import VisualGraph from "./VisualGraph"
 import Select from "react-select"
 import { useState } from "react"
-import { SelectItems } from "./SelectItems"
+import { SelectItems, ValuesGraph } from "./SelectItems"
 import { useEffect } from "react"
 import { dataUser } from "../../api/methods"
+import { format } from "prettier"
 
 const Graph = () => {
-	const [keys, setKeys] = useState<String[]>([])
-	const [data, setData] = useState<SelectItems[]>([])
+	const [data, setData] = useState<ValuesGraph[]>([])
+	const [listSelect, setListSelect] = useState<SelectItems[]>([])
 	const [selectedOptions, setSelectedOptions] = useState<SelectItems[]>([])
-	const [listMeters, setListMeters] = useState<any>([])
 
 	useEffect(() => {
 		;(async () => {
 			const response = await dataUser.initGraph()
 			const { res, list } = response
-			setListMeters(list)
+
+			setData(
+				res.map((x: any) => {
+					const d: Date = new Date(x.time)
+					x.time = new Intl.DateTimeFormat("fr", {
+						hour: "numeric",
+						minute: "numeric",
+						hourCycle: "h24",
+						day: "2-digit",
+						month: "2-digit",
+					}).format(d)
+					return x
+				})
+			)
 			const listKeys = [...list.map((x: any) => x.id.toString())]
-			setData([
+			setListSelect([
 				{
 					value: "average",
 					label: "Moyenne des foyers similare de la région",
@@ -30,28 +43,21 @@ const Graph = () => {
 		})()
 	}, [])
 
-	// useEffect(() => {
-	// 	console.log(selectedOptions)
-	// }, [selectedOptions])
-	// useEffect(() => {
-	// 	if (listMeters.length > 0) {
-	// 		const favoriteMeter: number = listMeters.findIndex(
-	// 			(x: any) => x.isFavorite
-	// 		)
-	// 		setSelectedOptions([data[0], listMeters[favoriteMeter].id])
-	// 	}
-	// 	console.log({ listMeters })
-	// }, [listMeters])
+	useEffect(() => {
+		if (listSelect.length >= 2) {
+			setSelectedOptions([listSelect[0], listSelect[1]])
+		}
+	}, [listSelect])
 
 	const handleChange = (options: any) => {
-		setSelectedOptions((prevState: any) => [...prevState, options])
+		setSelectedOptions(options)
 	}
 
 	return (
 		<section className="graph-section">
 			<h2>Mon suivi de consommation</h2>
 			<div className="graph-wrapper">
-				<VisualGraph selected={selectedOptions} />
+				<VisualGraph selected={selectedOptions} data={data} />
 				<Select
 					placeholder="Courbe à afficher"
 					closeMenuOnSelect={false}
@@ -59,10 +65,9 @@ const Graph = () => {
 					defaultValue={selectedOptions}
 					isMulti
 					name="Graphs"
-					options={data}
+					options={listSelect}
 					className="multi-select"
 					classNamePrefix="select"
-					// defaultMenuIsOpen={true}
 				/>
 			</div>
 		</section>

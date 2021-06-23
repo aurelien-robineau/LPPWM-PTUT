@@ -1,5 +1,6 @@
 
 import { LabelList } from 'recharts'
+import { ValuesGraph } from '../components/Graph/SelectItems'
 import { getStorage, storeToken } from '../utils'
 import { storage } from '../utils/constants'
 import configAxios from './index'
@@ -74,7 +75,7 @@ export const dataUser = {
 			console.warn(error)
 		}
 	},
-	async initGraph(): Promise<{ res: Object, list: { [key: string]: any }[] }> {
+	async initGraph(): Promise<{ res: ValuesGraph[], list: { [key: string]: any }[] }> {
 		try {
 			const list: any = await dataUser.getMeterList()
 			const listMeters = list.data.map((x: any) => x.id)
@@ -82,7 +83,7 @@ export const dataUser = {
 			return { res: res.data, list: list.data }
 		} catch (error) {
 			console.warn(error)
-			return { res: {}, list: [] }
+			return { res: [], list: [] }
 		}
 	},
 	async tracker() {

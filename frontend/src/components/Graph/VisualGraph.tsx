@@ -13,60 +13,27 @@ import { getThemePalette } from "../../utils/index"
 import { useDarkMode } from "../../hooks/darkTheme"
 import { getAllKeys } from "../../utils/index"
 import { palette } from "../../utils/palette"
-import { SelectItems } from "./SelectItems"
+import { SelectItems, ValuesGraph } from "./SelectItems"
 
-const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
+const VisualGraph = ({
+	selected,
+	data,
+}: {
+	selected: SelectItems[]
+	data: ValuesGraph[]
+}) => {
 	let blockRef = useRef<HTMLDivElement>(null)
 	const [darkMode] = useDarkMode()
-	const [time, setTime] = useState<string>("day")
-	const [data] = useState<{ time: string | number; [key: string]: any }[]>([
-		{
-			time: "Lun",
-			uv: 4000,
-			pv: 2400,
-			amt: 2400,
-		},
-		{
-			time: "Mar",
-			uv: 3000,
-			pv: 1398,
-			amt: 2210,
-		},
-		{
-			time: "Mer",
-			uv: 2000,
-			pv: 9800,
-			amt: 2290,
-		},
-		{
-			time: "Jeu",
-			uv: 2780,
-			pv: 3908,
-			amt: 2000,
-		},
-		{
-			time: "Ven",
-			uv: 1890,
-			pv: 4800,
-			amt: 2181,
-		},
-		{
-			time: "Sam",
-			uv: 2390,
-			pv: 3800,
-			amt: 2500,
-		},
-		{
-			time: "Dim",
-			uv: 3490,
-			pv: 4300,
-			amt: 2100,
-		},
-	])
 	const themeColor: any = darkMode ? palette.dark : palette.light
+	const [time, setTime] = useState<string>("day")
 	const filterCurves: string[] = selected.map(x => x.value)
 	const colorPalette = getThemePalette(themeColor)
-	let keys = getAllKeys(data).filter(x => x !== "time")
+	const [keys, setKeys] = useState<string[]>([])
+	useEffect(() => {
+		if (data.length > 0) {
+			setKeys(getAllKeys(data).filter(x => x !== "time"))
+		}
+	}, [data])
 
 	const drawAreas = keys.map(
 		(curve, i) =>
@@ -81,7 +48,8 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 				/>
 			)
 	)
-	const gradients = colorPalette.map((color, i) => (
+
+	const gradients = colorPalette.map((_color, i) => (
 		<linearGradient
 			key={i.toString()}
 			id={`color${themeColor[colorPalette[i]]}`}
@@ -102,6 +70,7 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 			/>
 		</linearGradient>
 	))
+
 	const handleChangeTime = (e: any) => {
 		const { offsetParent } = e.target
 		setTime(offsetParent.dataset.time)
@@ -112,10 +81,6 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 			} * (3 * ${window.innerWidth < 770 ? "22vw" : "25vw"} + 16px) / 3))`
 		}
 	}
-
-	useEffect(() => {
-		console.log({ time })
-	}, [time])
 
 	return (
 		<div className="visual-graph">
