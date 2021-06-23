@@ -75,20 +75,18 @@ export const dataUser = {
 			})
 			.catch(error => console.warn(error))
 	},
-	tracker() {
-		configAxios.get("/")
-			.then(res => console.log(res.data))
-			.catch(error => console.log(error))
-	},
 	initGraph(data: DataTracker = { period: "DAY", graphs: ["average"] }) {
 		configAxios.post("/v1/users/graph-data", data)
 			.then(res => console.log(res.data))
 			.catch(error => console.warn(error))
 	},
-	initTracker(data: string) {
-		configAxios.get("/v1/data/tracker", { data })
-			.then(res => res.data)
-			.catch(error => console.log(error.response.data))
+	async tracker() {
+		try {
+			const res = await configAxios.post("/v1/users/tracker-data")
+			return res.data
+		} catch (error) {
+			console.warn(error)
+		}
 	},
 	async comparisonConsumption() {
 		try {

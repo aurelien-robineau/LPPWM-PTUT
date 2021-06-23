@@ -73,3 +73,19 @@ export const getThemePalette = (themeColor: any) => {
 	)
 }
 
+
+export const startOfWeek = (date: Date) => {
+	const diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1)
+	return new Date(date.setDate(diff))
+}
+
+export const endOfWeek = (date: Date) => {
+	const lastday = date.getDate() - (date.getDay() - 1) + 6
+	return new Date(date.setDate(lastday))
+}
+
+export const formatDate = (d: Date) => {
+	let day = new Intl.DateTimeFormat("fr", { day: '2-digit' }).format(d);
+	let month = new Intl.DateTimeFormat("fr", { month: "short" }).format(d);
+	return `${day} ${month}`
+}
