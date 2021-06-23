@@ -11,7 +11,7 @@ const Tracker = () => {
 		size = window.innerWidth / 6
 		console.log("tablet");
 	} else {
-		size = window.innerWidth / 9
+		size = window.innerWidth / 10
 		console.log("desktop");
 	}
 	console.log({size});

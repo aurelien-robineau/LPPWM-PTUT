@@ -25,10 +25,11 @@
 		grid-area: graph;
 		@extend %grid_margin;
 
-		@media (min-width: $breakpoint-desktop){
+		@media (min-width: $breakpoint-desktop) {
 			background-color: var(--clr-white);
-    		border-radius: 8px;
-    		padding: 40px;
+			border-radius: 8px;
+			padding: 40px;
+			box-shadow: $box-shadow;
 		}
 	}
 
@@ -38,9 +39,10 @@
 
 			position: relative;
 			width: 100%;
+			margin-top: space(8);
 
 			.visual-graph {
-				.recharts-responsive-container{
+				.recharts-responsive-container {
 					margin-top: space(12);
 				}
 			}
@@ -77,7 +79,7 @@
 
 .card-container-day {
 	grid-area: day;
-	width: 64%;
+	width: 75%;
 	margin-left: 24px;
 
 	@media(min-width: 670px) {
@@ -120,9 +122,16 @@
 	.title {
 		display: flex;
 		justify-content: flex-start;
-		width: 78.5%;
 		float: right;
 		max-width: 1440px;
+
+		@media screen and (min-width: $breakpoint-desktop) and (max-width: 1404px){
+			width: 73%;
+		}
+
+		@media (min-width: 1404px){
+			width: 75.5%;
+		}
 
 		&-tracker {
 			width: 65.5%;
@@ -138,19 +147,23 @@
 		grid-row-gap: unset;
 		row-gap: unset;
 		grid-template-columns: 18% 25% 32% 1fr;
-		grid-template-rows: 20% 20% auto;
+		grid-template-rows: 20% 17% auto;
 		max-width: 1440px;
-		margin: auto;
-		width: 90%;
 		margin-bottom: 40px;
+		width: 85%;
+		margin-left: 130px;
 	}
 
 	.plant {
 		position: fixed;
-		height: calc(100% - 100px);
 		display: flex;
-		left: 40px;
 		align-items: center;
+		height: 100vh;
+		background-color: var(--clr-white);
+		left: 0;
+		top: 0;
+		width: 266px;
+		transform: unset;
 
 		div {
 			position: initial;
