@@ -271,6 +271,33 @@ export class UsersService {
 		return data
 	}
 
+	async getDataForTracker(user: User): Promise<{ current: number, goal: number, percentage: number }> {
+		const usagePoint = await this.usagePointsService.getRepository().findOne({
+			where: {
+				user: user,
+				isFavorite: true
+			}
+		})
+
+		const consumptions = await this.userConsumptionsService.getUserConsumptions(
+			user,
+			usagePoint.id,
+			new Date(),
+			'WEEK'
+		)
+
+		let total: number = 0
+		consumptions.forEach(consumption => {
+			total += consumption.valueWatt
+		})
+
+		return {
+			current: total,
+			goal: user.weekGoalWatt,
+			percentage: user.weekGoalWatt ? total * 100 / user.weekGoalWatt : null
+		}
+	}
+
 	/**
 	 * Get the users repository.
 	 * @returns The users repository.
