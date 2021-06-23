@@ -35,10 +35,8 @@ const App = () => {
 			configAxios.defaults.headers.common[
 				"Authorization"
 			] = `Bearer ${TOKEN}`
-			dataUser.getMeterList()
 			setLogged(true)
 		}
-		console.log({ logged })
 	}, [])
 
 	useEffect(() => {

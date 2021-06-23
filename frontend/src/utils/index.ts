@@ -59,7 +59,17 @@ export const getAllKeys = (array: Object[]) => {
 
 export const checkToken = () => {
 	const expDate = getStorage(storage.EXP, localStorage) || null
-	console.log({ nowDate: Date.now(), expDate })
 	if (!expDate) return false
 	return Date.now() < expDate
 }
+
+export const getThemePalette = (themeColor: any) => {
+	let currentPalette = []
+	for (const property in themeColor) {
+		currentPalette.push(property)
+	}
+	return currentPalette.filter(
+		color => !/text|white|background|gray|black/gim.test(color)
+	)
+}
+
