@@ -12,7 +12,7 @@ export default {
 			socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 		} : {},
 		username: 'root',
-		password: DEBUG_MAC && 'root',
+		password: DEBUG_MAC ? 'root' : '',
 		database: 'enedis',
 		synchronize: FIRST_CONNECTION,
 		autoLoadEntities: true

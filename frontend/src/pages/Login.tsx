@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 import { auth } from "../api/methods"
 import IconLogo from "../components/Icons/Logo"
 import InfosApp from "../components/InfosApp"
-// import { useAuth } from "../hooks/auth"
+import { useAuth } from "../hooks/auth"
 import { useForm } from "../hooks/form"
 
 const Login = () => {
-	// const [, setAction] = useAuth()
+	const user = useAuth()
 	const [error, setError] = useState<any>("")
 	const [, setFormData, formData] = useForm("login")
 	const handleChange = (event: any) => {
@@ -15,6 +15,7 @@ const Login = () => {
 			value: event.target.value,
 		})
 	}
+
 
 	return (
 		<div className="login-page">
