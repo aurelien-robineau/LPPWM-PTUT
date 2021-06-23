@@ -10,6 +10,8 @@ import { RegionConsumptionsService } from './../regionConsumptions/regionConsump
 import { UserConsumption } from './../userConsumptions/userConsumption.entity'
 import { RegionConsumption } from './../regionConsumptions/regionConsumption.entity'
 import { UsagePoint } from './../usagePoints/usagePoint.entity'
+import { removeDaysFromDate } from './../utils/date.utils'
+import { getDateMonthBounds } from 'src/utils/date.utils'
 
 @Injectable()
 export class UsersService {
@@ -95,6 +97,13 @@ export class UsersService {
 		return password
 	}
 
+	async getUserFavoriteUsagePoint(user: User): Promise<UsagePoint> {
+		return await this.usagePointsService.getRepository().findOne({
+			user,
+			isFavorite: true
+		})
+	}
+
 	/**
 	 * Create a user from non-formatted Enedis DataHub data.
 	 * @param json The DataHub user data.
@@ -130,7 +139,10 @@ export class UsersService {
 		})
 	}
 
-	async getDataForGraph(user: User, getGraphDataDto: GetGraphDataDto): Promise<any> {
+	async getDataForGraph(
+		user: User,
+		getGraphDataDto: GetGraphDataDto
+	): Promise<any> {
 		const { period, graphs } = getGraphDataDto
 
 		if (!['DAY', 'WEEK', 'MONTH'].includes(period)) {
@@ -193,6 +205,66 @@ export class UsersService {
 					data.push(timeData)
 				}
 			})
+		}
+
+		return data
+	}
+
+	async getDataForComparison(user: User): Promise<any> {
+		const usagePoint = await this.getUserFavoriteUsagePoint(user)
+
+		const currentDate = removeDaysFromDate(new Date(), 1)
+		const previousDay = removeDaysFromDate(currentDate, 1)
+		const previousWeek = removeDaysFromDate(currentDate, 7)
+		const previousMonth = removeDaysFromDate(getDateMonthBounds(currentDate).start, 7)
+
+		const data = {}
+		const periods: ('DAY'|'WEEK'|'MONTH')[] = ['DAY', 'WEEK', 'MONTH']
+		for (let period of periods) {
+			let maxDateToAddToTotalValue = new Date(currentDate)
+
+			if (period === 'WEEK') {
+				maxDateToAddToTotalValue = new Date(previousWeek)
+			}
+			else if (period === 'MONTH') {
+				maxDateToAddToTotalValue.setMonth(currentDate.getMonth() - 1)
+			}
+
+			maxDateToAddToTotalValue.setUTCHours(23)
+			maxDateToAddToTotalValue.setUTCMinutes(59)
+			maxDateToAddToTotalValue.setUTCSeconds(59)
+			maxDateToAddToTotalValue.setUTCMilliseconds(999)
+
+			const consumptionCurrent = await this.userConsumptionsService.getUserConsumptions(
+				user,
+				usagePoint.id,
+				currentDate,
+				period
+			)
+
+			let totalCurrent = 0
+			consumptionCurrent.forEach(consumption => {
+				totalCurrent += consumption.valueWatt
+			})
+
+			const consumptionPrevious = await this.userConsumptionsService.getUserConsumptions(
+				user,
+				usagePoint.id,
+				period === 'DAY' ? previousDay : period === 'WEEK' ? previousWeek : previousMonth,
+				period
+			)
+
+			let totalPrevious = 0
+			consumptionPrevious.forEach(consumption => {
+				if (consumption.date <= maxDateToAddToTotalValue) {
+					totalPrevious += consumption.valueWatt
+				}
+			})
+
+			data[period] = {
+				value: totalCurrent,
+				trend: totalCurrent - totalPrevious
+			}
 		}
 
 		return data
