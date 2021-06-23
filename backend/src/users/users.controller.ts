@@ -52,4 +52,9 @@ export class UsersController {
 	async getDataForTraker(@GetUser() user: User): Promise<{ current: number, goal: number, percentage: number }> {
 		return await this.service.getDataForTracker(user)
 	}
+
+	@Post('/planty-stage')
+	async getPlantyStage(@GetUser() user: User): Promise<number> {
+		return await this.service.getPlantyStage(user)
+	}
 }
