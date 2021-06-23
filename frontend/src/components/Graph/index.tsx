@@ -49,7 +49,7 @@ const Graph = () => {
 
 	return (
 		<section className="graph-section">
-			<h2>Ma consommation</h2>
+			<h2>Mon suivi de consommation</h2>
 			<div className="graph-wrapper">
 				<VisualGraph selected={selectedOptions} />
 				<Select

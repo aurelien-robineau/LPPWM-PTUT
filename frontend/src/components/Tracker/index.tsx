@@ -8,7 +8,7 @@ const Tracker = () => {
 	} else if (window.innerWidth < 1024) {
 		size = window.innerWidth / 6
 	} else {
-		size = window.innerWidth / 9
+		size = window.innerWidth / 10
 	}
 
 	return (

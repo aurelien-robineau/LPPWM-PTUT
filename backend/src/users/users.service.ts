@@ -53,6 +53,14 @@ export class UsersService {
 	}
 
 	/**
+	 * Get all users.
+	 * @returns All users.
+	 */
+	async getAll(): Promise<User[]> {
+		return await this.repository.find()
+	}
+
+	/**
 	 * Get a user by its id.
 	 * @param id The id of the user.
 	 * @returns The user with this id, or null if not found.
@@ -296,6 +304,54 @@ export class UsersService {
 			goal: user.weekGoalWatt,
 			percentage: user.weekGoalWatt ? total * 100 / user.weekGoalWatt : null
 		}
+	}
+
+	async getPlantyStage(user: User): Promise<number> {
+		const usagePoint = await this.usagePointsService.getRepository().findOne({
+			relations: ['region'],
+			where: {
+				user: user,
+				isFavorite: true
+			}
+		})
+
+		const lastDateLoaded = await this.regionConsumptionsService.getLastDateLoaded()
+
+		const globalConsumption = await this.regionConsumptionsService.getRegionConsumption(
+			usagePoint.region,
+			usagePoint.subscribedPowerkVA,
+			lastDateLoaded,
+			'WEEK'
+		)
+
+		const userConsumption = await this.userConsumptionsService.getUserConsumptions(
+			user,
+			usagePoint.id,
+			lastDateLoaded,
+			'WEEK'
+		)
+
+		let totalGlobal = 0
+		globalConsumption.forEach(consumption => {
+			totalGlobal += consumption.valueWatt
+		})
+
+		let totalUser = 0
+		userConsumption.forEach(consumption => {
+			totalUser += consumption.valueWatt
+		})
+
+		const daysPourcentage = userConsumption.length * 100 / globalConsumption.length
+		const percentage = totalUser * 100 / (totalGlobal * daysPourcentage / 100)
+
+		if (percentage >= 160)
+			return 0
+		else if (percentage >= 120)
+			return 1
+		else if (percentage >= 80)
+			return 2
+		else
+			return 3
 	}
 
 	/**

@@ -33,8 +33,7 @@ const CardMonitoring = ({
 		<div className={`card-${timeScale}`}>
 			<div className="card-content">
 				<div>
-					<span className={`data-${timeScale}`}>{value}</span>
-					kw
+					<span className={`data-${timeScale}`}>{value}<span className="data-unit">kw</span></span>
 					<span className="svg-container">
 						<IconArrow
 							size={iconSize || 20}
