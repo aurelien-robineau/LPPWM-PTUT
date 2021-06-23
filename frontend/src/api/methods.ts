@@ -1,12 +1,9 @@
-
-import { LabelList } from 'recharts'
 import { ValuesGraph } from '../components/Graph/SelectItems'
 import { getStorage, storeToken } from '../utils'
 import { storage } from '../utils/constants'
 import configAxios from './index'
-interface ResUrl {
-	data: { url?: string }
-}
+import { ResUrl } from './types'
+
 
 export const auth = {
 	submitLogin(data: Object, setError: { (value: any): void; (arg0: string): void }) {
@@ -84,6 +81,18 @@ export const dataUser = {
 		} catch (error) {
 			console.warn(error)
 			return { res: [], list: [] }
+		}
+	},
+
+	async graph(period: string) {
+		try {
+			const list: any = await dataUser.getMeterList()
+			const listMeters = list.data.map((x: any) => x.id)
+			const res: any = await configAxios.post("/v1/users/graph-data", { period, graphs: ["average", ...listMeters] })
+			return res.data
+		} catch (error) {
+			console.warn(error)
+			return
 		}
 	},
 	async tracker() {

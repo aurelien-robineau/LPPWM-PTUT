@@ -14,18 +14,23 @@ import { useDarkMode } from "../../hooks/darkTheme"
 import { getAllKeys } from "../../utils/index"
 import { palette } from "../../utils/palette"
 import { SelectItems, ValuesGraph } from "./SelectItems"
+import { dataUser } from "../../api/methods"
+
+const PERIODS: string[] = ["DAY", "WEEK", "MONTH"]
 
 const VisualGraph = ({
 	selected,
 	data,
+	updateTime,
 }: {
 	selected: SelectItems[]
 	data: ValuesGraph[]
+	updateTime: (arg: string) => void
 }) => {
 	let blockRef = useRef<HTMLDivElement>(null)
 	const [darkMode] = useDarkMode()
 	const themeColor: any = darkMode ? palette.dark : palette.light
-	const [time, setTime] = useState<string>("day")
+	const [time, setTime] = useState<string>(PERIODS[0])
 	const filterCurves: string[] = selected.map(x => x.value)
 	const colorPalette = getThemePalette(themeColor)
 	const [keys, setKeys] = useState<string[]>([])
@@ -73,8 +78,8 @@ const VisualGraph = ({
 
 	const handleChangeTime = (e: any) => {
 		const { offsetParent } = e.target
-		setTime(offsetParent.dataset.time)
 		const block = offsetParent.dataset.block
+		updateTime(PERIODS[block - 1])
 		if (null !== blockRef.current) {
 			blockRef.current.style.transform = `translateX(calc(${
 				block - 1
@@ -93,7 +98,6 @@ const VisualGraph = ({
 						></div>
 						<div
 							className="slider-time__item"
-							data-time="day"
 							data-block="1"
 							onClick={handleChangeTime}
 						>
@@ -101,7 +105,6 @@ const VisualGraph = ({
 						</div>
 						<div
 							className="slider-time__item"
-							data-time="week"
 							data-block="2"
 							onClick={handleChangeTime}
 						>
@@ -109,7 +112,6 @@ const VisualGraph = ({
 						</div>
 						<div
 							className="slider-time__item"
-							data-time="month"
 							data-block="3"
 							onClick={handleChangeTime}
 						>

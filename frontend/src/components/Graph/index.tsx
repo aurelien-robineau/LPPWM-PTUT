@@ -4,13 +4,16 @@ import { useState } from "react"
 import { SelectItems, ValuesGraph } from "./SelectItems"
 import { useEffect } from "react"
 import { dataUser } from "../../api/methods"
-import { format } from "prettier"
 
 const Graph = () => {
+	const [time, setTime] = useState<string>("DAY")
 	const [data, setData] = useState<ValuesGraph[]>([])
 	const [listSelect, setListSelect] = useState<SelectItems[]>([])
 	const [selectedOptions, setSelectedOptions] = useState<SelectItems[]>([])
 
+	const updateTimeGraph = (newScale: string) => {
+		setTime(newScale)
+	}
 	useEffect(() => {
 		;(async () => {
 			const response = await dataUser.initGraph()
@@ -49,6 +52,14 @@ const Graph = () => {
 		}
 	}, [listSelect])
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await dataUser.graph(time)
+			setData(res)
+		}
+		fetchData()
+	}, [time])
+
 	const handleChange = (options: any) => {
 		setSelectedOptions(options)
 	}
@@ -57,7 +68,11 @@ const Graph = () => {
 		<section className="graph-section">
 			<h2>Mon suivi de consommation</h2>
 			<div className="graph-wrapper">
-				<VisualGraph selected={selectedOptions} data={data} />
+				<VisualGraph
+					selected={selectedOptions}
+					data={data}
+					updateTime={updateTimeGraph}
+				/>
 				<Select
 					placeholder="Courbe à afficher"
 					closeMenuOnSelect={false}
