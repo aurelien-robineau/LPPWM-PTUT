@@ -31,7 +31,6 @@ export const auth = {
 		configAxios.post("/v1/auth/signup", data)
 			.then(res => {
 				storeToken(res.data)
-				console.log(res)
 				window.location.href = "/dashboard"
 			})
 			.catch(error => {
@@ -50,8 +49,6 @@ export const auth = {
 	async refreshToken() {
 		try {
 			const refreshToken = getStorage(storage.REFRESH_TOKEN, localStorage)
-			console.log({ refreshToken });
-
 			const res = await configAxios.post("/v1/users/token", { refreshToken })
 			storeToken(res.data)
 		} catch (error) {
@@ -92,6 +89,13 @@ export const dataUser = {
 		configAxios.get("/v1/data/tracker", { data })
 			.then(res => res.data)
 			.catch(error => console.log(error.response.data))
+	},
+	async comparisonConsumption() {
+		try {
+			const res = await configAxios.post("/v1/users/comparison-data")
+			return res.data
+		} catch (error) {
+			console.warn(error)
+		}
 	}
 }
-
