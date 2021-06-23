@@ -107,14 +107,18 @@ export class AuthService {
 			user = await this.usersService.getRepository().save(user)
 
 			// Save usage points and regions
+			let isFavorite = true
 			for (let usagePoint of usagePointsRegions) {
 				const region = await this.regionsService.getRepository()
 					.save(usagePoint.region)
 
 				usagePoint.usagePoint.region = region
 				usagePoint.usagePoint.user = user
+				usagePoint.usagePoint.isFavorite = isFavorite
 				await this.usagePointsService.getRepository()
 					.save(usagePoint.usagePoint)
+
+				isFavorite = false
 			}
 
 			return user

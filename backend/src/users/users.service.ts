@@ -3,16 +3,22 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { UsersRepository } from './users.repository'
 import { User } from './user.entity'
 import { EnedisDataHubAPI } from 'src/services/EnedisDataHubAPI'
-import { addDaysToDate } from './../utils/date.utils'
+import { GetGraphDataDto } from 'src/dto/users.dto'
+import { UsagePointsService } from 'src/usagePoints/usagePoints.service'
 import { UserConsumptionsService } from './../userConsumptions/userConsumptions.service'
+import { RegionConsumptionsService } from './../regionConsumptions/regionConsumptions.service'
 import { UserConsumption } from './../userConsumptions/userConsumption.entity'
-import { UsagePointsService } from './../usagePoints/usagePoints.service';
+import { RegionConsumption } from './../regionConsumptions/regionConsumption.entity'
+import { UsagePoint } from './../usagePoints/usagePoint.entity'
 
 @Injectable()
 export class UsersService {
 	constructor(
 		@InjectRepository(UsersRepository)
-		private repository: UsersRepository
+		private readonly repository: UsersRepository,
+		private readonly usagePointsService: UsagePointsService,
+		private readonly userConsumptionsService: UserConsumptionsService,
+		private readonly regionConsumptionsService: RegionConsumptionsService
 	) {}
 
 	/**
@@ -122,6 +128,74 @@ export class UsersService {
 			),
 			enedisApiRefreshToken: json.token_infos.refresh_token
 		})
+	}
+
+	async getDataForGraph(user: User, getGraphDataDto: GetGraphDataDto): Promise<any> {
+		const { period, graphs } = getGraphDataDto
+
+		if (!['DAY', 'WEEK', 'MONTH'].includes(period)) {
+			throw new HttpException(
+				'Période demandée invalide',
+				HttpStatus.BAD_REQUEST
+			)
+		}
+
+		const date = await this.regionConsumptionsService.getLastDateLoaded()
+		const data = []
+
+		for (let graph of graphs) {
+			let usagePoint: UsagePoint = null
+			let consumption: (UserConsumption|RegionConsumption)[] = null
+
+			if (graph === 'average') {
+				usagePoint = await this.usagePointsService.getRepository().findOne({
+					relations: ['region'],
+					where: {
+						user: user,
+						isFavorite: true
+					}
+				})
+
+				if (!usagePoint) continue
+				
+				consumption = await this.regionConsumptionsService.getRegionConsumption(
+					usagePoint.region,
+					usagePoint.subscribedPowerkVA,
+					date,
+					period
+				)
+			}
+			else {
+				const usagePointId = parseInt(graph.toString())
+				usagePoint = await this.usagePointsService.getRepository().findOne({
+					id: usagePointId,
+					user: user
+				})
+
+				if (!usagePoint) continue
+
+				consumption = await this.userConsumptionsService.getUserConsumptions(
+					user,
+					usagePoint.id,
+					date,
+					period
+				)
+			}
+
+			consumption.forEach(consumption => {
+				let timeData = data.find(timeData => timeData.time === consumption.date.toISOString())
+
+				if (timeData) {
+					timeData[graph] = consumption.valueWatt
+				} else {
+					timeData = { time : consumption.date.toISOString() }
+					timeData[graph] = consumption.valueWatt
+					data.push(timeData)
+				}
+			})
+		}
+
+		return data
 	}
 
 	/**

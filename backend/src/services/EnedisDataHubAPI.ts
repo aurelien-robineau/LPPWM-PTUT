@@ -191,8 +191,6 @@ export const EnedisDataHubAPI = {
 			`${config.enedis.datahub.baseUrl}/v3/customers${endpoint}` +
 			`?usage_point_id=${usagePointEnedisId}`
 
-			console.log(url)
-
 		return fetch(url, {
 			method: 'GET',
 			headers: {

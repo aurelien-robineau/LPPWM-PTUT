@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
+import { Injectable, HttpException, HttpStatus, Inject, forwardRef } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserConsumptionsRepository } from './userConsumptions.repository'
 import { UserConsumption } from './userConsumption.entity'
@@ -15,7 +15,8 @@ export class UserConsumptionsService {
 		@InjectRepository(UserConsumptionsRepository)
 		private repository: UserConsumptionsRepository,
 		private usagePointsService: UsagePointsService,
-		private usersService: UsersService
+		@Inject(forwardRef(() => UsersService))
+		private readonly usersService: UsersService
 	) {}
 
 	/**
@@ -90,6 +91,9 @@ export class UserConsumptionsService {
 			default:
 				bounds = null
 		}
+
+		if (type !== 'DAY' && bounds.end >= new Date())
+			bounds.end = new Date()
 
 		// Load the consumption between these dates
 		let userConsumptions = await this.getBetweenDates(
