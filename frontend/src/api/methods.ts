@@ -5,27 +5,34 @@ interface ResUrl {
 }
 
 export const auth = {
-	submitLogin(data: Object) {
+	submitLogin(data: Object, setError: { (value: any): void; (arg0: string): void }) {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => {
+				console.log("Hello", { res });
+
 				configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
 				storeToken(res.data)
+				return
 			})
 			.catch((error) => {
-				console.log(error)
+				if (!error.response) {
+					return
+				}
 				const { message } = error.response.data
 				if (!Array.isArray(message)) {
-					return `<span>${message}</span>`
+					setError(`<span>${message}</span>`)
 				} else {
-					return message.map(x => `<span>${x}</span>`).join("")
+					setError(message.map(x => `<span>${x}</span>`).join(""))
 				}
 			})
 	},
 	submitSignup(data: Object) {
-		// TODO: Link to form Signup
 		configAxios.post("/v1/auth/signup", data)
-			.then(res => console.log(res))
+			.then(res => {
+				storeToken(res.data)
+				console.log(res)
+			})
 			.catch(error => {
 				console.warn(error.response.data)
 			})
@@ -70,3 +77,4 @@ export const dataUser = {
 			.catch(error => console.log(error.response.data))
 	}
 }
+

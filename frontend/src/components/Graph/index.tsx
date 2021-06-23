@@ -11,7 +11,10 @@ const Graph = () => {
 		value: x,
 		label: `${x.charAt(0).toUpperCase()}${x.slice(1)}`,
 	}))
-	const [selectedOptions, setSelectedOptions] = useState([data[0], data[1]])
+	const [selectedOptions, setSelectedOptions] = useState<SelectItems[]>([
+		data[0],
+		data[1],
+	])
 
 	const handleChange = (options: any) => {
 		setSelectedOptions(options)

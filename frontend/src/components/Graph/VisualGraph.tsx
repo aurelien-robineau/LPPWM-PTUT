@@ -120,7 +120,7 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 		if (null !== blockRef.current) {
 			blockRef.current.style.transform = `translateX(calc(${
 				block - 1
-			} * (3 * 22vw * .33)))`
+			} * (3 * ${window.innerWidth < 770 ? "22vw" : "25vw"} + 16px) / 3))`
 		}
 	}
 
@@ -132,30 +132,35 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 		<div className="visual-graph">
 			<div className="slider-time">
 				<div className="slider-time__container">
-					<div className="slider-time__block" ref={blockRef}></div>
-					<div
-						className="slider-time__item"
-						data-time="day"
-						data-block="1"
-						onClick={handleChangeTime}
-					>
-						<span>Jour</span>
-					</div>
-					<div
-						className="slider-time__item"
-						data-time="week"
-						data-block="2"
-						onClick={handleChangeTime}
-					>
-						<span>Semaine</span>
-					</div>
-					<div
-						className="slider-time__item"
-						data-time="month"
-						data-block="3"
-						onClick={handleChangeTime}
-					>
-						<span>Mois</span>
+					<div className="slider-time__inner-container">
+						<div
+							className="slider-time__block"
+							ref={blockRef}
+						></div>
+						<div
+							className="slider-time__item"
+							data-time="day"
+							data-block="1"
+							onClick={handleChangeTime}
+						>
+							<span>Jour</span>
+						</div>
+						<div
+							className="slider-time__item"
+							data-time="week"
+							data-block="2"
+							onClick={handleChangeTime}
+						>
+							<span>Semaine</span>
+						</div>
+						<div
+							className="slider-time__item"
+							data-time="month"
+							data-block="3"
+							onClick={handleChangeTime}
+						>
+							<span>Mois</span>
+						</div>
 					</div>
 				</div>
 			</div>
