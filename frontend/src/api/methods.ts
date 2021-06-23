@@ -1,5 +1,8 @@
-import { storeToken } from '../utils'
+
+import { getStorage, storeToken } from '../utils'
+import { storage } from '../utils/constants'
 import configAxios from './index'
+import { DataTracker } from './types'
 interface ResUrl {
 	data: { url?: string }
 }
@@ -9,7 +12,6 @@ export const auth = {
 		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => {
-				configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
 				storeToken(res.data)
 				return
 			})
@@ -30,6 +32,7 @@ export const auth = {
 			.then(res => {
 				storeToken(res.data)
 				console.log(res)
+				window.location.href = "/dashboard"
 			})
 			.catch(error => {
 				console.warn(error.response.data)
@@ -44,6 +47,17 @@ export const auth = {
 		}
 		return url
 	},
+	async refreshToken() {
+		try {
+			const refreshToken = getStorage(storage.REFRESH_TOKEN, localStorage)
+			console.log({ refreshToken });
+
+			const res = await configAxios.post("/v1/users/token", { refreshToken })
+			storeToken(res.data)
+		} catch (error) {
+			console.warn(error)
+		}
+	},
 }
 
 export const global = {
@@ -51,23 +65,28 @@ export const global = {
 		configAxios.get("/")
 			.then(res => console.log(res.data))
 			.catch(error => console.log(error))
-	},
-	refreshToken() {
-		configAxios.post("/v1/users/token").then(res => {
-			configAxios.defaults.headers["Authorization"] = `Bearer ${res.data.token}`
-			storeToken(res.data)
-		})
 	}
 }
 
 export const dataUser = {
+	getMeterList() {
+		configAxios.post("/v1/usage-points/")
+			.then(res => {
+				console.log({ usage: res.data })
+				localStorage.setItem(storage.METER_LIST, JSON.stringify(res.data))
+				return
+			})
+			.catch(error => console.warn(error))
+	},
 	tracker() {
 		configAxios.get("/")
 			.then(res => console.log(res.data))
 			.catch(error => console.log(error))
 	},
-	initGraph() {
-		configAxios.post("/")
+	initGraph(data: DataTracker = { period: "DAY", graphs: ["average"] }) {
+		configAxios.post("/v1/users/graph-data", data)
+			.then(res => console.log(res.data))
+			.catch(error => console.warn(error))
 	},
 	initTracker(data: string) {
 		configAxios.get("/v1/data/tracker", { data })

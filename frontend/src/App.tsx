@@ -1,6 +1,11 @@
 import { lazy, Suspense } from "react"
 import "./style/main.scss"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from "react-router-dom"
 import { getStorage, onResize } from "./utils/index"
 import Loader from "./components/Loader"
 import { Provider } from "react-redux"
@@ -9,26 +14,36 @@ import store from "./store"
 import FinishSignup from "./pages/FinishSignup"
 import { useAuth } from "./hooks/auth"
 import { storage } from "./utils/constants"
+import { auth, dataUser } from "./api/methods"
+import configAxios from "./api/index"
+import { useState } from "react"
+
 const Login = lazy(() => import("./pages/Login"))
 const Signin = lazy(() => import("./pages/Signin"))
 const Dashboard = lazy(() => import("./pages/Dashboard"))
 
-// TODO: Manage Routes
-// * 404 Page
-// * AUto redirect if not connected
-
 const App = () => {
+	const user: boolean | Object = useAuth()
+	const [logged, setLogged] = useState<boolean>(!!user)
 	onResize()
 	const themeColor = getStorage(storage.DARK_THEME, localStorage) || false
-	const user = useAuth()
+
+	useEffect(() => {
+		if (user) {
+			auth.refreshToken()
+			const TOKEN = getStorage(storage.TOKEN, localStorage)
+			configAxios.defaults.headers.common[
+				"Authorization"
+			] = `Bearer ${TOKEN}`
+			dataUser.getMeterList()
+			setLogged(true)
+		}
+		console.log({ logged })
+	}, [])
 
 	useEffect(() => {
 		document.documentElement.dataset.theme = themeColor ? "dark" : "light"
 	}, [themeColor])
-
-
-	console.log(user)
-	
 
 	return (
 		<Provider store={store}>
@@ -36,16 +51,28 @@ const App = () => {
 				<Suspense fallback={<Loader />}>
 					<Switch>
 						<Route path="/finish-signup">
-						{!!user ? <Redirect to="/dashboard" /> : <FinishSignup />}
+							{!!logged ? (
+								<Redirect to="/dashboard" />
+							) : (
+								<FinishSignup />
+							)}
 						</Route>
 						<Route path="/signin">
-						{!!user ? <Redirect to="/dashboard" /> :  <Signin />}
+							{!!logged ? (
+								<Redirect to="/dashboard" />
+							) : (
+								<Signin />
+							)}
 						</Route>
 						<Route path="/dashboard">
-							<Dashboard />
+							{!logged ? <Redirect to="/" /> : <Dashboard />}
 						</Route>
 						<Route path="/">
-						{!!user ? <Redirect to="/dashboard" /> : <Login />}
+							{!!logged ? (
+								<Redirect to="/dashboard" />
+							) : (
+								<Login />
+							)}
 						</Route>
 					</Switch>
 				</Suspense>
