@@ -20,9 +20,13 @@ export class RefreshTokensService {
 	 * @returns The payload of the token.
 	 */
 	getTokenPayload(token: string): { userId: number, tokenId: number } {
-		return verify(token, config.refreshSecret) as {
-			userId: number,
-			tokenId: number
+		try {
+			return verify(token, config.refreshSecret) as {
+				userId: number,
+				tokenId: number
+			}
+		} catch (e) {
+			return { userId: null, tokenId: null }
 		}
 	}
 

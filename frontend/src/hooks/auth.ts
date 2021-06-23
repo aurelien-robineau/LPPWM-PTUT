@@ -1,31 +1,16 @@
-import { useState, useEffect } from 'react';
-import { storeToken } from '../utils/index';
-import { StateAction } from './types';
+import { useEffect, useState } from 'react'
+import { auth } from '../api/methods'
+import { storage } from '../utils/constants'
+import { checkToken, getStorage } from '../utils/index'
 
 export const useAuth = () => {
-	const [jwt] = useState(JSON.parse(localStorage.getItem("TOKEN") || "{}"))
-	const userInfos = useState(JSON.parse(localStorage.getItem("userInfos") || "{}"))
-	const [action, setAction] = useState<StateAction>({ action: "", payload: {} })
-	const [logged, setLogged] = useState(false)
-
-
+	const [user, setUser] = useState<Object | boolean>(false)
 	useEffect(() => {
-		if (action.action === "create") {
-			storeToken(action.payload)
-			setLogged(true)
-		} else if (action.action === "logout") {
-			setLogged(false)
+		const userInfos = checkToken() ? getStorage(storage.USER_INFOS, localStorage) : false
+		if (!userInfos && getStorage(storage.USER_INFOS, localStorage)) {
+			auth.refreshToken()
 		}
-	}, [action])
-
-	useEffect(() => {
-		if (jwt && userInfos) {
-			setLogged(true)
-		} else {
-			setLogged(false)
-		}
-	}, [jwt, userInfos])
-
-
-	return [logged, setAction]
+		setUser({ userInfos })
+	}, [])
+	return [user]
 }

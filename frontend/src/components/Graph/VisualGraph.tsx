@@ -9,6 +9,7 @@ import {
 	Tooltip,
 	Legend,
 } from "recharts"
+import { getThemePalette } from "../../utils/index"
 import { useDarkMode } from "../../hooks/darkTheme"
 import { getAllKeys } from "../../utils/index"
 import { palette } from "../../utils/palette"
@@ -62,20 +63,9 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 			amt: 2100,
 		},
 	])
-
 	const themeColor: any = darkMode ? palette.dark : palette.light
-	const getThemePalette = () => {
-		let currentPalette = []
-		for (const property in themeColor) {
-			currentPalette.push(property)
-		}
-		return currentPalette.filter(
-			color => !/text|white|background|gray|black/gim.test(color)
-		)
-	}
 	const filterCurves: string[] = selected.map(x => x.value)
-
-	const colorPalette = getThemePalette()
+	const colorPalette = getThemePalette(themeColor)
 	let keys = getAllKeys(data).filter(x => x !== "time")
 
 	const drawAreas = keys.map(
@@ -128,6 +118,7 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 		console.log({ time })
 	}, [time])
 
+	useEffect(() => {}, [])
 	return (
 		<div className="visual-graph">
 			<div className="slider-time">

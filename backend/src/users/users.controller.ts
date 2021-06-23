@@ -42,4 +42,19 @@ export class UsersController {
 	): Promise<any> {
 		return await this.service.getDataForGraph(user, getGraphDataDto)
 	}
+
+	@Post('/comparison-data')
+	async getDataForComparison(@GetUser() user: User): Promise<any> {
+		return await this.service.getDataForComparison(user)
+	}
+
+	@Post('/tracker-data')
+	async getDataForTraker(@GetUser() user: User): Promise<{ current: number, goal: number, percentage: number }> {
+		return await this.service.getDataForTracker(user)
+	}
+
+	@Post('/planty-stage')
+	async getPlantyStage(@GetUser() user: User): Promise<number> {
+		return await this.service.getPlantyStage(user)
+	}
 }
