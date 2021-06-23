@@ -1,12 +1,21 @@
 import { decode } from "jsonwebtoken"
-import { global } from "../api/methods"
 import { storage } from "./constants"
-import { PayloadToken } from "./types"
+import { PayloadToken, UserInfos } from "./types"
 
-export const getStorage = (value: any, storage: any) => {
-	return JSON.parse(storage.getItem(value))
+export const safeDeleteValueObject = (data: Object, keys: string[]): Object => {
+	keys.forEach((key: string) => {
+		if (data.hasOwnProperty(key)) {
+			// @ts-ignore
+			delete data[key]
+		}
+	})
+
+	return data
 }
 
+export const getStorage = (value: string, storage: any) => {
+	return JSON.parse(storage.getItem(value))
+}
 
 export const onResize = () => {
 	document.body.style.setProperty(
@@ -16,22 +25,22 @@ export const onResize = () => {
 	window.addEventListener("resize", onResize)
 }
 
+export const storeUserInfos = (data: UserInfos) => {
+	const infos = safeDeleteValueObject(data, ["iat", "exp", "updatedAt", "createdAt"])
+	localStorage.setItem(storage.USER_INFOS, JSON.stringify(infos))
+}
+
 export const storeToken = ({
 	token,
 	refreshToken,
 }: PayloadToken) => {
-	const value = decode(token || "")
+	const value: any = decode(token || "")
 	console.log(value)
-
 	localStorage.setItem(storage.TOKEN, token || "")
 	localStorage.setItem(storage.REFRES_TOKEN, refreshToken || "")
 	// @ts-ignore
-	if (Date.now() >= value.exp) {
-		// @ts-ignore
-		localStorage.setItem(storage.EXP, value.exp || "")
-	} else {
-		global.refreshToken()
-	}
+	localStorage.setItem(storage.EXP, JSON.stringify(value.exp * 1000) || 0)
+	storeUserInfos(value)
 }
 
 export const getAllKeys = (array: Object[]) => {
@@ -46,15 +55,8 @@ export const getAllKeys = (array: Object[]) => {
 	return keys
 }
 
-
-
 export const checkToken = () => {
 	const expDate = getStorage(storage.EXP, localStorage) * 1000
-	console.log({ now: Date.now(), expDate })
-	if (Date.now() > getStorage(storage.EXP, localStorage)) {
-		console.log("Change Token");
-	} else {
-		console.log("Good Token")
-	}
+	
+	return Date.now() < expDate
 }
-

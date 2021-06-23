@@ -3,4 +3,5 @@ export const storage: { [key: string]: string } = {
 	REFRES_TOKEN: "REFRES_TOKEN",
 	EXP: "EXP",
 	DARK_THEME: "DARK_THEME",
+	USER_INFOS: "USER_INFOS"
 }

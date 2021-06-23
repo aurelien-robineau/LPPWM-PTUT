@@ -1,22 +1,9 @@
-import { useState, useEffect } from 'react';
-import { checkToken, storeToken } from '../utils/index';
-import { StateAction } from './types';
+import { useState } from 'react';
+import { storage } from '../utils/constants';
+import { checkToken, getStorage } from '../utils/index';
 
 export const useAuth = () => {
-	const [user, setUser] = useState(false)
-
-	useEffect(() => {
-		checkToken()
-	}, [user])
-	// useEffect(() => {
-	// 	if (action.action === "create") {
-	// 		storeToken(action.payload)
-	// 		setLogged(true)
-	// 	} else if (action.action === "logout") {
-	// 		setLogged(false)
-	// 	}
-	// }, [action])
-
-
+	let userInfos = checkToken() ? getStorage(storage.USER_INFOS, localStorage) : undefined
+	const [user] = useState<Object>({ ...userInfos })
 	return user
 }

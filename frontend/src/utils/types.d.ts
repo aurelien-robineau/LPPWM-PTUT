@@ -3,6 +3,7 @@ export interface PayloadToken {
 	refreshToken?: string
 }
 
+// TODO
 export interface DecodedToken {
 
 }
