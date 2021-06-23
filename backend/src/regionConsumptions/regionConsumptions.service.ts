@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Cron, CronExpression } from '@nestjs/schedule'
 import { RegionConsumptionsRepository } from './regionConsumptions.repository'
 import { RegionConsumption } from './regionConsumption.entity'
-import { addDaysToDate, getDayOnlyFromDate, getDateMonthBounds, removeDaysFromDate } from './../utils/date.utils'
+import { addDaysToDate, getDayOnlyFromDate, getDateMonthBounds, removeDaysFromDate, getDateWeekBounds, removeTimeFromDate } from './../utils/date.utils'
 import { EnedisOpenDataAPI } from './../services/EnedisOpenDataAPI'
 import { RegionsService } from './../regions/regions.service'
 import { Region } from './../regions/region.entity'
@@ -154,10 +154,10 @@ export class RegionConsumptionsService {
 					// Update offset for next call
 					offset += OPEN_DATA_API_STEP_SIZE
 
+					console.log(`${(new Date()).toISOString()} CRON - Loaded ${data.records.length} more. Total : ${records.length}`)
+
 					// If all data is loaded for this day, go to next day
-					if (data.records?.length !== OPEN_DATA_API_STEP_SIZE) {
-						console.log(`${(new Date()).toISOString()} CRON - Loaded ${data.records.length} more.`)
-						
+					if (data.records?.length !== OPEN_DATA_API_STEP_SIZE) {				
 						// If failed to fetch data for 10 days, we consider there
 						// is no more data to load
 						numbersOfDaysWithoutData += data.records?.length ? 0 : 1
@@ -173,8 +173,6 @@ export class RegionConsumptionsService {
 						dateToLoad = addDaysToDate(dateToLoad, 1)
 						offset = 0
 						records = []
-					} else {
-						console.log(`${(new Date()).toISOString()} CRON - Loaded ${data.records.length} more. Total : ${records.length}`)
 					}
 				}
 			}
@@ -185,6 +183,38 @@ export class RegionConsumptionsService {
 
 	async getById(id: number): Promise<RegionConsumption> {
 		return await this.repository.findOneOrFail(id)
+	}
+
+	async getRegionConsumption(
+		region: Region,
+		subscribedPowerkVA: number,
+		date: Date,
+		type: 'DAY'|'WEEK'|'MONTH'
+	): Promise<RegionConsumption[]> {
+		// Get the start and end date of the consumptions to load
+		let bounds: { start: Date, end: Date } = null
+		switch (type) {
+			case 'DAY':
+				bounds = { start: date, end: addDaysToDate(date, 1) }
+				break
+			case 'WEEK':
+				const weekBounds = getDateWeekBounds(date)
+				bounds = { start: weekBounds.start, end: addDaysToDate(weekBounds.end, 1) }
+				break
+			case 'MONTH':
+				const monthBounds = getDateMonthBounds(date)
+				bounds = { start: monthBounds.start, end: addDaysToDate(monthBounds.end, 1) }
+				break
+			default:
+				bounds = null
+		}
+		
+		return await this.repository.createQueryBuilder('consumption')
+			.where('consumption.REGION_ID = :regionId', { regionId: region.id })
+			.andWhere('consumption.SUBSCRIBED_POWER_kVA = :subscribedPowerkVA', { subscribedPowerkVA })
+			.andWhere('consumption.DATE >= :start', { start: removeTimeFromDate(bounds.start) })
+			.andWhere('consumption.DATE < :end', { end: removeTimeFromDate(bounds.end) })
+			.getMany()
 	}
 
 	async getLastDateLoaded(): Promise<Date> {

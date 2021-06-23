@@ -8,9 +8,9 @@ export default {
 		type: 'mysql',
 		host: '127.0.0.1',
 		port: 3306,
-		// extra: DEBUG_MAC ? {
-		// 	socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-		// } : {},
+		extra: DEBUG_MAC ? {
+			socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+		} : undefined,
 		username: 'root',
 		// password: DEBUG_MAC && 'root',
 		database: 'enedis',

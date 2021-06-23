@@ -74,6 +74,12 @@ export class UsagePoint {
 	})
 	country: string
 
+	@Column({
+		name: 'IS_FAVORITE',
+		type: 'boolean'
+	})
+	isFavorite: boolean
+
 	@OneToMany(() => UserConsumption, userConsumption => userConsumption.usagePoint, {
 		onDelete: 'CASCADE'
 	})
