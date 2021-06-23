@@ -54,6 +54,14 @@ export class User {
 	password: string
 
 	@Column({
+		name: 'WEEK_GOAL_WATT',
+		type: 'int',
+		width: 11,
+		nullable: true
+	})
+	weekGoalWatt: number
+
+	@Column({
 		name: 'ENEDIS_API_TOKEN',
 		type: 'varchar',
 		length: 255
@@ -92,6 +100,7 @@ export class User {
 			firstname: this.firstname,
 			lastname: this.lastname,
 			email: this.email,
+			weekGoalWatt: this.weekGoalWatt,
 			updatedAt: this.updatedAt,
 			createdAt: this.createdAt
 		}
