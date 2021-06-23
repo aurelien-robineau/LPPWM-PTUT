@@ -2,41 +2,68 @@ import VisualGraph from "./VisualGraph"
 import Select from "react-select"
 import { useState } from "react"
 import { SelectItems } from "./SelectItems"
+import { useEffect } from "react"
+import { dataUser } from "../../api/methods"
 
-// TODO Style of select Element: https://react-select.com/styles
 const Graph = () => {
-	const keys = ["uv", "pv", "amt"]
+	const [keys, setKeys] = useState<String[]>([])
+	const [data, setData] = useState<SelectItems[]>([])
+	const [selectedOptions, setSelectedOptions] = useState<SelectItems[]>([])
+	const [listMeters, setListMeters] = useState<any>([])
 
-	const data: SelectItems[] = keys.map(x => ({
-		value: x,
-		label: `${x.charAt(0).toUpperCase()}${x.slice(1)}`,
-	}))
-	const [selectedOptions, setSelectedOptions] = useState<SelectItems[]>([
-		data[0],
-		data[1],
-	])
+	useEffect(() => {
+		;(async () => {
+			const response = await dataUser.initGraph()
+			const { res, list } = response
+			setListMeters(list)
+			const listKeys = [...list.map((x: any) => x.id.toString())]
+			setData([
+				{
+					value: "average",
+					label: "Moyenne des foyers similare de la région",
+				},
+				...listKeys.map((x: any, index: any) => ({
+					value: x,
+					label: `${list[index].street}`,
+				})),
+			])
+		})()
+	}, [])
+
+	// useEffect(() => {
+	// 	console.log(selectedOptions)
+	// }, [selectedOptions])
+	// useEffect(() => {
+	// 	if (listMeters.length > 0) {
+	// 		const favoriteMeter: number = listMeters.findIndex(
+	// 			(x: any) => x.isFavorite
+	// 		)
+	// 		setSelectedOptions([data[0], listMeters[favoriteMeter].id])
+	// 	}
+	// 	console.log({ listMeters })
+	// }, [listMeters])
 
 	const handleChange = (options: any) => {
-		setSelectedOptions(options)
+		setSelectedOptions((prevState: any) => [...prevState, options])
 	}
 
 	return (
 		<section className="graph-section">
 			<h2>Ma consommation</h2>
 			<div className="graph-wrapper">
-			<VisualGraph selected={selectedOptions} />
-			<Select
-				placeholder="Courbe à afficher"
-				closeMenuOnSelect={false}
-				onChange={handleChange}
-				defaultValue={selectedOptions}
-				isMulti
-				name="Graphs"
-				options={data}
-				className="multi-select"
-				classNamePrefix="select"
-				// defaultMenuIsOpen={true}
-			/>
+				<VisualGraph selected={selectedOptions} />
+				<Select
+					placeholder="Courbe à afficher"
+					closeMenuOnSelect={false}
+					onChange={handleChange}
+					defaultValue={selectedOptions}
+					isMulti
+					name="Graphs"
+					options={data}
+					className="multi-select"
+					classNamePrefix="select"
+					// defaultMenuIsOpen={true}
+				/>
 			</div>
 		</section>
 	)

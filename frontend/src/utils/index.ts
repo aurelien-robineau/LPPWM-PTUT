@@ -1,5 +1,4 @@
 import { decode } from "jsonwebtoken"
-import { auth } from "../api/methods"
 import { storage } from "./constants"
 import configAxios from '../api/index'
 import { PayloadToken, UserInfos } from "./types"

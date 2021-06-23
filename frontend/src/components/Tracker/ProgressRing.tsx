@@ -24,11 +24,10 @@ const ProgressRing = ({
 	}, [])
 
 	useEffect(() => {
-		console.log(data)
 		if (data?.percentage) {
 			setStrokeDashoffset(circ - (data?.percentage / 100) * circ)
 		}
-	}, [data])
+	}, [data, circ])
 
 	return (
 		<svg height={size} width={size}>

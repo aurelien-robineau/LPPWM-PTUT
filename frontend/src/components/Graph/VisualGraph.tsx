@@ -81,7 +81,6 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 				/>
 			)
 	)
-
 	const gradients = colorPalette.map((color, i) => (
 		<linearGradient
 			key={i.toString()}
@@ -118,7 +117,6 @@ const VisualGraph = ({ selected }: { selected: SelectItems[] }) => {
 		console.log({ time })
 	}, [time])
 
-	useEffect(() => {}, [])
 	return (
 		<div className="visual-graph">
 			<div className="slider-time">

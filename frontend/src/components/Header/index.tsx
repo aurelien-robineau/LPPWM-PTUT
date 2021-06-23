@@ -1,10 +1,12 @@
 import React from "react"
 import { useDarkMode } from "../../hooks/darkTheme"
+import { getStorage } from "../../utils"
+import { storage } from "../../utils/constants"
 import IconProfile from "../Icons/Profile"
 import IconTheme from "../Icons/Theme"
 
 const Header = () => {
-	const user = "Michelle"
+	const user = getStorage(storage.USER_INFOS, localStorage).firstname
 	const [darkMode, setDarkMode] = useDarkMode()
 
 	const handleChangeTheme = () => {

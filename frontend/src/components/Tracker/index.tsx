@@ -1,4 +1,3 @@
-import { format } from "prettier"
 import { endOfWeek, formatDate, startOfWeek } from "../../utils"
 import ProgressRing from "./ProgressRing"
 
