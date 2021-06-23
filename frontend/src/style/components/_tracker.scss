@@ -30,6 +30,7 @@
 		@media (min-width: 500px){
 			cx: 50%;
     		cy: 50%;
+			stroke: var(--clr-light-gray);
 		}
 	}
 
@@ -78,5 +79,6 @@
 		width: 100%;
 		border-radius: 8px;
 		margin: 0;
+		box-shadow: $box-shadow;
 	}
 }

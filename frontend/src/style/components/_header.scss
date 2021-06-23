@@ -5,11 +5,26 @@
 		margin-left: auto;
 		margin-right: auto;
 		@include flex($justify: space-between);
+
+		@media(min-width: $breakpoint-desktop){
+			height: 100px;
+		}
 	}
+
 	h1 {
 		flex-grow: 0;
 		font-size: 2rem;
 		line-height: 1;
+		z-index: 3;
+
+		@media(min-width: $breakpoint-desktop) {
+			position: fixed;
+			top: space(10);
+			left: space(10);
+			font-size: 3.1rem;
+			line-height: 1.2;
+		}
+
 		span {
 			margin-top: space(1);
 			display: block;
@@ -20,7 +35,14 @@
 	.icons {
 		display: inline-flex;
 		align-items: center;
-		& > * + * {
+
+		@media (min-width: $breakpoint-desktop){
+			position: absolute;
+    		right: space(10);
+    		top: space(10);
+		}
+
+		&>*+* {
 			margin-left: space(1);
 		}
 
@@ -35,7 +57,7 @@
 			border: none;
 			outline: none;
 			padding-right: space(4);
-			
+
 			&:focus {
 				border: none;
 				outline: none;
