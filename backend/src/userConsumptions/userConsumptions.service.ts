@@ -105,7 +105,7 @@ export class UserConsumptionsService {
 		const numberOfResultsExpected = getNumberOfDaysBetweenDates(
 			bounds.start,
 			bounds.end
-		)
+		) * 48
 
 		const isAllDataLoaded = userConsumptions.length >= numberOfResultsExpected
 
@@ -118,7 +118,7 @@ export class UserConsumptionsService {
 				// Consumption data from all API calls
 				let consumptionData = null
 				// Number of days left to load
-				let numberOfDaysLeft = numberOfResultsExpected
+				let numberOfDaysLeft = numberOfResultsExpected / 48
 				// Last date loaded
 				let lastDateLoaded = bounds.start
 
@@ -137,7 +137,9 @@ export class UserConsumptionsService {
 						token
 					)).json()
 
-					if (data.error) throw new Error()
+					if (data.error) {
+						throw new Error(data.error)
+					}
 
 					if (consumptionData === null) {
 						consumptionData = data
@@ -176,7 +178,6 @@ export class UserConsumptionsService {
 					userConsumptions.push(userConsumption)
 				}
 			} catch (error) {
-				console.log(error)
 				throw new HttpException(
 					'Pas de données disponibles pour la période demandée',
 					HttpStatus.BAD_REQUEST
