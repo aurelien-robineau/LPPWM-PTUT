@@ -261,9 +261,10 @@ export class UsersService {
 				}
 			})
 
+			const diff = totalCurrent - totalPrevious
 			data[period] = {
-				value: totalCurrent,
-				trend: totalCurrent - totalPrevious
+				value: Math.abs(diff),
+				trend: diff < 0 ? -1 : diff > 0 ? 1 : 0
 			}
 		}
 
