@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UsagePointsRepository } from './usagePoints.repository'
 import { UsagePoint } from './usagePoint.entity'
+import { User } from './../users/user.entity'
 
 @Injectable()
 export class UsagePointsService {
@@ -28,6 +29,10 @@ export class UsagePointsService {
 		return await this.repository.findOne({
 			where: { enedisId }
 		})
+	}
+
+	async getAllForUser(user: User): Promise<UsagePoint[]> {
+		return await this.repository.find({ user })
 	}
 
 	/**
