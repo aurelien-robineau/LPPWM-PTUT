@@ -1,8 +1,9 @@
 import { Injectable, HttpException, HttpStatus, Inject, forwardRef } from '@nestjs/common'
+import { Cron, CronExpression } from '@nestjs/schedule'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserConsumptionsRepository } from './userConsumptions.repository'
 import { UserConsumption } from './userConsumption.entity'
-import { getDayOnlyFromDate, getDateMonthBounds, getDateWeekBounds, getNumberOfDaysBetweenDates } from 'src/utils/date.utils'
+import { getDayOnlyFromDate, getDateMonthBounds, getDateWeekBounds, getNumberOfDaysBetweenDates, removeDaysFromDate } from 'src/utils/date.utils'
 import { User } from 'src/users/user.entity'
 import { UsagePointsService } from 'src/usagePoints/usagePoints.service'
 import { addDaysToDate } from './../utils/date.utils'
@@ -18,6 +19,22 @@ export class UserConsumptionsService {
 		@Inject(forwardRef(() => UsersService))
 		private readonly usersService: UsersService
 	) {}
+
+	@Cron(CronExpression.EVERY_DAY_AT_2AM)
+	async loadUserData() {
+		const users = await this.usersService.getAll()
+		for (let user of users) {
+			const usagePoints = await this.usagePointsService.getAllForUser(user)
+			for (let usagePoint of usagePoints) {
+				this.getUserConsumptions(
+					user,
+					usagePoint.id,
+					removeDaysFromDate(new Date(), 1),
+					'DAY'
+				)
+			}
+		}
+	}
 
 	/**
 	 * Get a user consumption by its id.

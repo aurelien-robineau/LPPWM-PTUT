@@ -53,6 +53,14 @@ export class UsersService {
 	}
 
 	/**
+	 * Get all users.
+	 * @returns All users.
+	 */
+	async getAll(): Promise<User[]> {
+		return await this.repository.find()
+	}
+
+	/**
 	 * Get a user by its id.
 	 * @param id The id of the user.
 	 * @returns The user with this id, or null if not found.
