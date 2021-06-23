@@ -1,7 +1,9 @@
 {
 	"comparison": {
 		"endpoint": "/v1/data/comparison",
-		"data": {},
+		"data": {
+			"id": number compteur
+		},
 		"return": {
 			"day": {
 				// number
@@ -32,11 +34,11 @@
 				"trend": -1 | 0 | 1,
 				// NUMBER
 				"value": 10
-			},
+			}
 		} 
 	},
 	"graph": {
-		"endpoint": "/v1/data/graph/" ,
+		"endpoint": "/v1/data/graph/",
 		// PASSED DATA
 		"data": {} | {
 			"duration": "day" | "week" | "month",

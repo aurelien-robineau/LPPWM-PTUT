@@ -8,6 +8,10 @@ const Dashboard = () => {
 	return (
 		<div className="dashboard-page">
 			<Header />
+			<div className="title">
+			<h2 className="desktop-block title-tracker">Mon objectif de consommation</h2>
+			<h2 className="desktop-block title-tips">Mes astuces</h2>
+			</div>
 			<div className="grid-container">
 				<Tracker />
 				<ConsumpMonitoring />

@@ -6,7 +6,7 @@ import InfosApp from "../components/InfosApp"
 
 const Signin = () => {
 	const [handleSubmit, setFormData, formData] = useForm("signup")
-	const [urlEnedis, setUrlEnedis] = useState("")
+	const [urlEnedis, setUrlEnedis] = useState<string>("")
 
 	useEffect(() => {
 		;(async () => {
@@ -34,7 +34,7 @@ const Signin = () => {
 						<form
 							onSubmit={e => {
 								sessionStorage.setItem(
-									"password",
+									"PASSWORD",
 									formData.password
 								)
 								handleSubmit(e, urlEnedis)

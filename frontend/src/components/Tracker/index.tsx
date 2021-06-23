@@ -11,14 +11,14 @@ const Tracker = () => {
 		size = window.innerWidth / 6
 		console.log("tablet");
 	} else {
-		size = window.innerWidth / 8
+		size = window.innerWidth / 9
 		console.log("desktop");
 	}
 	console.log({size});
 	
 return (
 	<div className="tracker-section">
-		<h2>Mon objectif de consommation</h2>
+		<h2 className="desktop-none">Mon objectif de consommation</h2>
 		<p className="tracker-date">Date - semaine</p>
 		<div className="tracker">
 			<ProgressRing radius={size} stroke={13} />

@@ -84,7 +84,7 @@ const ConsumpIdeas = () => {
 	return (
 		<section className="tips">
 			<div className="tips__container">
-				<h2>Mes astuces</h2>
+				<h2 className="desktop-none">Mes astuces</h2>
 				<div className="tips__cards">
 					{props.map(({ x, y, rot, scale }, i) => (
 						<animated.div key={i} style={{ x, y }}>

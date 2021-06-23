@@ -1,4 +1,4 @@
-const DEBUG_MAC = false // For connection in MySQL by socket 
+const DEBUG_MAC = true // For connection in MySQL by socket 
 const FIRST_CONNECTION = false // Initialize entities
 
 export default {
@@ -12,7 +12,7 @@ export default {
 			socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 		} : undefined,
 		username: 'root',
-		// password: DEBUG_MAC && 'root',
+		password: DEBUG_MAC && 'root',
 		database: 'enedis',
 		synchronize: FIRST_CONNECTION,
 		autoLoadEntities: true

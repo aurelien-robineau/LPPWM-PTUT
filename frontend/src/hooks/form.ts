@@ -8,7 +8,7 @@ const formReducer = (state: any, event: any) => {
 }
 
 
-export function useForm(type: string) {
+export function useForm(type: string): any[] {
 	const [formData, setFormData] = useReducer(formReducer, { code: "AunMWuDO8YZbrdlaRgGP4z51X8eEky" })
 	const [, setSubmitting] = useState(false)
 	const [error,] = useState("")

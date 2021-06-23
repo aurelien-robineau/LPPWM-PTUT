@@ -1,9 +1,18 @@
 .tracker-date {
 	font-size: 1.25rem;
+
+	@media(min-width: $breakpoint-desktop){
+		transform: translateY(-14px);
+	}
 }
 
 .tracker {
 	padding-top: space(4);
+
+	@media(min-width:$breakpoint-desktop){
+		padding-top: unset;
+		transform: translateY(-14px);
+	}
 
 	@include flex($direction: column);
 	// svg {
@@ -54,5 +63,20 @@
 	&__goal {
 		font-size: space(4);
 		fill: var(--clr-light-gray);
+	}
+}
+
+@media (min-width: $breakpoint-desktop){
+
+	.tracker-section{
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--clr-white);
+		height: 100%;
+		width: 100%;
+		border-radius: 8px;
+		margin: 0;
 	}
 }
