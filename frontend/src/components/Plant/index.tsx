@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { dataUser } from "../../api/methods"
 import Plant0 from "../Plant/plant-0"
 import Plant1 from "../Plant/plant-1"
