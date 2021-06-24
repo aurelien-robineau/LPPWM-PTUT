@@ -5,9 +5,17 @@ const Tracker = () => {
 	let size: number
 	if (window.innerWidth < 500) {
 		size = window.innerWidth / 3.2
-	} else if (window.innerWidth < 1024) {
+	}
+
+	else if (window.innerWidth < 900) {
 		size = window.innerWidth / 6
-	} else {
+	}
+
+	else if (window.innerWidth < 1024) {
+		size = window.innerWidth / 6
+	}
+
+	else {
 		size = window.innerWidth / 10
 	}
 

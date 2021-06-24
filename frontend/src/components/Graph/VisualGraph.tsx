@@ -33,7 +33,7 @@ const VisualGraph = ({
 	const colorPalette = getThemePalette(themeColor)
 	const [keys, setKeys] = useState<string[]>([])
 	useEffect(() => {
-		if (data.length > 0) {
+		if (data && data.length > 0) {
 			setKeys(getAllKeys(data).filter(x => x !== "time"))
 		}
 	}, [data])

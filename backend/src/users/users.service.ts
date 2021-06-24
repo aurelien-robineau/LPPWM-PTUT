@@ -10,8 +10,7 @@ import { RegionConsumptionsService } from './../regionConsumptions/regionConsump
 import { UserConsumption } from './../userConsumptions/userConsumption.entity'
 import { RegionConsumption } from './../regionConsumptions/regionConsumption.entity'
 import { UsagePoint } from './../usagePoints/usagePoint.entity'
-import { removeDaysFromDate } from './../utils/date.utils'
-import { getDateMonthBounds } from 'src/utils/date.utils'
+import { removeDaysFromDate, getDayOnlyFromDate, getDateMonthBounds } from './../utils/date.utils'
 
 @Injectable()
 export class UsersService {
@@ -214,6 +213,14 @@ export class UsersService {
 				}
 			})
 		}
+
+		data.forEach(timeData => {
+			graphs.forEach(graph => {
+				if (timeData[graph] === undefined) {
+					timeData[graph] = null
+				}
+			})
+		})
 
 		return data
 	}

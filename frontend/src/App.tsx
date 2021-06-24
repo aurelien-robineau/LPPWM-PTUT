@@ -74,6 +74,7 @@ const App = () => {
 							) : (
 								<Login />
 							)}
+
 						</Route>
 					</Switch>
 				</Suspense>

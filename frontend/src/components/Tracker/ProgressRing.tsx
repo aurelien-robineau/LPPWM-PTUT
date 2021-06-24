@@ -40,7 +40,7 @@ const ProgressRing = ({
 				cy={radius}
 			/>
 			<circle
-				className="tracker__progress"
+				className={`tracker__progress ${data?.percentage > 100 ? "over-100" : ""}`}
 				fill="transparent"
 				strokeDashoffset="0"
 				strokeDasharray={`${circ} ${circ}`}

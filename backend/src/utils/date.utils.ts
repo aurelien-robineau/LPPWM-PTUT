@@ -54,7 +54,7 @@ export const getNumberOfDaysBetweenDates = (date1: Date, date2: Date): number =>
  * @returns The first date of the week containing the date.
  */
 export const getFirstDateOfTheDateWeek = (date: Date): Date => {
-	date = new Date(date)
+	date = new Date(getDayOnlyFromDate(date))
     const diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1)
     return new Date(date.setDate(diff))
 }

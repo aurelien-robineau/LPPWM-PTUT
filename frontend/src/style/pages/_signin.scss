@@ -42,6 +42,10 @@
 
         a {
             @extend %main-link;
+
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
 
@@ -167,6 +171,12 @@
                     height: 254px;
                     width: 36%;
                     border-radius: 10px;
+                    display: flex;
+
+                    img{
+						margin: auto;
+						width: 88%;
+					}
                 }
 
             }
@@ -202,9 +212,16 @@
                 .graph {
                     background-color: var(--clr-white);
                     background-color: white;
-                    height: 345px;
+                    height: 295px;
                     width: 50%;
                     border-radius: 10px;
+                    position: relative;
+                    display: flex;
+
+                    img{
+						margin: auto;
+						width: 88%;
+					}
                 }
 
             }
@@ -239,12 +256,18 @@
                     }
                 }
 
-                .plant {
+                .planty {
                     background-color: var(--clr-white);
                     background-color: white;
                     height: 470px;
                     width: 32%;
                     border-radius: 10px;
+                    display: flex;
+
+                    img{
+						margin: auto;
+						width: 85%;
+					}
                 }
             }
 
