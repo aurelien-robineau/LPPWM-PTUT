@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { auth } from "../api/methods"
+import Loader from "../components/Loader/Loader"
 
 const FinishSignup = () => {
 	useEffect(() => {
@@ -10,7 +11,10 @@ const FinishSignup = () => {
 			password: sessionStorage.getItem("PASSWORD"),
 		})
 	}, [])
-	return <div>Envoi des données</div>
+	return <div className="finish-signup">
+		<Loader />
+		<div className="text">Création du compte</div>
+	</div>
 }
 
 export default FinishSignup

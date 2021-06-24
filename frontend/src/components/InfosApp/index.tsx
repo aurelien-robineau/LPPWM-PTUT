@@ -1,6 +1,6 @@
-import tracker from '../img/tracker.png'
-import graph from '../img/graph.png'
-import planty from '../img/planty.png'
+import tracker from '../../img/tracker.png'
+import graph from '../../img/graph.png'
+import planty from '../../img/planty.png'
 
 const InfosApp = () => {
     return (
@@ -20,11 +20,11 @@ const InfosApp = () => {
                     </p>
                 </div>
 
-                {/* <div className="tracker"><img src={tracker} alt="tracker" /></div> */}
+                <div className="tracker"><img src={tracker} alt="tracker" /></div>
             </div>
 
             <div className="feature-graph-row">
-                {/* <div className="graph"><img src={graph} alt="graphique" /></div> */}
+                <div className="graph"><img src={graph} alt="graphique" /></div>
 
                 <div className="feature-text-container">
                     <p>
@@ -55,7 +55,7 @@ const InfosApp = () => {
                     </div>
                 </div>
 
-                {/* <div className="plant"><img src={planty} alt="planty" /></div> */}
+                <div className="planty"><img src={planty} alt="planty" /></div>
             </div>
         </div>
     )

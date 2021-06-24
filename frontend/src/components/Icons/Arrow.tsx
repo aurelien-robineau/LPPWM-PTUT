@@ -5,9 +5,12 @@ const IconArrow = ({
 	size?: number
 	rotation?: number
 }) => {
+
+	console.log({ size, rotation });
+
 	return (
 		<svg
-			className={`arrow-${rotation === 90 ? "down" : "up"}`}
+			className={`arrow-${rotation === 90 ? "down" : rotation === 0 ? "flat" : "up"}`}
 			width={size || 20}
 			height={size || 20}
 			viewBox="1 0 20 20"

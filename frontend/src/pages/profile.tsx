@@ -1,5 +1,4 @@
 import Header from "../components/Header"
-import House from "../components/Icons/house"
 
 const Profile = () => {
 	return (
@@ -30,8 +29,8 @@ const Profile = () => {
 				</div>
 
 				<h3>Tous mes compteurs</h3>
-				<div className="counter__wrapper"><span><House /></span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div>
-				<div className="counter__wrapper"><span><House /></span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div>
+				{/* <div className="counter__wrapper"><span><House /></span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div> */}
+				{/* <div className="counter__wrapper"><span><House /></span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div> */}
 
 			</div>
 
@@ -52,9 +51,9 @@ const Profile = () => {
 				<h3>Compteur principal</h3>
 				<select name="favorite__select" id="favorite__select">
 					<option value="">Compteur favoris</option>
-					<option value="counter-1"><span><House /></span> 3 rue pouche</option>
+					{/* <option value="counter-1"><span><House /></span> 3 rue pouche</option>
 					<option value="counter-2"><span><House /></span>3 rue pouche</option>
-					<option value="counter-3"><span><House /></span>3 rue pouche</option>
+					<option value="counter-3"><span><House /></span>3 rue pouche</option> */}
 				</select>
 
 				<h3>Ajouter un compteur</h3>
@@ -66,10 +65,10 @@ const Profile = () => {
 				/>
 
 				<div className="linky__checkbox-wrapper">
-				<input name="linky__checkbox"
+					<input name="linky__checkbox"
 						type="checkbox"
 						id="linky__checkbox"
-						checked/>
+						checked />
 					<label htmlFor="linky__checkbox">Définir en tant que compteur favoris</label>
 
 				</div>
@@ -78,7 +77,7 @@ const Profile = () => {
 			</div>
 
 		</div>
-			)
+	) 
 }
 
-			export default Profile
+export default Profile

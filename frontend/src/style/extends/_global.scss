@@ -1,5 +1,5 @@
 %main-button {
-	padding: space(3) space(5);
+	padding: space(3) space(5) 10px;
 	border-radius: 8px;
 	display: block;
 	background-color: var(--clr-accent);
@@ -9,6 +9,10 @@
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	margin: calc(14 * var(--space)) auto 0;
+
+	&:hover{
+		cursor: pointer;
+	}
 }
 
 %main-link {

@@ -37,7 +37,7 @@ const CardMonitoring = ({
 					<span className="svg-container">
 						<IconArrow
 							size={iconSize || 20}
-							rotation={trend < 0 ? 90 : 0}
+							rotation={trend ===0  ? 0 : trend > 0 ? -90 : 90}
 						/>
 					</span>
 				</div>

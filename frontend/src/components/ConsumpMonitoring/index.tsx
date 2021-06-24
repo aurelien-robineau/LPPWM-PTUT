@@ -1,3 +1,4 @@
+import { parse } from "path"
 import { useState } from "react"
 import { useEffect } from "react"
 import { dataUser } from "../../api/methods"
@@ -21,7 +22,7 @@ const ConsumpMonitoring = () => {
 					timeScale={"day"}
 					variation={{
 						trend: data?.DAY?.trend || 0,
-						value: Math.floor(data?.DAY?.value / 1000) || 0,
+						value: parseFloat((data?.DAY?.value / 1000).toFixed(2)) || 0,
 					}}
 				/>
 			</div>
