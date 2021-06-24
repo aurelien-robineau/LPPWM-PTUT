@@ -36,7 +36,7 @@
 		line-height: 1;
 
 		.svg-container {
-			padding-left: space(5);
+			padding-left: space(1);
 
 			@media screen and (min-width: $breakpoint-desktop) and (max-width: 1404px){
 				padding-left: 0;
@@ -67,11 +67,11 @@
 
 .data {
 	&-day {
-		font-size: 4.75rem;
-		font-weight: 600;
+		font-size: 3.1rem;
+		font-weight: 700;
 
 		@media(min-width: $breakpoint-desktop){
-			font-size: 6.75rem;
+			font-size: 6rem;
 		}
 
 		.data-unit{

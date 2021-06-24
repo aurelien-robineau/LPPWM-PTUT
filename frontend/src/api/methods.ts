@@ -73,6 +73,7 @@ export const dataUser = {
 		}
 	},
 	async initGraph(): Promise<{ res: ValuesGraph[], list: { [key: string]: any }[] }> {
+		console.log("Call API")
 		try {
 			const list: any = await dataUser.getMeterList()
 			const listMeters = list.data.map((x: any) => x.id)

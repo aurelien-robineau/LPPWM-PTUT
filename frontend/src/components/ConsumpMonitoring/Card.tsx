@@ -36,7 +36,7 @@ const CardMonitoring = ({
 					<span className={`data-${timeScale}`}>{value}<span className="data-unit">kw</span></span>
 					<span className="svg-container">
 						<IconArrow
-							size={iconSize || 20}
+							size={iconSize || 18}
 							rotation={trend ===0  ? 0 : trend > 0 ? -90 : 90}
 						/>
 					</span>

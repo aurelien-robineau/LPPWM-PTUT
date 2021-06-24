@@ -16,6 +16,8 @@ const Graph = () => {
 	}
 	useEffect(() => {
 		;(async () => {
+			console.log("useEffect")
+
 			const response = await dataUser.initGraph()
 			const { res, list } = response
 
