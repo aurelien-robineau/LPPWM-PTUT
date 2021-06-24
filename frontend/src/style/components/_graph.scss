@@ -102,10 +102,10 @@
 	&-default-legend {
 		padding: space(5) !important;
 		justify-content: space-evenly;
-		transform: translateY(-24px);
 
 		@media (min-width: $breakpoint-desktop) {
 			text-align: left !important;
+			transform: translateY(-24px);
 		}
 	}
 
