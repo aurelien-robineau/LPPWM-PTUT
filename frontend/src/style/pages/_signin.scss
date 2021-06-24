@@ -171,6 +171,7 @@
                     height: 254px;
                     width: 36%;
                     border-radius: 10px;
+                    display: flex;
 
                     img{
 						margin: auto;
@@ -214,6 +215,8 @@
                     height: 295px;
                     width: 50%;
                     border-radius: 10px;
+                    position: relative;
+                    display: flex;
 
                     img{
 						margin: auto;
@@ -253,16 +256,17 @@
                     }
                 }
 
-                .plant {
+                .planty {
                     background-color: var(--clr-white);
                     background-color: white;
                     height: 470px;
                     width: 32%;
                     border-radius: 10px;
+                    display: flex;
 
                     img{
 						margin: auto;
-						width: 88%;
+						width: 85%;
 					}
                 }
             }
