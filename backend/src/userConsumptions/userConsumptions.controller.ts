@@ -25,10 +25,13 @@ export class UserConsumptionsController {
 			'DAY'
 		)
 
+		let totalConsumption = 0
+		userConsumptions.forEach(consumption => totalConsumption += consumption.valueWatt)
+
 		return {
 			usagePointId: usagePointId,
 			days: userConsumptions,
-			totalValueWatt: userConsumptions[0].valueWatt,
+			totalValueWatt: totalConsumption,
 			date: getDayOnlyFromDate(new Date(date)),
 			type: 'DAY'
 		}
