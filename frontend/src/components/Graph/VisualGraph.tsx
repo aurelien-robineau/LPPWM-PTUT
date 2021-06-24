@@ -138,7 +138,7 @@ const VisualGraph = ({
 							stroke: themeColor.gray,
 							strokeWidth: 0,
 						}}
-						label={{ value: "kW", position: "top", marginTop: 10 }}
+						label={{ value: "Watt", position: "top", marginTop: 10 }}
 						type="number"
 						height={5}
 						tickCount={5}

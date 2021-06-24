@@ -78,11 +78,16 @@ export const getDateWeekBounds = (date: Date): { start: Date, end: Date } => {
  * @returns The first and last date of the month.
  */
 export const getDateMonthBounds = (date: Date): { start: Date, end: Date } => {
-	const startDate = new Date(date)
+	const startDate = removeTimeFromDate(date)
 	startDate.setDate(1)
 
-	const endDate = new Date(date)
+	const endDate = removeTimeFromDate(date)
 	endDate.setMonth(date.getMonth() + 1)
+
+	if (endDate.getMonth() - startDate.getMonth() > 1) {
+		endDate.setDate(endDate.getDate() - 1)
+	}
+
 	endDate.setDate(0)
 
 	return {
