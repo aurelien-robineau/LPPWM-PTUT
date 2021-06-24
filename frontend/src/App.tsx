@@ -14,7 +14,7 @@ import store from "./store"
 import FinishSignup from "./pages/FinishSignup"
 import { useAuth } from "./hooks/auth"
 import { storage } from "./utils/constants"
-import { auth, dataUser } from "./api/methods"
+import { auth } from "./api/methods"
 import configAxios from "./api/index"
 import { useState } from "react"
 
@@ -23,10 +23,14 @@ const Signin = lazy(() => import("./pages/Signin"))
 const Dashboard = lazy(() => import("./pages/Dashboard"))
 
 const App = () => {
-	const user: boolean | Object = useAuth()
+	const [user] = useAuth()
 	const [logged, setLogged] = useState<boolean>(!!user)
 	onResize()
 	const themeColor = getStorage(storage.DARK_THEME, localStorage) || false
+
+	useEffect(() => {
+		setLogged(!!user)
+	}, [user])
 
 	useEffect(() => {
 		if (user) {
@@ -35,9 +39,8 @@ const App = () => {
 			configAxios.defaults.headers.common[
 				"Authorization"
 			] = `Bearer ${TOKEN}`
-			setLogged(true)
 		}
-	}, [])
+	}, [logged, user])
 
 	useEffect(() => {
 		document.documentElement.dataset.theme = themeColor ? "dark" : "light"
@@ -63,7 +66,7 @@ const App = () => {
 							)}
 						</Route>
 						<Route path="/dashboard">
-							{!logged ? <Redirect to="/" /> : <Dashboard />}
+							{logged ? <Dashboard /> : <Redirect to="/" />}
 						</Route>
 						<Route path="/">
 							{!!logged ? (

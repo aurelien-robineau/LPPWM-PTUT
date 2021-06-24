@@ -1,3 +1,7 @@
+import { useEffect } from "react"
+import { useState } from "react"
+import { dataUser } from "../../api/methods"
+
 const ProgressRing = ({
 	radius,
 	stroke,
@@ -5,15 +9,25 @@ const ProgressRing = ({
 	radius: number
 	stroke: number
 }) => {
-	const progress: number = 50
-	const size: number = radius * 2
-
 	radius = window.innerWidth > 1024 ? radius * 0.8 : radius
+	const size: number = radius * 2
 	const normalizedRadius: number = radius - stroke * 2
 	const circ: number = normalizedRadius * 2 * Math.PI
-	const strokeDashoffset: number = circ - (progress / 100) * circ
-	const consumption: number = 18
-	const goal: number = 20
+	const [strokeDashoffset, setStrokeDashoffset] = useState<number>(0)
+	const [data, setData] = useState<any>({})
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await dataUser.tracker()
+			setData(res)
+		}
+		fetchData()
+	}, [])
+
+	useEffect(() => {
+		if (data?.percentage) {
+			setStrokeDashoffset(circ - (data?.percentage / 100) * circ)
+		}
+	}, [data, circ])
 
 	return (
 		<svg height={size} width={size}>
@@ -50,7 +64,7 @@ const ProgressRing = ({
 				dominantBaseline="middle"
 				textAnchor="middle"
 			>
-				{consumption} kW
+				{Math.floor(data?.current / 1000)} kW
 			</text>
 			<text
 				className="tracker__goal"
@@ -59,7 +73,7 @@ const ProgressRing = ({
 				dominantBaseline="middle"
 				textAnchor="middle"
 			>
-				{goal} kW
+				{data?.goal / 1000} kW
 			</text>
 		</svg>
 	)

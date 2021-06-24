@@ -1,18 +1,16 @@
-
+import { ValuesGraph } from '../components/Graph/SelectItems'
 import { getStorage, storeToken } from '../utils'
 import { storage } from '../utils/constants'
 import configAxios from './index'
-import { DataTracker } from './types'
-interface ResUrl {
-	data: { url?: string }
-}
+import { ResUrl } from './types'
+
 
 export const auth = {
 	submitLogin(data: Object, setError: { (value: any): void; (arg0: string): void }) {
-		// TODO: Retrive token and refresh token from res
 		configAxios.post("/v1/auth/signin", data)
 			.then(res => {
 				storeToken(res.data)
+				window.location.href = "/dashboard"
 				return
 			})
 			.catch((error) => {
@@ -66,29 +64,43 @@ export const global = {
 }
 
 export const dataUser = {
-	getMeterList() {
-		configAxios.post("/v1/usage-points/")
-			.then(res => {
-				console.log({ usage: res.data })
-				localStorage.setItem(storage.METER_LIST, JSON.stringify(res.data))
-				return
-			})
-			.catch(error => console.warn(error))
+	async getMeterList() {
+		try {
+			const res: any = await configAxios.post("/v1/usage-points/")
+			return res
+		} catch (error) {
+			console.warn(error)
+		}
 	},
-	tracker() {
-		configAxios.get("/")
-			.then(res => console.log(res.data))
-			.catch(error => console.log(error))
+	async initGraph(): Promise<{ res: ValuesGraph[], list: { [key: string]: any }[] }> {
+		try {
+			const list: any = await dataUser.getMeterList()
+			const listMeters = list.data.map((x: any) => x.id)
+			const res: any = await configAxios.post("/v1/users/graph-data", { period: "DAY", graphs: ["average", ...listMeters] })
+			return { res: res.data, list: list.data }
+		} catch (error) {
+			console.warn(error)
+			return { res: [], list: [] }
+		}
 	},
-	initGraph(data: DataTracker = { period: "DAY", graphs: ["average"] }) {
-		configAxios.post("/v1/users/graph-data", data)
-			.then(res => console.log(res.data))
-			.catch(error => console.warn(error))
+	async graph(period: string) {
+		try {
+			const list: any = await dataUser.getMeterList()
+			const listMeters = list.data.map((x: any) => x.id)
+			const res: any = await configAxios.post("/v1/users/graph-data", { period, graphs: ["average", ...listMeters] })
+			return res.data
+		} catch (error) {
+			console.warn(error)
+			return
+		}
 	},
-	initTracker(data: string) {
-		configAxios.get("/v1/data/tracker", { data })
-			.then(res => res.data)
-			.catch(error => console.log(error.response.data))
+	async tracker() {
+		try {
+			const res = await configAxios.post("/v1/users/tracker-data")
+			return res.data
+		} catch (error) {
+			console.warn(error)
+		}
 	},
 	async comparisonConsumption() {
 		try {
@@ -96,6 +108,15 @@ export const dataUser = {
 			return res.data
 		} catch (error) {
 			console.warn(error)
+		}
+	},
+	async plantyGrowth() {
+		try {
+			const res = await configAxios.post("/v1/users/planty-stage")
+			return res.data
+		} catch (error) {
+			console.warn(error)
+			return 0
 		}
 	}
 }
