@@ -1,0 +1,73 @@
+.header {
+	&__container {
+		padding-top: space(4);
+		width: calc(100% - 2 * 24px);
+		margin-left: auto;
+		margin-right: auto;
+		@include flex($justify: space-between);
+
+		@media(min-width: $breakpoint-desktop){
+			height: 100px;
+		}
+	}
+
+	h1 {
+		flex-grow: 0;
+		font-size: 2rem;
+		line-height: 1;
+		z-index: 3;
+
+		@media(min-width: $breakpoint-desktop) {
+			position: fixed;
+			top: space(10);
+			left: space(10);
+			font-size: 3.1rem;
+			line-height: 1.2;
+		}
+
+		span {
+			margin-top: space(1);
+			display: block;
+			font-weight: 700;
+		}
+	}
+
+	.icons {
+		display: inline-flex;
+		align-items: center;
+
+		@media (min-width: $breakpoint-desktop){
+			position: absolute;
+    		right: space(10);
+    		top: space(10);
+		}
+
+		&>*+* {
+			margin-left: space(1);
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		button {
+			padding: 0;
+			background-color: transparent;
+			color: inherit;
+			border: none;
+			outline: none;
+			padding-right: space(4);
+
+			&:focus {
+				border: none;
+				outline: none;
+				fill: var(--clr-white);
+			}
+
+			&:hover {
+				cursor: pointer;
+			}
+
+		}
+	}
+}

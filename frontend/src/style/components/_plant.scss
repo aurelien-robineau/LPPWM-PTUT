@@ -1,0 +1,321 @@
+.plant {
+
+    &__text {
+        display: inline;
+        position: absolute;
+        bottom: 0;
+        left: -54px;
+        width: 70%;
+        font-size: 0.85rem;
+        line-height: 1.2;
+
+        @media (min-width: $breakpoint-desktop){
+            bottom: 114px;
+            width: 50%;
+            font-size: 1rem;
+            right: 0px;
+            left: unset;
+        }
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+
+        svg {
+            position: absolute;
+            bottom: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .plant {
+        width: 148px;
+        transform: translateX(40px);
+    }
+}
+
+// .cls-1 {
+//     fill: #3f3630;
+//     stroke: #3f3630;
+// }
+
+// .cls-1,
+// .cls-2,
+// .cls-4 {
+//     stroke-miterlimit: 10;
+// }
+
+// .cls-2 {
+//     fill: #3d7457;
+//     stroke: #3d7457;
+// }
+
+// .cls-3,
+// .cls-4 {
+//     fill: #1d3829;
+// }
+
+// .cls-4 {
+//     stroke: #1d3829;
+// }
+
+// .cls-1{fill:#543e32;stroke:#543e32;stroke-miterlimit:10;}.cls-2{fill:#8e6109;}
+// .cls-1{fill:#543e32;stroke:#543e32;}.cls-1,.cls-2{stroke-miterlimit:10;}.cls-2{fill:#3d7457;stroke:#3d7457;}.cls-3{fill:#1d3829;}.cls-4{fill:#143a25;}
+
+// .cls-1 {
+//     fill: #543e32;
+//     stroke: #543e32;
+// }
+
+// .cls-1,
+// .cls-2 {
+//     stroke-miterlimit: 10;
+// }
+
+// .cls-2 {
+//     fill: #3d7457;
+//     stroke: #3d7457;
+// }
+
+// .cls-3 {
+//     fill: #1d3829;
+// }
+
+// .cls-4 {
+//     fill: #143a25;
+// }
+
+.gradient-5 {
+    fill: url(#Dégradé_sans_nom_218);
+}
+
+.gradient-6 {
+    fill: url(#Dégradé_sans_nom_218-2);
+}
+
+.gradient-7 {
+    fill: url(#Dégradé_sans_nom_218-3);
+}
+
+.gradient-8 {
+    fill: url(#Dégradé_sans_nom_218-4);
+}
+
+.gradient-9 {
+    fill: url(#Dégradé_sans_nom_218-5);
+}
+
+.gradient-10 {
+    fill: url(#Dégradé_sans_nom_218-6);
+}
+
+.gradient-11 {
+    fill: url(#Dégradé_sans_nom_218-7);
+}
+
+.gradient-12 {
+    fill: url(#Dégradé_sans_nom_218-8);
+}
+
+.gradient-13 {
+    fill: url(#Dégradé_sans_nom_218-9);
+}
+
+.gradient-14 {
+    fill: url(#Dégradé_sans_nom_218-10);
+}
+
+.gradient-15 {
+    fill: url(#Dégradé_sans_nom_218-11);
+}
+
+.gradient-16 {
+    fill: url(#Dégradé_sans_nom_218-12);
+}
+
+.gradient-17 {
+    fill: url(#Dégradé_sans_nom_218-13);
+}
+
+.gradient-18 {
+    fill: url(#Dégradé_sans_nom_218-14);
+}
+
+.gradient-19 {
+    fill: url(#Dégradé_sans_nom_218-15);
+}
+
+.gradient-20 {
+    fill: url(#Dégradé_sans_nom_218-16);
+}
+
+.gradient-21 {
+    fill: url(#Dégradé_sans_nom_218-17);
+}
+
+.gradient-22 {
+    fill: url(#Dégradé_sans_nom_218-18);
+}
+
+.gradient-23 {
+    fill: url(#Dégradé_sans_nom_218-19);
+}
+
+.gradient-24 {
+    fill: url(#Dégradé_sans_nom_218-20);
+}
+
+.gradient-25 {
+    fill: url(#Dégradé_sans_nom_218-21);
+}
+
+.gradient-26 {
+    fill: url(#Dégradé_sans_nom_218-22);
+}
+
+.gradient-27 {
+    fill: url(#Dégradé_sans_nom_218-23);
+}
+
+.gradient-28 {
+    fill: url(#Dégradé_sans_nom_218-24);
+}
+
+.gradient-29 {
+    fill: #38251c;
+}
+
+.gradient-30 {
+    fill: #422b24;
+}
+
+////
+.cls-1 {
+    fill: #543e32;
+    stroke: #543e32;
+}
+
+.cls-1,
+.cls-2 {
+    stroke-miterlimit: 10;
+}
+
+.cls-2 {
+    fill: #3d7457;
+    stroke: #3d7457;
+}
+
+.cls-3 {
+    fill: #1d3829;
+}
+
+.cls-4 {
+    fill: #143a25;
+}
+
+.cls-5 {
+    fill: url(#Dégradé_sans_nom_5);
+}
+
+.cls-6 {
+    fill: url(#Dégradé_sans_nom_5-2);
+}
+
+.cls-7 {
+    fill: url(#Dégradé_sans_nom_59);
+}
+
+.cls-8 {
+    fill: url(#Dégradé_sans_nom_32);
+}
+
+.cls-9 {
+    fill: url(#Dégradé_sans_nom_43);
+}
+
+.cls-10 {
+    fill: url(#Dégradé_sans_nom_26);
+}
+
+.cls-11 {
+    fill: url(#Dégradé_sans_nom_5-3);
+}
+
+.cls-12 {
+    fill: url(#Dégradé_sans_nom_5-4);
+}
+
+.cls-13 {
+    fill: url(#Dégradé_sans_nom_9);
+}
+
+.cls-14 {
+    fill: url(#Dégradé_sans_nom_18);
+}
+
+.cls-15 {
+    fill: url(#Dégradé_sans_nom_10);
+}
+
+.cls-16 {
+    fill: url(#Dégradé_sans_nom_19);
+}
+
+.cls-17 {
+    fill: url(#Dégradé_sans_nom_56);
+}
+
+.cls-18 {
+    fill: url(#Dégradé_sans_nom_29);
+}
+
+.cls-19 {
+    fill: url(#Dégradé_sans_nom_54);
+}
+
+.cls-20 {
+    fill: url(#Dégradé_sans_nom_30);
+}
+
+.cls-21 {
+    fill: url(#Dégradé_sans_nom_58);
+}
+
+.cls-22 {
+    fill: url(#Dégradé_sans_nom_51);
+}
+
+.cls-23 {
+    fill: url(#Dégradé_sans_nom_49);
+}
+
+.cls-24 {
+    fill: url(#Dégradé_sans_nom_39);
+}
+
+.cls-25 {
+    fill: url(#Dégradé_sans_nom_41);
+}
+
+.cls-26 {
+    fill: url(#Dégradé_sans_nom_52);
+}
+
+.cls-27 {
+    fill: url(#Dégradé_sans_nom_57);
+}
+
+.cls-28 {
+    fill: url(#Dégradé_sans_nom_40);
+}
+
+.cls-29 {
+    fill: #38251c;
+}
+
+.cls-30 {
+    fill: #422b24;
+}

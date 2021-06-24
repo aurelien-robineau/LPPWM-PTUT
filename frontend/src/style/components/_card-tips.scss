@@ -1,0 +1,90 @@
+.tips {
+	// TODO: Temp fix min-height
+	min-height: space(60);
+	overflow-x: hidden;
+	overflow-y: hidden;
+
+	h2 {
+		font-size: 2rem;
+		font-weight: 600;
+		text-align: center;
+	}
+
+	&__container {
+		width: calc(100% - 2 * 24px);
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+
+		@media (min-width:$breakpoint-desktop){
+			width: 100%;
+		}
+	}
+
+	&__cards {
+		position: relative;
+		touch-action: none;
+		margin-top: space(8);
+		
+		@media (min-width:$breakpoint-desktop){
+			margin-top: 12px;
+		}
+	}
+
+	&__card {
+		will-change: transform;
+		position: absolute;
+		width: 100%;
+		padding: space(4);
+		background-color: var(--clr-white);
+		border-radius: space(2);
+		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+
+		@media (min-width:$breakpoint-desktop){
+			height: 330px;
+			display: flex;
+			box-shadow: $box-shadow;
+		}
+
+		svg {
+			position: absolute;
+			right: space(2);
+			top: space(2);
+			color: var(--clr-light-gray);
+			stroke-width: 1px;
+
+			@media (min-width: $breakpoint-desktop){
+				opacity: 0.5!important;
+				right: space(4);
+				top: space(4);
+			}
+		}
+
+		p {
+			margin-top: space(2);
+			text-align: center;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		@for $i from 1 to 5 {
+			&:nth-of-type(#{$i}) {
+				transform: translateY(calc(#{$i - 1} * -15%))
+					scale(calc(1 - #{$i - 1} * 0.1));
+				z-index: calc(5 - #{$i});
+				top: calc(-0.3 * #{$i - 1} * var(--space));
+				& * {
+					opacity: calc(1 - #{$i - 1} * 0.05);
+				}
+			}
+		}
+	}
+
+}
+
+.card{
+	&__container{
+		margin: auto;
+	}
+}

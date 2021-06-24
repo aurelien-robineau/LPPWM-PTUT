@@ -1,0 +1,14 @@
+// Import bases (Variables and reset CSS)
+@import "./base/variable", "./base/reset", "./base/typography";
+
+// Import functions and mixins
+@import "./utils/functions", "./utils/mixins";
+
+// Import extends styles
+@import "./extends/global";
+
+// Import pages styles
+@import "./pages/dashboard", "./pages/login", "./pages/signin" , "./pages/profile";;
+
+// Import Components
+@import "./components/header", "./components/graph", "./components/tracker", "./components/card-tips", "./components/consumpMonitoring", "./components/plant", "./components/loader";

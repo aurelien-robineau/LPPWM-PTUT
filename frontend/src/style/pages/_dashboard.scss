@@ -1,0 +1,184 @@
+.dashboard-page {
+	background-color: var(--clr-background);
+	overflow-x: hidden;
+
+	h2 {
+		@extend %heading2;
+	}
+}
+
+
+.tracker-section {
+	grid-area: tracker;
+	@extend %grid_width;
+	@extend %grid_margin;
+}
+
+
+.plant {
+	grid-area: plant;
+}
+
+.graph {
+
+	&-section {
+		grid-area: graph;
+		@extend %grid_margin;
+
+		@media (min-width: $breakpoint-desktop) {
+			background-color: var(--clr-white);
+			border-radius: 8px;
+			padding: 40px;
+			box-shadow: $box-shadow-light;
+		}
+	}
+
+	&-wrapper {
+
+		@media (min-width: $breakpoint-desktop) {
+
+			position: relative;
+			width: 100%;
+			margin-top: space(8);
+
+			.visual-graph {
+				.recharts-responsive-container {
+					margin-top: space(14);
+				}
+			}
+
+			.multi-select {
+				height: 44px;
+				width: 290px;
+				position: absolute;
+				top: 0;
+			}
+		}
+	}
+}
+
+.basic-multi-select {
+	@extend %grid_width;
+}
+
+.tips {
+	grid-area: tips;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-areas: "tracker tracker"
+		"day plant"
+		"week-month week-month"
+		"graph graph"
+		"tips tips";
+	// row-gap: space(12);
+
+}
+
+
+.card-container-day {
+	grid-area: day;
+	width: 75%;
+	margin-left: 24px;
+
+	@media(min-width: 670px) {
+		margin-left: 44px;
+	}
+
+	@media(min-width: 730px) {
+		margin-left: 85px;
+	}
+
+	@media(min-width: 800px) {
+		margin-left: 132px;
+	}
+
+	@media(min-width: 1024px) {
+		margin-left: 24px;
+	}
+}
+
+.card-container-week-month {
+	grid-area: week-month;
+	display: flex;
+	justify-content: space-between;
+	@extend %grid_width;
+	margin-top: space(4);
+}
+
+.plant {
+	grid-area: plant;
+	position: relative;
+
+	div {
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+
+
+//DESKTOP
+
+@media (min-width: $breakpoint-desktop) {
+
+	.title {
+		display: flex;
+		justify-content: flex-start;
+		float: right;
+		max-width: 1440px;
+
+		@media screen and (min-width: $breakpoint-desktop) and (max-width: 1404px){
+			width: 73%;
+		}
+
+		@media (min-width: 1404px){
+			width: 75.5%;
+		}
+
+		&-tracker {
+			width: 70.5%;
+		}
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-areas:
+			"plant tracker day tips"
+			"plant tracker week-month tips"
+			"plant graph graph graph";
+		grid-row-gap: unset;
+		row-gap: unset;
+		grid-template-columns: 18% 25% 38% 1fr;
+		grid-template-rows: 20% 17% auto;
+		max-width: 1440px;
+		margin-bottom: 40px;
+		width: 85%;
+		margin-left: 130px;
+	}
+
+	.plant {
+		position: fixed;
+		display: flex;
+		align-items: center;
+		height: 100vh;
+		background-color: var(--clr-white);
+		left: 0;
+		top: 0;
+		width: 266px;
+		transform: unset;
+		min-height: 600px;
+
+		div {
+			position: initial;
+			bottom: unset;
+			right: unset;
+		}
+	}
+
+	.card-container-day {
+		width: calc(100% - 48px);
+		height: 100%;
+	}
+}
