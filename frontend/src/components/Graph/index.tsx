@@ -55,7 +55,19 @@ const Graph = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const res = await dataUser.graph(time)
-			setData(res)
+			setData(
+				res.map((x: any) => {
+					const d: Date = new Date(x.time)
+					x.time = new Intl.DateTimeFormat("fr", {
+						hour: "numeric",
+						minute: "numeric",
+						hourCycle: "h24",
+						day: "2-digit",
+						month: "2-digit",
+					}).format(d)
+					return x
+				})
+			)
 		}
 		fetchData()
 	}, [time])
