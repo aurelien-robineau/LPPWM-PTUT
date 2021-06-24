@@ -1,4 +1,5 @@
 import Header from "../components/Header"
+import House from "../components/Icons/house"
 
 const Profile = () => {
 	return (
@@ -29,8 +30,8 @@ const Profile = () => {
 				</div>
 
 				<h3>Tous mes compteurs</h3>
-				<div className="counter__wrapper"><span>icon</span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div>
-				<div className="counter__wrapper"><span>icon</span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div>
+				<div className="counter__wrapper"><span><House /></span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div>
+				<div className="counter__wrapper"><span><House /></span><p>Adresse compteur : contrat kW </p> <a href="">supprimer</a></div>
 
 			</div>
 
@@ -51,9 +52,9 @@ const Profile = () => {
 				<h3>Compteur principal</h3>
 				<select name="favorite__select" id="favorite__select">
 					<option value="">Compteur favoris</option>
-					<option value="counter-1"><span>icon</span> 3 rue pouche</option>
-					<option value="counter-2"><span>icon</span>3 rue pouche</option>
-					<option value="counter-3"><span>icon</span>3 rue pouche</option>
+					<option value="counter-1"><span><House /></span> 3 rue pouche</option>
+					<option value="counter-2"><span><House /></span>3 rue pouche</option>
+					<option value="counter-3"><span><House /></span>3 rue pouche</option>
 				</select>
 
 				<h3>Ajouter un compteur</h3>
