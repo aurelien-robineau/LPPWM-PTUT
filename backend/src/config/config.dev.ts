@@ -1,4 +1,4 @@
-const DEBUG_MAC = false // For connection in MySQL by socket 
+const DEBUG_MAC = true // For connection in MySQL by socket 
 const FIRST_CONNECTION = false // Initialize entities
 
 export default {
