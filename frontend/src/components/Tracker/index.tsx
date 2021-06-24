@@ -16,7 +16,7 @@ const Tracker = () => {
 	}
 
 	else {
-		size = window.innerWidth / 10
+		size = window.innerWidth / 11
 	}
 
 	return (
