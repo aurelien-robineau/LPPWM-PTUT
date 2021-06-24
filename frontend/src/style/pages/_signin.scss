@@ -42,6 +42,10 @@
 
         a {
             @extend %main-link;
+
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
 
