@@ -14,7 +14,6 @@ import { useDarkMode } from "../../hooks/darkTheme"
 import { getAllKeys } from "../../utils/index"
 import { palette } from "../../utils/palette"
 import { SelectItems, ValuesGraph } from "./SelectItems"
-import { dataUser } from "../../api/methods"
 
 const PERIODS: string[] = ["DAY", "WEEK", "MONTH"]
 
@@ -148,7 +147,16 @@ const VisualGraph = ({
 						minTickGap={10}
 					/>
 					<CartesianGrid strokeDasharray="10" vertical={false} />
-					<Tooltip />
+					<Tooltip
+						wrapperStyle={{
+							color: themeColor.text,
+							backgroundColor: themeColor.background,
+							borderColor: themeColor.text,
+						}}
+						contentStyle={{
+							backgroundColor: themeColor.background,
+						}}
+					/>
 					<Legend
 						verticalAlign="bottom"
 						height={20}

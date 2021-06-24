@@ -83,7 +83,6 @@ export const dataUser = {
 			return { res: [], list: [] }
 		}
 	},
-
 	async graph(period: string) {
 		try {
 			const list: any = await dataUser.getMeterList()
@@ -109,6 +108,15 @@ export const dataUser = {
 			return res.data
 		} catch (error) {
 			console.warn(error)
+		}
+	},
+	async plantyGrowth() {
+		try {
+			const res = await configAxios.post("/v1/users/planty-stage")
+			return res.data
+		} catch (error) {
+			console.warn(error)
+			return 0
 		}
 	}
 }
