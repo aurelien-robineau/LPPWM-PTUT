@@ -121,6 +121,9 @@ export class AuthService {
 				isFavorite = false
 			}
 
+			// Load current month consumption data
+			await this.usersService.getDataForComparison(user)
+
 			return user
 		} catch (error) {
 			if (error.status === 400)
