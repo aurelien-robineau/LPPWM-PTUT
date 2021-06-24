@@ -2,11 +2,10 @@
 	h2 {
 		text-align: center;
 
-		@media (min-width:$breakpoint-desktop) {
+		@media (min-width: $breakpoint-desktop) {
 			text-align: left;
 		}
 	}
-
 }
 
 .recharts {
@@ -53,13 +52,11 @@
 			width: calc(3 * 22vw);
 		}
 
-		@media (min-width:$breakpoint-desktop){
+		@media (min-width: $breakpoint-desktop) {
 			width: 290px;
 			float: right;
 		}
 	}
-
-
 	&__inner-container {
 		position: relative;
 		height: space(7);
@@ -77,7 +74,7 @@
 		height: 100%;
 		background-color: var(--clr-white);
 		pointer-events: none;
-		transition: left 0.3s ease;
+		transition: transform 0.3s ease;
 		filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
 	}
 
@@ -96,7 +93,6 @@
 			display: block;
 		}
 	}
-
 }
 
 //SELECT
@@ -113,6 +109,9 @@
 
 	&-legend-item{
 			margin-right: space(8)!important;
+
+			@media (min-width: $breakpoint-desktop) {
+				margin-top: 34px !important;
 	}
 
 }
@@ -137,7 +136,6 @@
 
 	&__menu-list {
 		background-color: var(--clr-white) !important;
-
 	}
 
 	&__option--is-focused {
@@ -163,9 +161,7 @@
 			box-shadow: $box-shadow !important;
 			border-style: unset !important;
 		}
-
 	}
-
 }
 
 .css-1rhbuit-multiValue {

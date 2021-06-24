@@ -10,7 +10,7 @@ export const useAuth = () => {
 		if (!userInfos && getStorage(storage.USER_INFOS, localStorage)) {
 			auth.refreshToken()
 		}
-		setUser({ userInfos })
+		setUser(userInfos ? { userInfos } : false)
 	}, [])
 	return [user]
 }
