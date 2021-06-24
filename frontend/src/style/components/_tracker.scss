@@ -1,9 +1,5 @@
 .tracker-date {
 	font-size: 1.25rem;
-
-	@media(min-width: $breakpoint-desktop){
-		transform: translateY(-14px);
-	}
 }
 
 .tracker {
@@ -39,6 +35,9 @@
 		transition: stroke-dashoffset ease 0.35s;
 		transform: scale(1.17) rotate(-90deg);
 		transform-origin: 50% 50%;
+		&.over-100 {
+			stroke: var(--clr-red);
+		}
 
 		@media (min-width: 500px){
 			cx: 50%;
@@ -79,6 +78,6 @@
 		width: 100%;
 		border-radius: 8px;
 		margin: 0;
-		box-shadow: $box-shadow;
+		box-shadow: $box-shadow-light;
 	}
 }

@@ -16,6 +16,7 @@
 	.yAxis &-label {
 		transform: translateY(-10%);
 	}
+
 	&-wrapper {
 		padding-top: 20px;
 	}
@@ -24,6 +25,10 @@
 		.recharts-text {
 			fill: var(--clr-gray);
 		}
+	}
+
+	&-default-tooltip {
+		background-color: var(--clr-white) !important;
 	}
 }
 
@@ -39,9 +44,10 @@
 		margin-left: auto;
 		margin-right: auto;
 		width: calc(3 * 25vw);
-		padding: space(2);
+		padding: space(1);
 		border-radius: space(2);
 		background-color: var(--clr-light-gray);
+
 		@media screen and (min-width: $breakpoint-tablet) {
 			width: calc(3 * 22vw);
 		}
@@ -51,6 +57,7 @@
 			float: right;
 		}
 	}
+
 	&__inner-container {
 		position: relative;
 		height: space(7);
@@ -71,6 +78,7 @@
 		transition: transform 0.3s ease;
 		filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
 	}
+
 	&__item {
 		@include flex();
 		flex-grow: 1;
@@ -80,6 +88,7 @@
 		height: 100%;
 		text-align: center;
 		cursor: pointer;
+
 		& span {
 			width: 100%;
 			display: block;
@@ -88,71 +97,90 @@
 }
 
 //SELECT
-.recharts-default-legend {
-	padding: space(5) !important;
-	justify-content: space-evenly;
+.recharts {
+	&-default-legend {
+		padding: space(5) !important;
+		justify-content: space-evenly;
 
-	@media (min-width: $breakpoint-desktop) {
-		margin-top: 34px !important;
-	}
-}
-
-.select {
-	&__placeholder {
-		width: 100%;
-		text-align: center;
-	}
-
-	&__control {
-		background-color: var(--clr-white) !important;
-		border: none;
-		padding: space(1);
-		box-shadow: $box-shadow;
-		border-style: unset !important;
-		border-width: unset !important;
-	}
-	&__menu-list {
-		background-color: var(--clr-white) !important;
-	}
-
-	&__option--is-focused {
-		background-color: rgba(var(--clr-light-gray), 0.5) !important;
-	}
-	&__indicators {
-		svg {
-			fill: var(--clr-text) !important;
+		@media (min-width: $breakpoint-desktop) {
+			margin-top: 24px !important;
+			text-align: left !important;
 		}
 	}
 
-	&__control {
-		box-shadow: $box-shadow !important;
-		background-color: var(--clr-white) !important;
+	&-legend-item {
+		margin-right: space(8) !important;
 
-		&--is-focus {
-			background-color: red;
+		@media (min-width: $breakpoint-desktop) {
+			margin-top: 34px !important;
 		}
-		&:hover {
-			border-color: unset !important;
-			box-shadow: $box-shadow !important;
+
+	}
+
+
+
+
+	.select {
+		&__placeholder {
+			width: 100%;
+			text-align: center;
+		}
+
+		&__control {
+			background-color: var(--clr-white) !important;
+			border: none;
+			padding: space(1);
+			box-shadow: $box-shadow;
 			border-style: unset !important;
+			border-width: unset !important;
+		}
+
+		&__menu-list {
+			background-color: var(--clr-white) !important;
+		}
+
+		&__option--is-focused {
+			background-color: rgba(var(--clr-light-gray), 0.5) !important;
+		}
+
+		&__indicators {
+			svg {
+				fill: var(--clr-text) !important;
+			}
+		}
+
+		&__control {
+			box-shadow: $box-shadow !important;
+			background-color: var(--clr-white) !important;
+
+			&--is-focus {
+				background-color: red;
+			}
+
+			&:hover {
+				border-color: unset !important;
+				box-shadow: $box-shadow !important;
+				border-style: unset !important;
+			}
 		}
 	}
-}
 
-.css-1rhbuit-multiValue {
-	background-color: var(--clr-light-gray) !important;
-}
-
-.multi-select {
-	margin-top: 45px;
-	z-index: 99;
-	@extend %grid_width;
-	& > div {
-		background-color: var(--clr-white) !important;
+	.css-1rhbuit-multiValue {
+		background-color: var(--clr-light-gray) !important;
 	}
 
-	@media (min-width: $breakpoint-desktop) {
-		margin-top: unset;
-		margin: unset;
+	.multi-select {
+		margin-top: 45px;
+		z-index: 99;
+		@extend %grid_width;
+
+		&>div {
+			background-color: var(--clr-white) !important;
+		}
+
+		@media (min-width: $breakpoint-desktop) {
+			margin-top: unset;
+			margin: unset;
+		}
 	}
 }

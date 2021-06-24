@@ -52,7 +52,14 @@
 			top: space(2);
 			color: var(--clr-light-gray);
 			stroke-width: 1px;
+
+			@media (min-width: $breakpoint-desktop){
+				opacity: 0.5!important;
+				right: space(4);
+				top: space(4);
+			}
 		}
+
 		p {
 			margin-top: space(2);
 			text-align: center;
