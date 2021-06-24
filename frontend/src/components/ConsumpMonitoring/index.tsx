@@ -22,8 +22,9 @@ const ConsumpMonitoring = () => {
 					timeScale={"day"}
 					variation={{
 						trend: data?.DAY?.trend || 0,
-						value: parseFloat((data?.DAY?.value / 1000).toFixed(2)) || 0,
+						value: parseFloat((data?.DAY?.value / 1000).toFixed(1)) || 0,
 					}}
+					iconSize={12}
 				/>
 			</div>
 

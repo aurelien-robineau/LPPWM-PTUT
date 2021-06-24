@@ -88,6 +88,7 @@
 		height: 100%;
 		text-align: center;
 		cursor: pointer;
+		font-size: 16px;
 
 		& span {
 			width: 100%;
@@ -169,18 +170,20 @@
 		background-color: var(--clr-light-gray) !important;
 	}
 
-	.multi-select {
-		margin-top: 45px;
-		z-index: 99;
-		@extend %grid_width;
 
-		&>div {
-			background-color: var(--clr-white) !important;
-		}
+}
 
-		@media (min-width: $breakpoint-desktop) {
-			margin-top: unset;
-			margin: unset;
-		}
+.multi-select {
+	margin-top: 45px;
+	z-index: 99;
+	@extend %grid_width;
+
+	&>div {
+		background-color: var(--clr-white) !important;
+	}
+
+	@media (min-width: $breakpoint-desktop) {
+		margin-top: unset;
+		margin: unset;
 	}
 }
