@@ -29,7 +29,6 @@ const VisualGraph = ({
 	let blockRef = useRef<HTMLDivElement>(null)
 	const [darkMode] = useDarkMode()
 	const themeColor: any = darkMode ? palette.dark : palette.light
-	const [time, setTime] = useState<string>(PERIODS[0])
 	const filterCurves: string[] = selected.map(x => x.value)
 	const colorPalette = getThemePalette(themeColor)
 	const [keys, setKeys] = useState<string[]>([])
