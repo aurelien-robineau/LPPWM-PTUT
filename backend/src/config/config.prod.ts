@@ -17,7 +17,7 @@ export default {
 			authorizeBaseUrl: 'https://mon-compte-particulier.enedis.fr',
 			redirectUri: null,
 			clientId: null,
-			publicKey: null,
+			publicKey: '943fd444-db72-47c0-8269-785bae61b44b',
 			privateKey: null,
 			authorizationDuration: 'P1Y'
 		},
