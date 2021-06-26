@@ -76,6 +76,7 @@ export class AuthService {
 			const customerData = await this._getUserDataForSignUp(authorizationCode)
 			let user = await this.usersService.createFromDataHubJson(customerData)
 			user.password = bcrypt.hashSync(password)
+			user.weekGoalWatt = 200000
 
 			const usagePointsEnedisIds = customerData.token_infos.usage_points_id.split(',')
 			const usagePointsRegions: { usagePoint: UsagePoint, region: Region }[] = []
@@ -120,9 +121,6 @@ export class AuthService {
 
 				isFavorite = false
 			}
-
-			// Load current month consumption data
-			await this.usersService.getDataForComparison(user)
 
 			return user
 		} catch (error) {
