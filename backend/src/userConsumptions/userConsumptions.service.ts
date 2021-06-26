@@ -124,7 +124,7 @@ export class UserConsumptionsService {
 			bounds.end
 		) * 48
 
-		const isAllDataLoaded = userConsumptions.length >= numberOfResultsExpected
+		const isAllDataLoaded = numberOfResultsExpected - userConsumptions.length < 5
 
 		// If not all data is in our database, fetch consumption from Enedis DataHub API and
 		// save it to our database
@@ -195,6 +195,13 @@ export class UserConsumptionsService {
 					userConsumptions.push(userConsumption)
 				}
 			} catch (error) {
+				if (error.message.includes('Unexpected end of JSON input')) {
+					throw new HttpException(
+						'L\'API Enedis DataHub ne répond pas',
+						HttpStatus.BAD_REQUEST
+					)
+				}
+
 				throw new HttpException(
 					'Pas de données disponibles pour la période demandée',
 					HttpStatus.BAD_REQUEST
